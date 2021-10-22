@@ -3,10 +3,24 @@
 use PHPUnit\Framework\TestCase;
 use My\Helpers;
  
-final class HelpersTest extends TestCase
-{
-   public function testExpectedText(): void {
-       $txt = Helpers::sayHello("Pep");
-       $this->assertEquals("Hello Pep", $txt);
-   }
+final class HelpersTest extends TestCase{
+    public function testUrl(): void 
+    {
+        $path = "user/login.php";
+        //Comença per "http://" quan $ssl es null;
+        $url = Helpers::url($path);
+        $this->assertStringStartsWith("http://", $url);
+        
+        //Comença per "http://" quan $ssl es false
+        $url = Helpers::url($path,false);
+        $this->assertStringStartsWith("http://", $url);
+        
+        //Comença per "https://" quan $ssl es true
+        $url = Helpers::url($path,true);
+        $this->assertStringStartsWith("https://", $url);
+
+        //Sempre inclou la ruta relativa al final
+        $url = Helpers::url($path);
+        $this->assertStringEndsWith($path,$url);
+    }
 }
