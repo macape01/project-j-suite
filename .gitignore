@@ -1,5 +1,6 @@
 composer.lock
 composer
+instalcomposer.sh
 composer.phar
 composer.json
 /vendor/
