@@ -6,6 +6,10 @@
     display: revert;
 }
 
+*+*{
+    box-sizing: border-box;
+}
+
 /* Preferred box-sizing value */
 *,
 *::before,
