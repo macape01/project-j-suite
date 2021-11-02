@@ -3,7 +3,7 @@
 use PHPUnit\Framework\TestCase;
 use My\Database;
  
-//SELECT email,role_id FROM users WHERE username = "admin"
+//
 
 final class DatabaseTest extends TestCase
 {
@@ -19,7 +19,13 @@ final class DatabaseTest extends TestCase
     */
    public function testStatements(Database $db): void
    {
-       // ...
+
+    $sentencia = $db->prepare("SELECT email,role_id FROM users WHERE username = 'admin' ");
+    $sentencia->fetch();
+    var_dump($sentencia);
+    $sentencia->execute(array($_GET['username']));
+    $this->assertCount(1, $sentencia);
+
    }
 }
 
