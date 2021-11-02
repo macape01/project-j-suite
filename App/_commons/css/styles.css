@@ -1,0 +1,81 @@
+@import "variables.css";
+
+
+#botones{
+  display: inline-flex;
+}
+
+.button:focus{
+  outline:none;
+}
+.button {
+    display: inline-block;
+    border-radius: 4px;
+    background-color:var(--system-darkblue);
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 18px;
+    padding: 10px;
+    width: 100px;
+    cursor: pointer;
+    margin: 5px;
+    
+  }
+
+.button--active {
+background-color:#FFFFFF;
+color:var(--system-darkblue);
+border: 1px solid var(--system-darkblue);
+}
+
+.button--secondary {
+background-color:var(--system-grey);
+color:var(--system-darkgrey);
+border:1px solid var(--system-darkgrey);
+}
+
+.button--round{
+border-radius: 40px;
+width: 200px;
+
+}
+
+.link{
+    display: inline-block;
+    color:var(--system-darkblue);
+    border: none;
+    text-align: center;
+    font-size: 18px;
+    padding: 10px;
+    width: 200px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.link__logo{
+
+  font-size: 60px;
+  width: 100px;
+  margin: 5px;
+  font-weight: 1000;
+  text-decoration: none;
+}
+
+.titols{
+  border: none;
+  color:var(--system-darkblue);
+  text-align: center;
+  font-size: 30px;
+  padding: 10px;
+  width: 100px;
+  margin: 5px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.input{
+  border:none;
+  flex: 1;
+}
+
