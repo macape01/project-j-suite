@@ -1,0 +1,67 @@
+@import 'variables.css';
+html,body{
+    width: 100%;
+    height: 100%;
+}
+
+.mockup-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form{
+    border-radius: 1.6rem;
+    width: 300px;
+    padding: 2rem;
+    max-width: 400px;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 1.2rem;
+    background-color: #9AB3F5;
+}
+
+.form__row {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center ;
+    gap: 1.5rem;
+}
+
+.icon{
+    justify-content: center;
+    align-items:center;
+}
+
+.input__wrapper{
+    border: 1px solid #7579E7;
+    background-color:#9AB3F5;
+    border-radius: .6rem;
+    padding: .8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
+.button__wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.checkbox__wrapper{
+    border: none;
+    justify-content: flex-start;
+}
+
+.input{
+    flex: 1;
+    background-color: #9AB3F5;
+    border: none;
+}
+.input--active {
+
+}

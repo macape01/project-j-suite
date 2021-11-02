@@ -5,7 +5,8 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Projecte J-Suite</title>
-
+   <link rel="stylesheet" href="./_commons/css/components.css">
+   <link rel="stylesheet" href="./_commons/css/reset.css">
 </head>
 <body>
    <header>
