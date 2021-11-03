@@ -3,6 +3,7 @@ composer
 composer.phar
 composer.json
 config/database.php
+config/mail.php
 /vendor/
 .vscode
 script.sh
