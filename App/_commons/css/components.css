@@ -1,4 +1,9 @@
 @import 'variables.css';
+
+:root{
+    --max-container-width: 300px;
+}
+
 html,body{
     width: 100%;
     height: 100%;
@@ -10,13 +15,21 @@ html,body{
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 2rem;
+}
+
+.container{
+    width: 100%;
+    max-width: var(--max-container-width);
+}
+
+.component--round{
+    border-radius: 1.6rem;
 }
 
 .form{
-    border-radius: 1.6rem;
-    width: 300px;
     padding: 2rem;
-    max-width: 400px;
+    width: 100%;
     display: flex;
     flex-flow: column nowrap;
     gap: 1.2rem;
@@ -26,8 +39,8 @@ html,body{
 .form__row {
     display: flex;
     flex-flow: column wrap;
-    justify-content: center ;
-    gap: 1.5rem;
+    align-items: stretch ;
+    gap: 1rem;
 }
 
 .icon{
@@ -39,7 +52,7 @@ html,body{
     font-size: 1.5rem;
 }
 
-.input__wrapper{
+.row__wrapper{
     border: 1px solid var(--system-darkblue);
     background-color: var(--system-midblue);
     border-radius: .6rem;
@@ -48,6 +61,7 @@ html,body{
     justify-content: center;
     align-items: center;
     flex: 1;
+    gap: .8rem;
 }
 
 .button__wrapper{
@@ -56,12 +70,8 @@ html,body{
     align-items: center;
 }
 
-.checkbox__wrapper{
+.row__wrapper--checkbox{
     border: none;
-}
-
-.input--checkbox{
-    flex: unset;
 }
 
 .input{
@@ -69,7 +79,18 @@ html,body{
     background-color: var(--system-midblue);
     border: none;
 }
+.input--checkbox{
+    flex: unset;
+    border: 1px solid var(--system-darkblue);
+}
+
 .accordion{
-    width: 300px;
-    
+    width: 100%;
+    height: 450px;
+    padding: 2rem;
+    background-color: var(--system-midblue);
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    gap: 1rem;
 }
