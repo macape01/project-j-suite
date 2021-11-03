@@ -20,7 +20,7 @@ html,body{
     display: flex;
     flex-flow: column nowrap;
     gap: 1.2rem;
-    background-color: #9AB3F5;
+    background-color: var(--system-midblue);
 }
 
 .form__row {
@@ -35,9 +35,13 @@ html,body{
     align-items:center;
 }
 
+.fa.icon{
+    font-size: 1.5rem;
+}
+
 .input__wrapper{
-    border: 1px solid #7579E7;
-    background-color:#9AB3F5;
+    border: 1px solid var(--system-darkblue);
+    background-color: var(--system-midblue);
     border-radius: .6rem;
     padding: .8rem;
     display: flex;
@@ -54,14 +58,18 @@ html,body{
 
 .checkbox__wrapper{
     border: none;
-    justify-content: flex-start;
+}
+
+.input--checkbox{
+    flex: unset;
 }
 
 .input{
     flex: 1;
-    background-color: #9AB3F5;
+    background-color: var(--system-midblue);
     border: none;
 }
-.input--active {
-
+.accordion{
+    width: 300px;
+    
 }
