@@ -74,8 +74,26 @@ width: 200px;
   text-decoration: none;
 }
 
+.text{
+  text-align: unset;
+  width: 150px;
+  font-weight: 100;
+  font-size: 15px;
+}
+
 .input{
   border:none;
   flex: 1;
+}
+
+.fa.icon{
+  font-size: 23px;
+  color:var(--system-midblue);
+}
+
+.fa.profile{
+  font-size: 50px;
+  color:var(--system-darkblue);
+  margin-left:20px;
 }
 
