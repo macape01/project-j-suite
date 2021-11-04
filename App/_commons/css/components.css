@@ -91,6 +91,34 @@ html,body{
     background-color: var(--system-midblue);
     display: flex;
     flex-flow: column wrap;
-    align-items: center;
+    align-items: flex-start;
     gap: 1rem;
+}
+
+.accordion__title{
+    align-self: center;
+}
+
+.message{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: .5rem;
+    width: 100%;
+    padding: 1rem;
+    color: #fff;
+    background-color: var(--system-darkblue);
+    border-radius: 1.6rem;
+}
+
+.message__subject{
+    font-size: 1.5rem;
+}
+
+.message__author{
+    color:var(--system-darkgrey);
+    background-color: var(--system-lightblue);
+    border-radius: .8rem;
+    padding: .5rem 2rem;
 }
