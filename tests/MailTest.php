@@ -7,7 +7,7 @@ final class MailTest extends TestCase
 {
    public function testConstructor(): Mail
    {
-       $mail = new Mail("Title", "Body");
+       $mail = new Mail("Micaracuando:", "Mikyfacal .-.");
        $this->assertIsObject($mail);
        return $mail;
    }
