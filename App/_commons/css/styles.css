@@ -23,6 +23,12 @@
     
   }
 
+.button:active {     
+  background-color:#FFFFFF;
+  color:var(--system-darkblue);
+  border: 1px solid var(--system-darkblue);  
+}
+
 .button--active {
 background-color:#FFFFFF;
 color:var(--system-darkblue);
@@ -38,7 +44,12 @@ border:1px solid var(--system-darkgrey);
 .button--round{
 border-radius: 40px;
 width: 200px;
+align-items: center;
 
+}
+
+.info{
+  margin-top:40px;
 }
 
 .link{
@@ -69,7 +80,7 @@ width: 200px;
   font-size: 30px;
   padding: 10px;
   width: 100px;
-  margin: 5px;
+  margin: 1px;
   font-weight: 600;
   text-decoration: none;
 }
@@ -78,7 +89,10 @@ width: 200px;
   text-align: unset;
   width: 150px;
   font-weight: 100;
-  font-size: 15px;
+  font-size: 20px;
+
+  margin-top: -2px;
+  color: black;
 }
 
 .input{
@@ -92,8 +106,23 @@ width: 200px;
 }
 
 .fa.profile{
-  font-size: 50px;
+  font-size: 65px;
   color:var(--system-darkblue);
-  margin-left:20px;
+  justify-content: left;
+  text-align: left;
+  margin-left:10px;
+
 }
+
+.accordion{
+  width: 230px;
+  height: 450px;
+  padding: 1rem;
+  background-color: var(--system-midblue);
+  display: flex;
+  flex-flow: column wrap;
+  gap: 1rem;
+
+}
+
 
