@@ -16,7 +16,9 @@ final class MailTest extends TestCase
     */
     public function testSend(Mail $mail): void
     {
-        $result = $mail->send(["Pep" => "pep.jimenez@insjoaquimmir.cat"]);
+        $result = $mail->send(
+                ["Admin" => "macape@fp.insjoaquimmir.cat"]    
+        );
         $this->assertTrue($result);
     }
 }

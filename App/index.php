@@ -1,25 +1,9 @@
 <!DOCTYPE html>
 <html lang="ca">
-<head>
-    <?php require_once __DIR__ . "../../vendor/autoload.php"; ?>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
+<?php require_once __DIR__ . "../../vendor/autoload.php"; ?>
+<?= My\Helpers::render("/_commons/head.php", ["subtitle" => "Login"]) ?>
 <body>
-    <header>
-        <h1><a href="<?= My\Helpers::url("/")?>">Projecte J-Suite</a></h1>
-        <?php $flash = My\Helpers::flash();?>
-        <?php if (!empty($flash)): ?>
-        <div class="flash">
-        <ul>
-            <?php foreach ($flash as $msg): ?>
-            <li class="flash__message"><?= $msg ?></li>
-            <?php endforeach; ?>
-        </ul>
-        </div>
-        <?php endif; ?>
-    </header>
+   <?= My\Helpers::render("/_commons/header.php") ?>
    <h2>Homepage</h2>
    <p>My first PHP web app works!</p>
    <ul>
@@ -28,8 +12,6 @@
        <li>PHP version: <?= phpversion() ?></li>
        <li>IP address: <?= getHostByName(getHostName()) ?></li>
    </ul>
-   <footer>
-        <p>Curs 2021-22 de 2DAW</p>
-    </footer>
+   <?= My\Helpers::render("/_commons/footer.php") ?>
 </body>
 </html>

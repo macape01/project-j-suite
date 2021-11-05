@@ -18,32 +18,24 @@ class Mail {
    {
         // Setup SMTP server...
         $config = include(__DIR__ . "/../config/mail.php");
-        $this->$_mailer = new PHPMailer();
-        $this->$_mailer->IsSMTP();
-        $this->$_mailer->Mailer = $config["server"["protocol"]];
-        $this->$_mailer->SMTPDebug  = $config["server"["debug"]];  
-        $this->$_mailer->SMTPAuth   = TRUE;
-        $this->$_mailer->SMTPSecure = $config["server"["security"]];
-        $this->$_mailer->Port       = $config["server"["port"]];
+        $this->_mailer = new PHPMailer();
+        $this->_mailer->IsSMTP();
+        $this->_mailer->Mailer = $config["server"]["protocol"];
+        $this->_mailer->SMTPDebug  = $config["server"]["debug"];  
+        $this->_mailer->SMTPAuth   = TRUE;
+        $this->_mailer->SMTPSecure = $config["server"]["security"];
+        $this->_mailer->Port       = $config["server"]["port"];
         // Configure mail host
-        $this->$_mailer->Host       = $config["server"["host"]];
-        $this->$_mailer->Username   = $config["server"["username"]];
-        $this->$_mailer->Password   = $config["server"["password"]];
+        $this->_mailer->Host       = $config["server"]["host"];
+        $this->_mailer->Username   = $config["server"]["username"];
+        $this->_mailer->Password   = $config["server"]["password"];
         //Configure mail parameters
-        $this->$_mailer->AddAddress("recipient-email@domain", "recipient-name");
-        $this->$_mailer->SetFrom($config["from"["mail"]], $config["from"["name"]]);
-        $this->$_mailer->AddReplyTo($config["reply"["mail"]], $config["from"["name"]]);
-        $this->$_mailer->AddCC("cc-recipient-email@domain", "cc-recipient-name");
+        $this->_mailer->SetFrom($config["from"]["mail"], $config["from"]["name"]);
+        $this->_mailer->AddReplyTo($config["reply"]["mail"], $config["from"]["name"]);
         // Set subject and body (HTML or not)...
-        $this->$_mailer->IsHTML($isHTML);
-        $this->$_mailer->Subject = $subject;
-        if ( $isHTML ){
-            $this->$_mailer->MsgHTML($this->body); 
-        }
-        else{
-            $this->$_mailer->Body = $body;
-
-        }
+        $this->_mailer->IsHTML($isHTML);
+        $this->_mailer->Subject = $subject;
+        $this->_mailer->Body = $body;
    }
  
    /**
@@ -57,36 +49,28 @@ class Mail {
    public function send(array $to, array $cc = [], array $bcc = [])
    {    
 
-        // Add recipients...
-        $this->to = $to;
-        $this->cc = $cc;
-        $this->bcc = $bcc;
+    foreach($to as $nom => $correu){
+        $this->_mailer->addAddress($correu, $nom);
+    }
 
-        // Send mail...
-        if(!$this->$_mailer->Send()) {
-            echo "Error while sending Email.";
-            var_dump($this->$_mailer);
-        } else {
-            echo "Email sent successfully";
-        }
+    foreach($cc as $nom => $correu){
+        $this->_mailer->addCC($correu, $nom);
+    }
 
-        //Add cc and bcc
+    foreach($bcc as $nom => $correu){
+        $this->_mailer->addBCC($correu, $nom);
+    }
+    
+        
+    // Send mail...
+    $okey=$this->_mailer->send();
+    
+    
+    // Clear recipients...
+    $this->_mailer->clearAllRecipients();
+    return $okey;
 
-
-
-        // Send mail to cc and bcc
-        foreach ($this->to as $name => $email) {
-            if(!$this->$_mailer->Send()) {
-                echo "Error while sending Email.";
-                var_dump($this->$_mailer);
-            } else {
-                echo "Email sent successfully";
-            }  
-        }
-
-       // Clear recipients...
-       $this->to = [];
-       $this->cc = [];
-       $this->bcc = [];
    }
 }
+
+
