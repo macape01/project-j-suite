@@ -4,6 +4,9 @@ composer
 instalcomposer.sh
 composer.phar
 composer.json
+config/database.php
+config/mail.php
+logs/app.log
 /vendor/
 .vscode
 script.sh
