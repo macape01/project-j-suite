@@ -23,4 +23,13 @@ final class HelpersTest extends TestCase{
         $url = Helpers::url($path);
         $this->assertStringEndsWith($path,$url);
     }
+    public function testLog(): void
+    {    
+       $logger = Helpers::log();
+       $this->assertIsObject($logger);
+       // Calling methods using object or directly works...
+       $logger->info("PHPUnit test");
+       Helpers::log()->debug("PHPUnit test");
+    }
+
 }
