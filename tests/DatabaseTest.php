@@ -29,10 +29,7 @@ final class DatabaseTest extends TestCase
     $this->assertEquals($contador,1);
     //Comprovar que després de tancar la base de dades, llança exepció
     $db->close();
+    $this->expectException(Exception::class);
     $sentencia = $db->prepare("SELECT email, role_id FROM users WHERE username= 'admin'");
-    $sentencia->execute();
-    $result = $sentencia->fetchAll();
-    $contador = count($result);
-    $this->assertEquals($contador,0);
    }
 }
