@@ -1,29 +1,10 @@
 <!DOCTYPE html>
 <html lang="ca">
-<head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Projecte J-Suite</title>
-   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-   <link href="http://localhost/tarda/project-j-suite/App/_commons/css/layout.css" rel="stylesheet" type="text/css">
-   <link href="http://localhost/tarda/project-j-suite/App/_commons/css/reset.css" rel="stylesheet" type="text/css">
-   <link href="http://localhost/tarda/project-j-suite/App/_commons/css/styles.css" rel="stylesheet" type="text/css">
-   <link href="http://localhost/tarda/project-j-suite/App/_commons/css/components.css" rel="stylesheet" type="text/css">
-</head>
+<?php require_once "../../../vendor/autoload.php"; ?>
+<?= My\Helpers::render("_commons/head.php", ["subtitle" => "Main"]) ?>
 <body>
    <main class="main">
-      <header class="header">
-         <div class="logo-wrapper">
-            <a class="link link__logo" href="">LOGO</a>
-         </div>
-         <div class="icons-wrapper">
-            <a href=""><i class="fa fa-bell icon"></i></a>
-            <a href=""><i class="fa fa-flag icon"></i></a>
-            <a href=""><i class="fa fa-question-circle icon"></i></a>
-            <a href=""><i class="fa fa-sign-out icon" aria-hidden="true"></i></a>
-         </div>
-      </header>
+      <?= My\Helpers::render("_commons/header.php") ?>
       <section class="section">
          <aside class="aside">
          <sidebar class="accordion component--round">
@@ -88,9 +69,7 @@
             </sidebar>
          </aside>
       </section>
-      <footer class="footer">
-         <p>Curs 2021-22 de 2DAW</p>
-      </footer>
+      <?= My\Helpers::render("_commons/footer.php", ["subtitle" => "Main"]) ?>
    <main>
 </body>
 </html>
