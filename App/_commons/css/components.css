@@ -10,7 +10,7 @@
 
 .form{
     padding: 2rem;
-    width: 100%;
+    width: 300px;
     display: flex;
     flex-flow: column nowrap;
     gap: 1.2rem;
@@ -98,4 +98,11 @@
     background-color: var(--system-lightblue);
     border-radius: .8rem;
     padding: .5rem 2rem;
+}
+
+.container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 200px;
 }
