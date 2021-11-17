@@ -116,21 +116,9 @@ h1{
 }
 
 
-.icons-wrapper{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100px;
-  margin-right: 6rem;
-}
-
 a{
  display: inline-block;
  margin:0px 1.5rem;
-}
-
-.logo-wrapper{
-  
 }
 
 .fa.profile-icon{

@@ -7,15 +7,26 @@
 
 .main{
     display: grid;
-    grid-template-rows: 10% 1fr 3%;
+    grid-template-rows: 1fr 6fr 50px;
     grid-template-columns: 100%;
-    height: 100vh;
+    height: 100%;
+    width: 100%;
 }
 
 .header{
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: auto max-content;
     background-color: var(--system-grey);
+}
+
+.icons-wrapper{
+    display: grid;
+    grid-template-columns: repeat(4,min-content);
+    grid-template-rows: auto
+}
+
+.icon--header{
+    align-self: center;
 }
 
 .section{
@@ -53,26 +64,3 @@
 .footer{
     background-color: var(--system-grey);
 }
-
-/* header{
-    width: 100%;
-    height: 100px;
-    top: 0;
-}
-footer{
-    bottom: 0;
-    width: 100%;
-}
-.blocprincipal{
-    width: 100%;
-    height: 100%;
-}
-.menu{
-    position: fixed;
-    width: 20%;
-    height: 100%;
-}
-.blocsapps{
-    width: 100%;
-    height: 100%;
-} */
