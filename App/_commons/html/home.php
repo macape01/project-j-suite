@@ -8,7 +8,7 @@
       <section class="section">
          <aside class="aside">
          <sidebar class="accordion component--round">
-            <i class="fa fa-user-circle profile">       
+            <i class="fa fa-user-circle profile-icon">       
                <p class="titols text">User Name</p>
             </i>
 

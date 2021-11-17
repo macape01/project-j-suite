@@ -17,10 +17,9 @@
     text-align: center;
     font-size: 18px;
     padding: 10px;
-    width: 100px;
     cursor: pointer;
-    margin: 5px;
-    
+    user-select: none;
+    max-width: 200px;
   }
 
 .button:active {     
@@ -43,9 +42,8 @@ border:1px solid var(--system-darkgrey);
 
 .button--round{
 border-radius: 40px;
-width: 200px;
 align-items: center;
-
+flex-shrink:1;
 }
 
 .info{
@@ -83,6 +81,10 @@ align-items: center;
   text-decoration: none;
 }
 
+h1{
+  font-size: 2.4rem;
+}
+
 .text{
   text-align: unset;
   width: 150px;
@@ -96,12 +98,18 @@ align-items: center;
 .input{
   border:none;
   flex: 1;
+  background-color: var(--system-midblue);
 }
 
 .fa.icon{
+  font-size: 2rem;
+}
+
+.fa.icon--header{
   font-size: 3rem;
   color:var(--system-midblue);
 }
+
 
 #icon{
   align-self: flex-end;
@@ -125,7 +133,7 @@ a{
   
 }
 
-.fa.profile{
+.fa.profile-icon{
   font-size: 12rem;
   color:var(--system-darkblue);
   margin-left:10px;
