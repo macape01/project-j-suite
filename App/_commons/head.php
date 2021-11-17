@@ -7,5 +7,5 @@
     <link rel="stylesheet" href="<?= My\Helpers::url("/_commons/css/reset.css")?>"/>
     <link rel="stylesheet" href="<?= My\Helpers::url("/_commons/css/styles.css")?>"/>
     <link rel="stylesheet" href="<?= My\Helpers::url("/_commons/css/components.css")?>"/>
-    <link rel="stylesheet" href="<?= My\Helpers::url("/_commons/css/layout.css")?>"/>
+    <link rel="stylesheet" href="<?= My\Helpers::url("/_commons/css/home.flex.css")?>"/>
 </head>

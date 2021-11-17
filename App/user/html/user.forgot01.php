@@ -5,13 +5,14 @@
 <link rel="stylesheet" href="../css/user.forgot.css">
 <body>
 <div class="flex-container">
-   <div class="forgot" action="">
+
+   <form class="forgot" action="/rememberpass/forgot1_action.php" method="POST">
            <h1>Recuperación de contraseña</h1>
-           <label class="la">Correo:</label>
+           <label class="la" name="email">Correo:</label>
            <input class="row__wrapper input--forgot" type="text">
            <p class="la">Se enviará un correo electronico con el PIN</p>
            <input class="button button--round"type="submit">
-   </div>
+</form>
 </div> 
 <?= My\Helpers::render("_commons/footer.php") ?>
 </body>

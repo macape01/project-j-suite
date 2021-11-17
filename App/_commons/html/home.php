@@ -28,7 +28,6 @@
                Tickets
             </div>
             <div class="container__item tasks">
-               <a><i class="fa fa-clipboard-list icon"></i></a>
                Tasks
             </div>
             <div class="container__item security">
