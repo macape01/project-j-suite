@@ -10,11 +10,11 @@
 
 .form{
     padding: 2rem;
-    width: 300px;
     display: flex;
     flex-flow: column nowrap;
     gap: 1.2rem;
     background-color: var(--system-midblue);
+    font-size: 1.5rem;
 }
 
 .form__row {
@@ -35,7 +35,7 @@
     border-radius: .6rem;
     padding: .8rem;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     flex: 1;
     gap: .8rem;
@@ -51,11 +51,7 @@
     border: none;
 }
 
-.input{
-    flex: 1;
-    background-color: var(--system-midblue);
-    border: none;
-}
+
 .input--checkbox{
     flex: unset;
     border: 1px solid var(--system-darkblue);
@@ -68,8 +64,9 @@
     background-color: var(--system-midblue);
     display: flex;
     flex-flow: column wrap;
-    align-items: center;
-    gap: 1rem;
+    align-content: center;
+    align-items: stretch;
+    gap: 2rem;
 }
 
 .accordion__title{
@@ -104,5 +101,4 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 200px;
 }

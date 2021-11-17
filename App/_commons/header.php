@@ -3,10 +3,10 @@
         <a class="link link__logo" href="">LOGO</a>
     </div>
     <div class="icons-wrapper">
-        <a href=""><i class="fa fa-bell icon"></i></a>
-        <a href=""><i class="fa fa-flag icon"></i></a>
-        <a href=""><i class="fa fa-question-circle icon"></i></a>
-        <a href=""><i class="fa fa-sign-out icon" aria-hidden="true"></i></a>
+        <a href=""><i class="fa fa-bell icon--header"></i></a>
+        <a href=""><i class="fa fa-flag icon--header"></i></a>
+        <a href=""><i class="fa fa-question-circle icon--header"></i></a>
+        <a href=""><i class="fa fa-sign-out icon--header" aria-hidden="true"></i></a>
     </div>
 </header>
 
