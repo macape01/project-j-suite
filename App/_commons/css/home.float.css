@@ -1,0 +1,283 @@
+@import "variables.css";
+
+    *{
+        box-sizing: border-box;
+    }
+
+    .main{
+        width: 100%;
+        height: 100vh;
+    }
+    .header{
+        position: fixed;
+        justify-content: space-between;
+        background-color: var(--system-grey);
+        width: 100%;
+    }
+    .logo-wrapper{
+        float: left;
+    }
+
+    .section{
+        width: 100%;
+        height: 100vh;
+    }
+
+.container{
+    float: left;
+    width: 50%;
+    margin-top: 9%;
+
+}
+.container__item{
+    border: 2px solid var(--system-grey);
+    border-radius: 1.6rem;
+    max-width: 200px;
+    max-height: 200px;
+    background-color: var(--system-lightblue) ;
+}
+
+
+.footer{
+    background-color: var(--system-grey);
+    bottom: 0;
+    text-align: center  ;   
+}
+
+#botones{
+    display: inline-flex;
+}
+
+.button:focus{
+outline:none;
+}
+
+.button {
+    display: inline-block;
+    border-radius: 4px;
+    background-color:var(--system-darkblue);
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 18px;
+    padding: 10px;
+    cursor: pointer;
+    user-select: none;
+    max-width: 200px;
+}
+
+.button:active {     
+background-color:#FFFFFF;
+color:var(--system-darkblue);
+border: 1px solid var(--system-darkblue);  
+}
+
+.button--active {
+background-color:#FFFFFF;
+color:var(--system-darkblue);
+border: 1px solid var(--system-darkblue);
+}
+
+.button--secondary {
+background-color:var(--system-grey);
+color:var(--system-darkgrey);
+border:1px solid var(--system-darkgrey);
+}
+
+.button--round{
+border-radius: 40px;
+align-items: center;
+flex-shrink:1;
+}
+
+.info{
+margin-top:40px;
+}
+
+.link{
+    display: inline-block;
+    color:var(--system-darkblue);
+    border: none;
+    text-align: center;
+    font-size: 18px;
+    padding: 10px;
+    width: 200px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.link__logo{
+
+font-size: 60px;
+font-weight: 1000;
+text-decoration: none;
+}
+
+.titols{
+border: none;
+color:var(--system-darkblue);
+text-align: center;
+font-size: 30px;
+padding: 10px;
+width: 100px;
+margin: 1px;
+font-weight: 600;
+text-decoration: none;
+}
+
+h1{
+font-size: 2.4rem;
+}
+
+.text{
+text-align: unset;
+width: 150px;
+font-weight: 100;
+font-size: 20px;
+
+margin-top: -2px;
+color: black;
+}
+
+.input{
+border:none;
+flex: 1;
+background-color: var(--system-midblue);
+}
+
+.fa.icon{
+font-size: 2rem;
+}
+
+.fa.icon--header{
+font-size: 3rem;
+color:var(--system-midblue);
+}
+
+
+#icon{
+align-self: flex-end;
+}
+
+
+.icons-wrapper{
+float: right;
+width: 250px;
+margin-top: 4rem;
+margin-right: 3rem;
+}
+
+a{
+display: inline-block;
+margin:0px 1.5rem;
+}
+
+.logo-wrapper{
+    float: left;
+}
+
+.fa.profile-icon{
+font-size: 12rem;
+color:var(--system-darkblue);
+margin-left:10px;
+align-self: flex-start;
+
+}
+    .aside {
+        float: left;
+        width: 25%;
+        margin-top: 9%;    
+    }
+
+:root{
+    --max-container-width: 300px;
+}
+
+.component--round{
+width: 100px;
+}
+
+.form{
+    padding: 2rem;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 1.2rem;
+    background-color: var(--system-midblue);
+    font-size: 1.5rem;
+}
+
+.form__row {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: stretch ;
+    gap: 1rem;
+}
+
+.icon{
+    justify-content: center;
+    align-items:center;
+}
+
+.row__wrapper{
+    border: 1px solid var(--system-darkblue);
+    background-color: var(--system-midblue);
+    border-radius: .6rem;
+    padding: .8rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex: 1;
+    gap: .8rem;
+}
+
+.button__wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.row__wrapper--checkbox{
+    border: none;
+}
+
+
+.input--checkbox{
+    flex: unset;
+    border: 1px solid var(--system-darkblue);
+}
+
+.accordion{
+    width: 95%;
+    height: 100%;
+    background-color: var(--system-midblue);
+    align-content: center;
+    align-items: stretch;
+}
+
+.accordion__title{
+    align-self: center;
+}
+
+.message{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: .5rem;
+    width: 100%;
+    padding: 1rem;
+    color: #fff;
+    background-color: var(--system-darkblue);
+    border-radius: 1.6rem;
+}
+
+.message__subject{
+    font-size: 1.5rem;
+}
+
+.message__author{
+    color:var(--system-darkgrey);
+    background-color: var(--system-lightblue);
+    border-radius: .8rem;
+    padding: .5rem 2rem;
+}
