@@ -63,12 +63,14 @@
 
 .accordion{
     height: 100%;
-    padding: 2rem;
+    width: 320px;
+    padding: 1rem;
     background-color: var(--system-midblue);
     display: flex;
     flex-flow: column wrap;
     align-items: center;
     gap: 1rem;
+    margin-right: 0%;
 }
 
 .accordion__title{
@@ -103,5 +105,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 200px;
+  margin-top: 150px;
+
 }

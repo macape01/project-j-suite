@@ -47,19 +47,16 @@ aside{
 }
 .container__item{
     display: flex; 
-    flex: 0 30%;
-    margin-bottom: 0.5%;
-    background-color: var(--system-lightblue) ;
+    justify-content: center;  
     align-items: center;
+    flex-wrap: wrap;
+    background-color: var(--system-lightblue) ;
     border: 2px solid var(--system-grey);
     border-radius: 1.6rem;
-    height: 100px;
-    width: 50px;
-    justify-content: center;
-
-
-    
+    width: 250px;
+ 
 }
+
 
 
 .footer{
