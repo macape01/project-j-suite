@@ -46,9 +46,6 @@ align-items: center;
 flex-shrink:1;
 }
 
-.info{
-  margin-top:40px;
-}
 
 .link{
     display: inline-block;
@@ -129,15 +126,5 @@ a{
 
 }
 
-.accordion{
-  width: 230px;
-  height: 450px;
-  padding: 1rem;
-  background-color: var(--system-midblue);
-  display: flex;
-  flex-flow: column wrap;
-  gap: 1rem;
-
-}
 
 
