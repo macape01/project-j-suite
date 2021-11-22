@@ -24,7 +24,7 @@
     justify-content: center;
 }
 
-.button. {
+.button {
     display: inline-block;
     border-radius: 4px;
     background-color:var(--system-darkblue);
@@ -37,7 +37,6 @@
     cursor: pointer;
     margin: 5px;
 }
-
 
 form{
     display: flex;
