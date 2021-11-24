@@ -17,60 +17,67 @@
             <input class="button button--round" type="button" name="2" value="Contacts"/>
             <input class="button button--round info" type="button" name="2" value="Informació"/>
         </sidebar>
-        <form class="form component--round">
+        <form class="form component--round" action="user.profile_action.php" method="POST">
             <h1>Perfil d'usuari</h1>
             <div class="form__row">
                 <label class="label">Canviar foto perfil</label>
                 <div class="row__wrapper">
-                    <input class="input" type="file"alt="choose-image">
+                    <input name="img" class="input" type="file" alt="choose-image">
+                </div>
+            </div>
+            <div class="form__row">
+                <label class="label">Usuari</label>
+                <div class="row__wrapper">
+                    <i class="fa fa-user icon"></i>
+                    <input name="username" class="input">
                 </div>
             </div>
             <div class="form__row">
                 <label class="label">Nom</label>
                 <div class="row__wrapper">
                     <i class="fa fa-user icon"></i>
-                    <input class="input">
+                    <input name="name" class="input">
                 </div>
             </div>
             <div class="form__row">
                 <label class="label">Cognoms</label>
                 <div class="row__wrapper">
                     <i class="fa fa-user icon"></i>
-                    <input class="input">
+                    <input name="lastname" class="input">
                 </div>
             </div>
             <div class="form__row">
                 <label class="label">Correu</label>
                 <div class="row__wrapper">
                     <i class="fa fa-envelope icon"></i>
-                    <input class="input">
+                    <input name="email" class="input">
                 </div>
             </div>
             <div class="form__row">
                 <label class="label">Antigua contraseña</label>
                 <div class="row__wrapper">
                     <i class="fa fa-lock icon" aria-hidden="true"></i>
-                    <input class="input">
+                    <input type="password" name="old-password" class="input">
                 </div>
             </div>
             <div class="form__row">
                 <label class="label">Nueva contraseña</label>
                 <div class="row__wrapper">
                     <i class="fa fa-lock icon" aria-hidden="true"></i>
-                    <input class="input">
+                    <input type="password" name="new-password" class="input">
                 </div>
             </div>
             <div class="form__row">
                 <label class="label">Repite contraseña</label>
                 <div class="row__wrapper">
                     <i class="fa fa-lock icon" aria-hidden="true"></i>
-                    <input class="input">
+                    <input type="password" name="repeat-password" class="input">
                 </div>
             </div>
             
-            <div class="form__row">
+            <div class="form__row" >
                 <div class="button__wrapper">
-                    <button class="button">Cambiar los datos</button>
+                    <button type="submit" class="button">Cambiar los datos</button>
                 </div>
             </div>
         </form>
