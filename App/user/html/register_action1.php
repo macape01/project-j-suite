@@ -1,49 +1,48 @@
 <?php
 
-require('vendor/autoload.php');
+require_once __DIR__ . "/../../../vendor/autoload.php";
 
 use Rakit\Validation\Validator;
 use PHPUnit\Framework\TestCase;
 use My\Database;
+use My\Helpers;
 
-$validator = new Validator;
+$validator = new Validator();
 
-// make it
 $validation = $validator->make($_POST + $_FILES, [
     'username'           => 'required|min:6',
-    'name'               => 'required',
-    'lastname'           => 'required',
+//    'name'               => 'required',
+//    'lastname'           => 'required',
     'email'              => 'required|email',
-    'password'           => 'required|min:8|regex:/\d/',
-    'passwordrepeat'     => 'required|same:password',
-    'avatar'             => 'required|uploaded_file:1MB,jpg,png,gif',
+//    'password'           => 'required|min:8|regex:/\d/',
+//    'passwordrepeat'     => 'required|same:password',
+//    'avatar'             => 'required|uploaded_file:1MB,jpg,png,gif',
 ]);
 
-// then validate
 $validation->validate();
 
 if ($validation->fails()) {
-    // handling errors
-    $errors = $validation->errors();
-    echo "<pre>";
-    print_r($errors->firstOfAll());
-    echo "</pre>";
-    exit;
+    $url = Helpers::url("/user/html/register2.php");
+    Helpers::redirect($url);
 } 
 else {
-    // validation passes
     echo "Success!";
+
+    $email = $_POST['email'];
+    $username = $_POST['username'];
+
+    $db = new Database();
+    $comprobarNom = $db->prepare("SELECT email FROM users WHERE email = '".$email."'");
+    $sentencia->execute();
+    $result = $sentencia->fetchAll();
+    $contador = count($result);
+    echo $contador;
+    if ($contador == 1) {
+        echo "Ja existeix un usuari amb aquest nom d'usuari";
+    }
+    else {
+        echo "Nom d'usuari lliure! ";
+    }
+    $comprobarMail = $db->prepare("SELECT username FROM users WHERE username = '".$username."'");
 }
-
-$email = $_POST['email'];
-$username = $_POST['username'];
-
-$db = new Database();
-$this->assertIsObject($db);
-return $db;
-
-$comprobarNom = $db->prepare("SELECT email FROM users WHERE email = '".$email."'");
-$comprobarMail = $db->prepare("SELECT username FROM users WHERE username = '".$username."'");
-
-
 ?>
