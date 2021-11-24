@@ -29,7 +29,7 @@ class Helpers {
     }
     public static function redirect(string $url) : string 
     {
-        ob_flush(); // use ob_clean() instead to discard previous output       
+        ob_clean(); // use ob_clean() instead to discard previous output       
         header("Location: {$url}");
         exit();
     }
@@ -73,7 +73,7 @@ class Helpers {
            self::$_logger = new Logger("app");
            // Now add some handlers
            $path = __DIR__ . "/../logs/app.log";
-           self::$_logger->pushHandler(new StreamHandler($path, Logger::DEBUG));
+           //self::$_logger->pushHandler(new StreamHandler($path, Logger::DEBUG));
            self::$_logger->pushHandler(new FirePHPHandler());           
        }
        // Proxy pattern
