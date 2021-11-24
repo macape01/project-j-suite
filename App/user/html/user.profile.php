@@ -17,7 +17,7 @@
             <input class="button button--round" type="button" name="2" value="Contacts"/>
             <input class="button button--round info" type="button" name="2" value="Informació"/>
         </sidebar>
-        <form class="form component--round" action="user.profile_action.php" method="POST">
+        <form class="form component--round" action="user.profile_action.php" enctype="multipart/form-data" method="POST">
             <h1>Perfil d'usuari</h1>
             <div class="form__row">
                 <label class="label">Canviar foto perfil</label>

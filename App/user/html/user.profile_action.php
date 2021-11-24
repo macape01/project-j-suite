@@ -10,29 +10,29 @@ $validator = new Validator;
 
 // make it
 $validation = $validator->make($_POST + $_FILES, [
-    'email'                 => 'required|email',
+    'img'                   => 'required|uploaded_file:0,500K,png,jpg,gif,jpeg',
+    ]);
     
-]);
-
-/* 'img'                   => 'required|uploaded_file:1MB,png,jpg,gif',
-'username'              => 'required|min:6',
-'name'                  => 'required',
-'lastname'              => 'required',
-'old-password'          => 'required|min:8|regex:/\d/',
-'new-password'          => 'required|min:8|regex:/\d/',
-'repeat-password'       => 'required|same:new-password', */
-
-
-// then validate
-$validation->validate();
-
+    /* 
+    'name'                  => 'required',
+    'lastname'              => 'required',
+    'username'              => 'required|min:6',
+    'email'                 => 'required|email',
+    'old-password'          => 'required|min:8|regex:/\d/',
+    'new-password'          => 'required|min:8|regex:/\d/|different:old-password',
+    'repeat-password'       => 'required|same:new-password',
+    */
+    
+    // then validate
+    $validation->validate();
+    
 if ($validation->fails()) {
-    $url = My\Helpers::url("/user/html/user.profile.php");
-    My\Helpers::redirect($url);
+    $url = Helpers::url("/user/html/user.profile.php");
+    Helpers::redirect($url);
     
 } else {
     // easy to access POST variables
-    $email = $_POST["email"];
+    $email = isset($_POST["email"]);
     /* $img = $_POST["img"];
     $username = $_POST["username"];
     $name = $_POST["name"];
@@ -41,7 +41,7 @@ if ($validation->fails()) {
     $new_password = $_POST["new-password"];
     $repeat_password = $_POST["repeat-password"]; */
 
-    $db = new My\Database();
+    $db = new Database();
     $sentencia = $db->prepare("SELECT user FROM users WHERE email = '".$email."'");
     $sentencia->execute();
     $result = $sentencia->fetchAll();

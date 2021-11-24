@@ -73,7 +73,7 @@ class Helpers {
            self::$_logger = new Logger("app");
            // Now add some handlers
            $path = __DIR__ . "/../logs/app.log";
-           self::$_logger->pushHandler(new StreamHandler($path, Logger::DEBUG));
+           //self::$_logger->pushHandler(new StreamHandler($path, Logger::DEBUG));
            self::$_logger->pushHandler(new FirePHPHandler());           
        }
        // Proxy pattern
