@@ -13,6 +13,7 @@
         justify-content: space-between;
         background-color: var(--system-grey);
         width: 100%;
+        height: 12%;
     }
     .logo-wrapper{
         float: left;
@@ -23,12 +24,31 @@
         height: 100vh;
     }
 
-.container{
-    float: left;
-    width: 50%;
-    margin-top: 9%;
+    .formulario{
+        float: right;
+        height: 100%;
+        width: 28%;
+    }
 
-}
+    .formulario__row2{
+        float: left;
+        width: 35%;
+        height: 30%;
+        margin-top: 5rem;
+        margin-left: 1rem;
+    }
+    
+    .b2{
+        margin-top: 3.5rem;
+        margin-left: 2.5rem;
+        float: left;
+    }
+    
+    .container{
+        width: 100%;
+        height: 100vh;
+    }
+
 .container__item{
     border: 2px solid var(--system-grey);
     border-radius: 1.6rem;
@@ -204,13 +224,6 @@ width: 100px;
     gap: 1.2rem;
     background-color: var(--system-midblue);
     font-size: 1.5rem;
-}
-
-.form__row {
-    display: flex;
-    flex-flow: column wrap;
-    align-items: stretch ;
-    gap: 1rem;
 }
 
 .icon{

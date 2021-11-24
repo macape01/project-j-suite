@@ -1,4 +1,4 @@
-<?php require_once __DIR__ . "/../../vendor/autoload.php"; ?>
+<?php require_once __DIR__ . "/../../../vendor/autoload.php"; ?>
 <!DOCTYPE html>
 <html lang="ca">
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" type='text/css'>
@@ -27,7 +27,7 @@
             </form>
         </header>
         <div class="mockup-container">
-    <div class="container2">
+    <div class="container">
         <form class="form component--round">
             <div class="form__row">
                 <label class="label">Nom</label>
@@ -72,7 +72,7 @@
             </div>
             <div class="form__row">
                 <div class="button__wrapper">
-                    <button class="button b2">REGISTRE</button>
+                    <button class="button b3">REGISTRE</button>
                 </div>
             </div>
         </form>
