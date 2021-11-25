@@ -27,7 +27,6 @@
                Tickets
             </div>
             <div class="container__item tasks">
-               <a><i class="fa fa-clipboard-list icon"></i></a>
                Tasks
             </div>
             <div class="container__item security">
@@ -43,25 +42,25 @@
          <aside class="asidehover">
             <sidebar class="accordion component--round">
                 <h2 class="accordion__title">MISSATGES</h2>
-                <div class="message">
-                    <div class="message__author">
+                <div class="messages">
+                    <div class="messages__author">
                         Marc
                     </div>
-                    <div class="message__subject">
+                    <div class="messages__subject">
                         Buenas que tal todo?
                     </div>
-                    <div class="message__date">
+                    <div class="messages__date">
                         Enviat a les 22:00h avui
                     </div>
                 </div>
-                <div class="message">
-                    <div class="message__author">
+                <div class="messages">
+                    <div class="messages__author">
                         Oliver
                     </div>
-                    <div class="message__subject">
+                    <div class="messages__subject">
                         Buenas que tal va la vida?
                     </div>
-                    <div class="message__date">
+                    <div class="messages__date">
                         Enviat a les 12:00h avui
                     </div>
                 </div>

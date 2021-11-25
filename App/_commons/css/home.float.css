@@ -31,14 +31,17 @@
         height: 76vh;
     }
 
-.container__item{
-    float: left;
-    border: 2px solid var(--system-grey);
-    border-radius: 1.6rem;
-    width: 200px;
-    height: 200px;
-    background-color: var(--system-lightblue) ;
-}
+    .container__item{
+        float: left;
+        margin-left: 9.5%;
+        margin-top: 13%;
+        border: 2px solid var(--system-grey);
+        border-radius: 1.6rem;
+        width: 200px;
+        height: 200px;
+        text-align: center;
+        background-color: var(--system-lightblue) ;
+    }
 
 
 .footer{
@@ -145,26 +148,14 @@ margin-top: -2px;
 color: black;
 }
 
-.input{
-border:none;
-flex: 1;
-background-color: var(--system-midblue);
-}
+    .fa.icon{
+    font-size: 2rem;
+    }
 
-.fa.icon{
-font-size: 2rem;
-}
-
-.fa.icon--header{
-font-size: 3rem;
-color:var(--system-midblue);
-}
-
-
-#icon{
-align-self: flex-end;
-}
-
+    .fa.icon--header{
+    font-size: 3rem;
+    color:var(--system-midblue);
+    }
 
     .icons-wrapper{
     float: right;
@@ -173,10 +164,10 @@ align-self: flex-end;
     margin-right: 3rem;
     }
 
-a{
-display: inline-block;
-margin:0px 1.5rem;
-}
+    a{
+    display: inline-block;
+    margin:0px 1.5rem;
+    }
 
     .logo-wrapper{
         float: left;
@@ -185,8 +176,7 @@ margin:0px 1.5rem;
     .fa.profile-icon{
     font-size: 12rem;
     color:var(--system-darkblue);
-    margin-left:10px;
-    align-self: flex-start;
+    margin-left: 10%;
 
     }
     .aside {
@@ -249,37 +239,34 @@ width: 100px;
     border: 1px solid var(--system-darkblue);
 }
 
-.accordion{
-    width: 100%;
-    background-color: var(--system-midblue);
-    align-content: center;
-    align-items: stretch;
-}
+    .accordion{
+        width: 100%;
+        background-color: var(--system-midblue);
+        align-content: center;
+        align-items: stretch;
+    }
 
-.accordion__title{
-    align-self: center;
-}
+    .accordion__title{
+        align-self: center;
+    }
 
-.message{
-    display: flex;
-    flex-flow: column wrap;
-    justify-content: flex-start;
-    align-items: flex-start;
-    gap: .5rem;
-    width: 100%;
-    padding: 1rem;
-    color: #fff;
-    background-color: var(--system-darkblue);
-    border-radius: 1.6rem;
-}
+    .messages{
+        gap: .5rem;
+        width: 100%;
+        padding: 1rem;
+        color: #fff;
+        background-color: var(--system-darkblue);
+        border-radius: 1.6rem;
+    }
 
-.message__subject{
-    font-size: 1.5rem;
-}
+    .messages__subject{
+        font-size: 1.5rem;
+    }
 
-.message__author{
-    color:var(--system-darkgrey);
-    background-color: var(--system-lightblue);
-    border-radius: .8rem;
-    padding: .5rem 2rem;
-}
+    .messages__author{
+        color:var(--system-darkgrey);
+        background-color: var(--system-lightblue);
+        border-radius: .8rem;
+        padding: .5rem 2rem;
+        width: 15.6%;
+    }
