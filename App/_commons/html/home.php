@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html lang="ca">
 <?php require_once "../../../vendor/autoload.php"; ?>
-<?= My\Helpers::render("_commons/head.php", ["subtitle" => "Main"]) ?>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" type='text/css'>
+<?= My\Helpers::render("/_commons/head.php", ["subtitle" => "Main"]) ?>
 <body>
    <main class="main">
-      <?= My\Helpers::render("_commons/header.php") ?>
+      <?= My\Helpers::render("/_commons/header.php") ?>
       <section class="section">
          <aside class="aside">
-         <sidebar class="accordion component--round">
-            <i class="fa fa-user-circle profile-icon">       
-               <p class="titols text">User Name</p>
-            </i>
-            <input class="button button--round" type="button" name="2" value="Perfil"/>
-            <input class="button button--round" type="button" name="2" value="Settings"/>
-            <input class="button button--round" type="button" name="2" value="Calendar"/>
-            <input class="button button--round" type="button" name="2" value="Contacts"/>
-            <input class="button button--round info" type="button" name="2" value="Informació"/>
-        </sidebar>
+            <sidebar class="accordion component--round">
+               <i class="fa fa-user-circle profile-icon">       
+                  <p class="titols text">User Name</p>
+               </i>
+               <input class="button button--round" type="button" name="2" value="Perfil"/>
+               <input class="button button--round" type="button" name="2" value="Settings"/>
+               <input class="button button--round" type="button" name="2" value="Calendar"/>
+               <input class="button button--round" type="button" name="2" value="Contacts"/>
+               <input class="button button--round info" type="button" name="2" value="Informació"/>
+            </sidebar>
          </aside>
          <div class="container">
             <div class="container__item chatapp">
@@ -67,7 +68,7 @@
             </sidebar>
          </aside>
       </section>
-      <?= My\Helpers::render("_commons/footer.php", ["subtitle" => "Main"]) ?>
+      <?= My\Helpers::render("/_commons/footer.php", ["subtitle" => "Main"]) ?>
    <main>
 </body>
 </html>

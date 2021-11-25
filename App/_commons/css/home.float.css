@@ -20,40 +20,23 @@
     }
 
     .section{
+        padding-top: 160px;
         width: 100%;
-        height: 100vh;
-    }
-
-    .formulario{
-        float: right;
-        height: 100%;
-        width: 28%;
-    }
-
-    .formulario__row2{
-        float: left;
-        width: 35%;
-        height: 30%;
-        margin-top: 5rem;
-        margin-left: 1rem;
-    }
-    
-    .b2{
-        margin-top: 3.5rem;
-        margin-left: 2.5rem;
-        float: left;
+        overflow: hidden;
     }
     
     .container{
-        width: 100%;
-        height: 100vh;
+        float: left;
+        width: 50%;
+        height: 76vh;
     }
 
 .container__item{
+    float: left;
     border: 2px solid var(--system-grey);
     border-radius: 1.6rem;
-    max-width: 200px;
-    max-height: 200px;
+    width: 200px;
+    height: 200px;
     background-color: var(--system-lightblue) ;
 }
 
@@ -61,7 +44,10 @@
 .footer{
     background-color: var(--system-grey);
     bottom: 0;
-    text-align: center  ;   
+    text-align: center  ;
+    position: fixed;
+    width: 100%;
+    padding: 10px 0;
 }
 
 #botones{
@@ -180,33 +166,39 @@ align-self: flex-end;
 }
 
 
-.icons-wrapper{
-float: right;
-width: 250px;
-margin-top: 4rem;
-margin-right: 3rem;
-}
+    .icons-wrapper{
+    float: right;
+    width: 250px;
+    margin-top: 4rem;
+    margin-right: 3rem;
+    }
 
 a{
 display: inline-block;
 margin:0px 1.5rem;
 }
 
-.logo-wrapper{
-    float: left;
-}
+    .logo-wrapper{
+        float: left;
+    }
 
-.fa.profile-icon{
-font-size: 12rem;
-color:var(--system-darkblue);
-margin-left:10px;
-align-self: flex-start;
+    .fa.profile-icon{
+    font-size: 12rem;
+    color:var(--system-darkblue);
+    margin-left:10px;
+    align-self: flex-start;
 
-}
+    }
     .aside {
         float: left;
         width: 25%;
-        margin-top: 9%;    
+        height: 76vh;
+    }
+
+    .asidehover {
+        float: right;
+        width: 25%;
+        height: 76vh;
     }
 
 :root{
@@ -219,8 +211,6 @@ width: 100px;
 
 .form{
     padding: 2rem;
-    display: flex;
-    flex-flow: column nowrap;
     gap: 1.2rem;
     background-color: var(--system-midblue);
     font-size: 1.5rem;
@@ -260,8 +250,7 @@ width: 100px;
 }
 
 .accordion{
-    width: 95%;
-    height: 100%;
+    width: 100%;
     background-color: var(--system-midblue);
     align-content: center;
     align-items: stretch;
