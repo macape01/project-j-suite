@@ -30,13 +30,16 @@ else {
 
     $email = $_POST['email'];
     $username = $_POST['username'];
+    echo $email;
+    echo $username;
 
+    $sql = "SELECT email, username FROM users WHERE email = '$email'";
+    echo $sql;
     $db = new Database();
-    $comprobarNom = $db->prepare("SELECT email FROM users WHERE email = '".$email."'");
+    $comprobarNom = $db->prepare($sql);
     $sentencia->execute();
     $result = $sentencia->fetchAll();
     $contador = count($result);
-    echo $contador;
     if ($contador == 1) {
         echo "Ja existeix un usuari amb aquest nom d'usuari";
     }

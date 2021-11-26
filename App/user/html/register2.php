@@ -12,7 +12,7 @@
             <form class="formulario" action="login_action.php" method="post">
                 <div class="formulario__row2">
                     <label class="txt">Usuari:</label>
-                    <input class="input">
+                    <input name="username" class="input">
                     <div class="check">
                         <input type="checkbox" id="rememberpasswd" name="rememberpasswd">
                         <label for="rememberpasswd">Recordar sesión</label>
@@ -20,7 +20,7 @@
                 </div>
                 <div class="formulario__row2">
                     <label class="txt">Contrasenya:</label>
-                    <input class="input">
+                    <input name="password" class="input">
                     <a class="recuperarcontra" href="">Recuperar contrasenya</a>
                 </div>
                 <input class="button b2" type="button" value="LOGIN"/>
