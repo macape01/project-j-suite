@@ -41,8 +41,10 @@ aside{
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    align-content: space-around;
     width: 100%;
+    margin-top:10px;
+    margin-left: 15%;
+    margin-right: 15%;
   
 }
 .container__item{
@@ -53,12 +55,93 @@ aside{
     background-color: var(--system-lightblue) ;
     border: 2px solid var(--system-grey);
     border-radius: 1.6rem;
-    width: 250px;
+    width: 200px;
+    height: 220px;
+    align-content: space-around;
+    margin:1%;
+
+
  
 }
 
-
-
 .footer{
+    display: flex;
     background-color: var(--system-grey);
 }
+
+@media only screen and (max-width: 430px) {
+    body {
+      background-color: rebeccapurple;
+      
+    }
+    aside{
+        display: none;
+    }
+    .footer{
+        display: none;
+    }
+    .icons-wrapper{
+        display: flex;
+        flex-wrap: wrap;
+        width: 100px;
+        margin-right: 6rem;
+      }
+      .container{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin-top:10px;
+        margin-left: 15%;
+        margin-right: 15%;
+      
+    }
+    .container__item{
+        display: flex; 
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        background-color: var(--system-lightblue) ;
+        border: 2px solid var(--system-grey);
+        border-radius: 1.6rem;
+        width: 120px;
+        height: 120px;
+        align-content: space-around;
+        margin-right: 0px;
+    
+     
+    }
+  }
+
+  @media only screen and (max-width: 1450px) {
+
+
+      .container{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin-top:10px;
+        margin-left: 15%;
+        margin-right: 15%;
+      
+    }
+    .container__item{
+        display: flex; 
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        background-color: var(--system-lightblue) ;
+        border: 2px solid var(--system-grey);
+        border-radius: 1.6rem;
+        width: 120px;
+        height: 120px;
+        align-content: space-around;
+        margin-right: 0px;
+    
+     
+    }
+  }
+
+
+  
