@@ -47,24 +47,7 @@ flex-shrink:1;
 }
 
 
-.link{
-    display: inline-block;
-    color:var(--system-darkblue);
-    border: none;
-    text-align: center;
-    font-size: 18px;
-    padding: 10px;
-    width: 200px;
-    cursor: pointer;
-    margin: 5px;
-}
 
-.link__logo{
-
-  font-size: 60px;
-  font-weight: 1000;
-  text-decoration: none;
-}
 
 .titols{
   border: none;
@@ -118,13 +101,7 @@ a{
  margin:0px 1.5rem;
 }
 
-.fa.profile-icon{
-  font-size: 12rem;
-  color:var(--system-darkblue);
-  margin-left:10px;
-  align-self: flex-start;
 
-}
 
 
 

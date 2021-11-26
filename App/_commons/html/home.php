@@ -6,9 +6,9 @@
    <main class="main">
       <?= My\Helpers::render("_commons/header.php") ?>
       <section class="section">
-         <sidebar class="accordion component--round">
+         <sidebar class="accordion accordion--tools component--round">
             <div class="sidebar__profile">
-               <i class="fa fa-user-circle profile-icon"></i>       
+               <i class="fa fa-user-circle profile-icon icon"></i>       
                <p class="titols text">User Name</p>
             </div>
             <input class="button button--round" type="button" name="2" value="Perfil"/>
@@ -18,6 +18,20 @@
             <input class="button button--round info" type="button" name="2" value="Informació"/>
          </sidebar>
          <div class="container">
+            <div class="tools">
+               <div class="tools__item">
+                  <i class="fa fa-user-circle profile-icon icon"></i>       
+               </div>
+               <div class="tools__item">
+                  <i class="fa fa-calendar icon"></i>
+               </div>
+               <div class="tools__item">
+                  <i class="fa fa-cog icon"></i>
+               </div>
+               <div class="tools__item">
+                  <i class="fa fa-info-circle icon"></i>
+               </div>
+            </div>
             <div class="container__item chatapp">
                Chatapp
             </div>
