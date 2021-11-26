@@ -8,6 +8,5 @@
     <link rel="stylesheet" href="<?= My\Helpers::url("/_commons/css/styles.css")?>"/>
     <link rel="stylesheet" href="<?= My\Helpers::url("/_commons/css/components.css")?>"/>
     <link rel="stylesheet" href="<?= My\Helpers::url("/_commons/css/layout.css")?>"/>
-    <link rel="stylesheet" href="<?= My\Helpers::url("/user/css/user.register.css")?>"/>
-    <link rel="stylesheet" href="<?= My\Helpers::url("/user/css/user.register2.css")?>"/>
+    <link rel="stylesheet" href="<?= My\Helpers::url("/_commons/css/home.grid.css")?>"/>
 </head>
