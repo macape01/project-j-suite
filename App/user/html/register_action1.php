@@ -10,7 +10,7 @@ use My\Helpers;
 $validator = new Validator();
 
 $validation = $validator->make($_POST + $_FILES, [
-    'username'           => 'required|min:6',
+//    'username'           => 'required|min:6',
 //    'name'               => 'required',
 //    'lastname'           => 'required',
     'email'              => 'required|email',
@@ -29,23 +29,24 @@ else {
     echo "Success!";
 
     $email = $_POST['email'];
-    $username = $_POST['username'];
     echo $email;
-    echo $username;
 
-    $sql = "SELECT email, username FROM users WHERE email = '$email'";
-    echo $sql;
     $db = new Database();
-    $comprobarNom = $db->prepare($sql);
+    $sentencia = $db->prepare("SELECT email FROM `2daw.equip01`.users WHERE email = '{$email}'");
     $sentencia->execute();
-    $result = $sentencia->fetchAll();
-    $contador = count($result);
-    if ($contador == 1) {
-        echo "Ja existeix un usuari amb aquest nom d'usuari";
+    foreach ($sentencia as $comprobar){
+        if($comprobar['email']==$_POST['email']){
+            $existe = true;
+            break;
+        }
     }
-    else {
-        echo "Nom d'usuari lliure! ";
+
+    if ($existe == true){
+        echo "HOLA";
     }
-    $comprobarMail = $db->prepare("SELECT username FROM users WHERE username = '".$username."'");
+
+    if ($existe == false){
+        echo "ADIOS";
+    }
 }
 ?>
