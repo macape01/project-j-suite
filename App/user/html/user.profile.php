@@ -1,41 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<?php require_once "../../../vendor/autoload.php"; ?>
-<?= My\Helpers::render("_commons/head.php", ["subtitle" => "Main"]) ?>
+<?php 
+    require_once "../../../vendor/autoload.php"; 
 
-<?php
     use My\Database;
-
-    function ComprobarDatos(){
-
-        $db = new Database();
-        $sentencia = $db->prepare("SELECT id, username, email, avatar_id, role_id  FROM users WHERE id = 1;");
-        $sentencia->execute();
-        $results = $sentencia -> fetchAll(PDO::FETCH_OBJ);
-        My\Helpers::log()->debug($results);
-        if($sentencia -> rowCount() > 0) { 
-            
-            // Usaremos el ciclo para mostrar resultados
-            foreach($results as $result) {
-                
-                echo "<tr>";
-                echo "<td>".$result -> id."</td> 
-                <td>".$result -> username."</td> 
-                <td>".$result -> email."</td> 
-                <td>".$result -> role_id."</td>
-                </tr>"; 
-            } 
-            
-        }
-    }
-    ComprobarDatos();
-    My\Helpers::log()->debug("Datos");
-
-
+    $db = new Database();
+    $sentencia = $db->prepare("SELECT id, username, email, avatar_id, role_id  FROM users WHERE id = 1;");
+    $sentencia->execute();
+    $results = $sentencia->fetchAll(PDO::FETCH_OBJ);
+    $user = $results[0];
+    //My\Helpers::log()->debug("Datos");
 ?>
 
 
-
+<!DOCTYPE html>
+<html lang="en">
+<?= My\Helpers::render("_commons/head.php", ["subtitle" => "Main"]) ?>
 <body>
     <main class="main">
       <?= My\Helpers::render("_commons/header.php") ?>
@@ -53,7 +31,7 @@
         </sidebar>
         <form class="form component--round" action="user.profile_action.php" enctype="multipart/form-data" method="POST">
             <h1>Perfil d'usuari</h1>
-            <input name="id" value="1" 
+            <input name="id" value="<?= $user->id ?>" hidden/>
             <div class="form__row">
                 <label class="label">Canviar foto perfil</label>
                 <div class="row__wrapper">
@@ -64,7 +42,7 @@
                 <label class="label">Usuari</label>
                 <div class="row__wrapper">
                     <i class="fa fa-user icon"></i>
-                    <input name="username" class="input">
+                    <input name="username" value="<?= $user->username ?>" class="input">
                 </div>
             </div>
             <div class="form__row">
@@ -85,7 +63,7 @@
                 <label class="label">Correu</label>
                 <div class="row__wrapper">
                     <i class="fa fa-envelope icon"></i>
-                    <input type="email" name="email" class="input">
+                    <input type="email" name="email" value="<?= $user->email ?>" class="input">
                 </div>
             </div>
             <div class="form__row">
