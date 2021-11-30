@@ -10,47 +10,52 @@ $validator = new Validator;
 
 // make it
 $validation = $validator->make($_POST + $_FILES, [
+    'email'                 => 'required|email',
     'img'                   => 'required|uploaded_file:0,500K,png,jpg,gif,jpeg',
     ]);
-    
-    /* 
-    'name'                  => 'required',
-    'lastname'              => 'required',
-    'username'              => 'required|min:6',
-    'email'                 => 'required|email',
+    /*
     'old-password'          => 'required|min:8|regex:/\d/',
     'new-password'          => 'required|min:8|regex:/\d/|different:old-password',
     'repeat-password'       => 'required|same:new-password',
     */
     
-    // then validate
-    $validation->validate();
+// then validate
+$validation->validate();
     
+// Url
+$url = Helpers::url("/user/html/user.profile.php");
+
+
 if ($validation->fails()) {
-    $url = Helpers::url("/user/html/user.profile.php");
     Helpers::redirect($url);
     
 } else {
     // easy to access POST variables
-    $email = isset($_POST["email"]);
+    $email = $_POST["email"];
     /* $img = $_POST["img"];
+    $repeat_password = $_POST["repeat-password"];
     $username = $_POST["username"];
     $name = $_POST["name"];
     $lastname = $_POST["lastname"];
     $old_password = $_POST["old-password"];
     $new_password = $_POST["new-password"];
-    $repeat_password = $_POST["repeat-password"]; */
+     */
 
+    //Comprovem que no existeix l'email
     $db = new Database();
-    $sentencia = $db->prepare("SELECT user FROM users WHERE email = '".$email."'");
+    $sentencia = $db->prepare("SELECT user FROM users WHERE email = '{$email}';");
     $sentencia->execute();
     $result = $sentencia->fetchAll();
     $contador = count($result);
     echo $contador;
     if ( $contador >= 1 ){
         echo "El email ya existe";
+        Helpers::redirect($url);
     }
     else{
+        $db = new Database();
+        $sentencia = $db->prepare("SELECT user FROM users WHERE email = '{$email}';");
+        $sentencia->execute();
         echo" Esta bien";
     }
     echo "Success!";
