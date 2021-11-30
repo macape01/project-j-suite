@@ -23,39 +23,23 @@ if ($validation->fails()) {
     Helpers::redirect($url);
     
 } else {
-    $url = Helpers::url("/user/html/user.forgot02.php");
+    $email = $_POST["email"];
+    $db = new Database();
+    $sentencia = $db->prepare("SELECT * FROM users WHERE email= '{$email}';");
+    $sentencia->execute();
+    $result = $sentencia->fetchAll();
+    $contador = count($result);
+    if ( $contador >= 1 ){
+        $url_seguent = Helpers::url("/user/html/user.forgot03.php");
+        $envio = new Mail($url);
+        $res = $envio->send(
+            ["prueba" => "dudo@fp.insjoaquimmir.cat"] 
+        );
+        // $url = Helpers::url("/user/html/user.forgot03.php");
+        // Helpers::log()->debug($url);
+        // Helpers::redirect($url);    
+    }
+    $url = Helpers::url("/user/html/user.forgot01.php");
     Helpers::log()->debug($url);
-    Helpers::redirect($url);
+    Helpers::redirect($url);   
 }
-    // easy to access POST variables
-//     $email = $_POST["email"];
-//     Helpers::log()->debug($email);
-//     /* $img = $_POST["img"];
-//     $username = $_POST["username"];
-//     $name = $_POST["name"];
-//     $lastname = $_POST["lastname"];
-//     $old_password = $_POST["old-password"];
-//     $new_password = $_POST["new-password"];
-//     $repeat_password = $_POST["repeat-password"]; */
-
-$db = new Database();
-$sentencia = $db->prepare("SELECT user FROM users WHERE email = '".$email."'");
-$sentencia->execute();
-$result = $sentencia->fetchAll();
-$contador = count($result);
-echo $contador;
-if ( $contador >= 1 ){
-    echo "El email ya existe";
-}
-else{
-    echo" Esta bien";
-}
-    echo "Success!";
-// }
-
-// $sen = $db->prepare("SELECT email,role_id FROM users WHERE username = 'admin'");
-//         if (isset($sen) ){
-//             echo"si";
-//         }else{
-//             echo "no";
-//         }
