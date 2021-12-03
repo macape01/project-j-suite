@@ -12,12 +12,10 @@ $validator = new Validator;
 $validation = $validator->make($_POST + $_FILES, [
     'email'                 => 'required|email',
     'img'                   => 'required|uploaded_file:0,500K,png,jpg,gif,jpeg',
-    ]);
-    /*
     'old-password'          => 'required|min:8|regex:/\d/',
     'new-password'          => 'required|min:8|regex:/\d/|different:old-password',
     'repeat-password'       => 'required|same:new-password',
-    */
+    ]);
     
 // then validate
 $validation->validate();
@@ -34,9 +32,7 @@ if ($validation->fails()) {
     $email = $_POST["email"];
     /* $img = $_POST["img"];
     $repeat_password = $_POST["repeat-password"];
-    $username = $_POST["username"];
-    $name = $_POST["name"];
-    $lastname = $_POST["lastname"];
+    $username = $_POST["username"];];
     $old_password = $_POST["old-password"];
     $new_password = $_POST["new-password"];
      */

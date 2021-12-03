@@ -46,20 +46,6 @@
                 </div>
             </div>
             <div class="form__row">
-                <label class="label">Nom</label>
-                <div class="row__wrapper">
-                    <i class="fa fa-user icon"></i>
-                    <input name="name" class="input">
-                </div>
-            </div>
-            <div class="form__row">
-                <label class="label">Cognoms</label>
-                <div class="row__wrapper">
-                    <i class="fa fa-user icon"></i>
-                    <input name="lastname" class="input">
-                </div>
-            </div>
-            <div class="form__row">
                 <label class="label">Correu</label>
                 <div class="row__wrapper">
                     <i class="fa fa-envelope icon"></i>
