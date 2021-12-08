@@ -8,6 +8,13 @@
 .button:focus{
   outline:none;
 }
+
+.flash {
+  background-color: darkorange;
+  padding: 2px;
+  margin: 5px 0;
+}
+
 .button {
     display: inline-block;
     border-radius: 4px;
