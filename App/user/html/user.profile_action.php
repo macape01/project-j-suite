@@ -143,7 +143,7 @@ else {
     //Aqui deberiamos comprobar si la contraseña antigua es correcta(no lo acabo de hacer pporque no se como se descifra una contra)
     $email = $_POST["email"];
     $id = $_POST["id"];
-    /*$image_array = $_FILES["avatar"];
+    $image_array = $_FILES["avatar"];
     $ruta = Helpers::upload($_FILES["avatar"],$_POST["username"]);
     Helpers::log()->debug("ruta".$ruta);
     $db = new Database();
@@ -152,7 +152,7 @@ else {
     $sentencia->execute();
     $last_id = $db->lastInsertId();
     Helpers::log()->debug($last_id);
-    $db->close(); */
+    $db->close();
 
     //Comprovem que l'email no ha estat actualitzat
     if ( EmailHasUpdated($email,$id) == true ){
@@ -164,9 +164,6 @@ else {
         //Obtenim una contrasenya, ja pot ser una nova o la mateixa que estava abans, en qualsevol cas fem update de la contra per no haver de fer dos casuistiques
         $password = GetPassword($id);
         Helpers::log()->debug($password);
-
-        $ruta = Helpers::upload($_FILES["avatar"],$_POST["username"]);
-
         $query = "UPDATE users SET email='{$email}', status=0, avatar_id = '{$ruta}' password='{$password}' WHERE id = '{$id}';";
         UpdateUserData($query);
         Helpers::log()->debug("La cuenta ha sido actualizada");
@@ -180,7 +177,7 @@ else {
     }
     $password = GetPassword($id);
     Helpers::log()->debug("password".$password);
-    $query = "UPDATE users SET password='{$password}' WHERE id = '{$id}' ;";
+    $query = "UPDATE users SET password='{$password}', avatar_id='{$last_id}' WHERE id = '{$id}' ;";
     UpdateUserData($query);
     Helpers::log()->debug("La cuenta ha sido actualizada");
     $url = Helpers::url("/user/html/user.profile.php");
