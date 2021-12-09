@@ -10,7 +10,7 @@
            <h1>Recuperación de contraseña</h1>
            <label class="la">Correo:</label>
            <input class="row__wrapper input--forgot" type="text" name="email">
-           <p class="la">Se enviará un correo electronico con el PIN</p>
+           <p class="la">Se enviará un correo electronico</p>
            <input class="button button--round"type="submit">
   
         </form>

@@ -33,11 +33,14 @@ if ($validation->fails()) {
     if ( $contador >= 1 ){
         $bytes = random_bytes(20);
         $token = bin2hex($bytes);
-        $sql = "INSERT INTO user_tokens (token, 'type' ) VALUES ('$token', 'R')";
-        $sentencia4 = $db->prepare($sql);
-        $sentencia4->execute();
+        //INSERT INTO user_tokens (user_id, token, type, created) VALUES (2, 'c8075b7429f1b6b03a3072797df4a7cd2bf87155', 'R', now());
+        $sql = "INSERT INTO user_tokens (token, 'type' ) VALUES ('c8075b7429f1b6b03a3072797df4a7cd2bf87155', 'R')";
+        Helpers::log()->debug($sql);
+        $sentencia = $db->prepare($sql);
+        $sentencia->execute();
+        My\Helpers::log()->debug("TOKEN SUBIDO A YUTUB PERFESTO");
 
-        $url_seguent = Helpers::url("/user/html/user.forgot03.php");
+        $url_seguent = Helpers::url("/user/html/forgot2_action.php?token=". $token);
         $link = "Link";
         $subject = "Password Reset:";
         $body = "{$url_seguent}";

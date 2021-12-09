@@ -103,6 +103,11 @@ align-items: center;
   color:var(--system-midblue);
 }
 
+.flash {
+  background-color: darkorange;
+  padding: 2px;
+  margin: 5px 0;
+}
 #icon{
   align-self: flex-end;
 }
