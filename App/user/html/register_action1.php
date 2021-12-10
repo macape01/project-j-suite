@@ -85,20 +85,19 @@ else {
                 $isHtml = true;
                 $to = ["2daw.equip01@fp.insjoaquimmir.cat"];
                 $SendMail = new Mail($subject, $body, $isHtml);
-                My\Helpers::log()->debug("EEE");
-                $SendMail->send($to);
-                if ($SendMail == true){
+                My\Helpers::log()->debug("MAIL A PUNTO DE ENVIAR");
+                $ok = $SendMail->send($to);
+                if ($ok){
                     My\Helpers::log()->debug("MAIL ENVIADO");
                     $url = Helpers::url("/user/html/register2.php");
                     Helpers::redirect($url);
                     My\Helpers::log()->debug("REVISA TU MAIL");
-                }
-                if ($SendMail == false){
-                    My\Helpers::log()->debug("NO SE ENVIA EL MAIL TIO PEP");
+                } else {
+                    My\Helpers::log()->debug("NO SE ENVIA EL MAIL");
                 }
             }
             if ($sentencia4 == false){
-                My\Helpers::log()->debug("NO SE HA ENVIADO EL TOKEN, LO SIENTO MAMASITA");
+                My\Helpers::log()->debug("NO SE HA ENVIADO EL TOKEN");
             }
         }   
     } catch (Exception $e) {

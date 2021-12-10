@@ -10,7 +10,7 @@ return [
         # See https://github.com/PHPMailer/PHPMailer/wiki/SMTP-Debugging
         "debug"     => [
             // OFF (0), CLIENT (1), SERVER (2), CONNECTION (3), LOWLEVEL (4)
-            "level"     => 2,
+            "level"     => 0,
             // "echo" (default), "html", "error_log2
             "output"    => "error_log"  
         ]
