@@ -117,7 +117,11 @@ h1{
   color:var(--system-midblue);
 }
 
-
+.flash {
+  background-color: darkorange;
+  padding: 2px;
+  margin: 5px 0;
+}
 #icon{
   align-self: flex-end;
 }
@@ -136,9 +140,6 @@ a{
  margin:0px 1.5rem;
 }
 
-.logo-wrapper{
-  
-}
 
 .fa.profile-icon{
   font-size: 12rem;

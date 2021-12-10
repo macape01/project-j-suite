@@ -9,15 +9,9 @@
    </header>
 <div class="flex-container">
    <div class="forgot " action="">
-            <h1>Recuperación de contraseña</h1>
-            <label class="la">Code PIN:</label>
-            <div class="forgot--pin">    
-                <input class="pin" type="password">
-                <input class="pin" type="password">
-                <input class="pin" type="password">
-                <input class="pin" type="password">
-            </div>
-           <input class="button button--round"type="submit">
+      <form action="forgot2_action.php" method="POST">
+            <h1>Consulta el teu email</h1>
+      </form>
    </div>
 </div> 
 <?= My\Helpers::render("_commons/footer.php") ?>
