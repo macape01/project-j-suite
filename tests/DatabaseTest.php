@@ -24,8 +24,8 @@ final class DatabaseTest extends TestCase
     $sentencia = $db->prepare("SELECT email,role_id FROM users WHERE username = 'admin'");
     $sentencia->execute();
     $result = $sentencia->fetchAll();
+    print("result");
     $contador = count($result);
-    print($contador);
     $this->assertEquals($contador,1);
     //Comprovar que després de tancar la base de dades, llança exepció
     $db->close();

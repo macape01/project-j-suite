@@ -18,6 +18,11 @@ class Helpers {
         $protocol = $ssl ? "https" : "http";
         return "{$protocol}://localhost/tarda/project-j-suite/App{$path}";
     }
+    public static function avatarUrl(string $path, bool $ssl = false): string 
+    {
+        $protocol = $ssl ? "https" : "http";
+        return "{$protocol}://localhost/tarda/project-j-suite{$path}";
+    }
     public static function render(string $path, array $__params = []) : string 
     {
         ob_start();
@@ -35,22 +40,26 @@ class Helpers {
     }
     public static function upload(array $file, string $folder = "") : string 
     {
-       if ($file["error"]) {
-           throw new \Exception("Upload error with code " . $file["error"]);
-       } else if ($file["size"] > self::MAX_FILE_SIZE) {
-           throw new \Exception("Upload maximum file exceeded (2MB)");
-       } else {
-           $dir  = __DIR__ . "/../uploads/{$folder}";
-           $path = $dir . "/" . basename($file["name"]);
-           $tmp  = $file["tmp_name"];
-          
-           if (move_uploaded_file($tmp, $path)) {
-               return $path;
-           } else {
-               throw new \Exception("Unable to upload file at {$path}");
-           }
-       }
-    }   
+        if ($file["error"]) {
+            throw new \Exception("Upload error with code " . $file["error"]);
+        } else if ($file["size"] > self::MAX_FILE_SIZE) {
+            throw new \Exception("Upload maximum file exceeded (2MB)");
+        } else {
+            $subdir  = "../uploads/{$folder}";
+            $subdir_db = "/uploads/{$folder}";
+            $dirpath = __DIR__ . "/{$subdir}";
+            if (!file_exists($dirpath)) {
+                mkdir($dirpath, 0755, true);
+            }
+            $filename = basename($file["name"]);
+            $filepath = "{$dirpath}/{$filename}";
+            if (move_uploaded_file($file["tmp_name"], $filepath)) {
+                return "{$subdir_db}/{$filename}";
+            } else {
+                throw new \Exception("Unable to upload file at {$dirpath}");
+            }
+        }
+    } 
    public static function flash(string $msg = "") : array
     {
        session_start();
@@ -73,7 +82,7 @@ class Helpers {
            self::$_logger = new Logger("app");
            // Now add some handlers
            $path = __DIR__ . "/../logs/app.log";
-           self::$_logger->pushHandler(new StreamHandler($path, Logger::DEBUG));
+           //self::$_logger->pushHandler(new StreamHandler($path, Logger::DEBUG));
            self::$_logger->pushHandler(new FirePHPHandler());           
        }
        // Proxy pattern

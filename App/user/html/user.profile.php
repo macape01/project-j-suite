@@ -1,15 +1,47 @@
+<?php 
+    require_once "../../../vendor/autoload.php"; 
+    use My\Database;
+    $db = new Database();
+    //Este id deberia ser el que viene de la sesion actual
+    $sentencia = $db->prepare("SELECT id, username, email, avatar_id, role_id FROM users WHERE id = 1;");
+    $sentencia->execute();
+    $results = $sentencia->fetchAll(PDO::FETCH_OBJ);
+    $user = $results[0];
+    My\Helpers::log()->debug($user->avatar_id);
+    $db->close();
+
+    /* $db = new Database();
+    $new_password = hash("sha256","admin");
+    //Este id deberia ser el que viene de la sesion actual
+    $sentencia = $db->prepare("UPDATE users SET password = '{$new_password}' WHERE id = 1");
+    $sentencia->execute();
+    $db->close(); */
+    //8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918
+    
+
+    $db = new Database();
+    $sentencia1 = $db->prepare("SELECT filepath FROM files WHERE id = '{$user->avatar_id}';");
+    $sentencia1->execute();
+    $results2 = $sentencia1->fetchAll(PDO::FETCH_OBJ);
+    $file = $results2[0];
+    $avatarurl = My\Helpers::avatarUrl($file->filepath);
+    My\Helpers::log()->debug($avatarurl);
+    //My\Helpers::log()->debug("Datos");
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
-<?php require_once "../../../vendor/autoload.php"; ?>
 <?= My\Helpers::render("_commons/head.php", ["subtitle" => "Main"]) ?>
 <body>
     <main class="main">
       <?= My\Helpers::render("_commons/header.php") ?>
       <section class="section">
         <sidebar class="accordion component--round">
-            <i class="fa fa-user-circle profile-icon">       
-                <p class="titols text">User Name</p>
-            </i>
+            <p class="titols text">User Name</p>
+            <img src="<?= $avatarurl ?>"></img>
+            <!-- <i class="fa fa-user-circle profile-icon">       
+            </i> -->
 
             <input class="button button--round" type="button" name="2" value="Perfil"/>
             <input class="button button--round" type="button" name="2" value="Settings"/>
@@ -17,60 +49,54 @@
             <input class="button button--round" type="button" name="2" value="Contacts"/>
             <input class="button button--round info" type="button" name="2" value="Informació"/>
         </sidebar>
-        <form class="form component--round">
+        <form class="form component--round" action="user.profile_action.php" enctype="multipart/form-data" method="POST">
             <h1>Perfil d'usuari</h1>
+            <input name="id" style="display:none;" value="<?= $user->id ?>"/>
             <div class="form__row">
                 <label class="label">Canviar foto perfil</label>
                 <div class="row__wrapper">
-                    <input class="input" type="file"alt="choose-image">
+                    <input name="avatar" class="input" type="file" alt="choose-image">
                 </div>
             </div>
             <div class="form__row">
-                <label class="label">Nom</label>
+                <label class="label">Usuari</label>
                 <div class="row__wrapper">
                     <i class="fa fa-user icon"></i>
-                    <input class="input">
-                </div>
-            </div>
-            <div class="form__row">
-                <label class="label">Cognoms</label>
-                <div class="row__wrapper">
-                    <i class="fa fa-user icon"></i>
-                    <input class="input">
+                    <input name="username" type="text" readonly value="<?= $user->username ?>" class="input">
                 </div>
             </div>
             <div class="form__row">
                 <label class="label">Correu</label>
                 <div class="row__wrapper">
                     <i class="fa fa-envelope icon"></i>
-                    <input class="input">
+                    <input type="email" required name="email" value="<?= $user->email ?>" class="input">
                 </div>
             </div>
             <div class="form__row">
                 <label class="label">Antigua contraseña</label>
                 <div class="row__wrapper">
                     <i class="fa fa-lock icon" aria-hidden="true"></i>
-                    <input class="input">
+                    <input type="password" name="old-password" class="input">
                 </div>
             </div>
             <div class="form__row">
                 <label class="label">Nueva contraseña</label>
                 <div class="row__wrapper">
                     <i class="fa fa-lock icon" aria-hidden="true"></i>
-                    <input class="input">
+                    <input type="password" name="new-password" class="input">
                 </div>
             </div>
             <div class="form__row">
                 <label class="label">Repite contraseña</label>
                 <div class="row__wrapper">
                     <i class="fa fa-lock icon" aria-hidden="true"></i>
-                    <input class="input">
+                    <input type="password" name="repeat-password" class="input">
                 </div>
             </div>
             
-            <div class="form__row">
+            <div class="form__row" >
                 <div class="button__wrapper">
-                    <button class="button">Cambiar los datos</button>
+                    <button type="submit" class="button">Cambiar los datos</button>
                 </div>
             </div>
         </form>
