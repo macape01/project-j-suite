@@ -11,7 +11,6 @@
             <i class="fa fa-user-circle profile">       
                <p class="titols text">User Name</p>
             </i>
-
             <input class="button button--round" type="button" name="2" value="Perfil"/>
             <input class="button button--round" type="button" name="2" value="Settings"/>
             <input class="button button--round" type="button" name="2" value="Calendar"/>
@@ -21,7 +20,6 @@
          </aside>
          <div class="container">
             <div class="container__item chatapp">
-
                Chatapp
             </div>
             <div class="container__item tickets">
