@@ -21,7 +21,7 @@ class Mail {
         $this->_mailer = new PHPMailer();
         $this->_mailer->IsSMTP();
         $this->_mailer->Mailer = $config["server"]["protocol"];
-        $this->_mailer->SMTPDebug  = $config["server"]["debug"]["level"];  
+        $this->_mailer->SMTPDebug  = $config["server"]["debug"];  
         $this->_mailer->SMTPAuth   = TRUE;
         $this->_mailer->SMTPSecure = $config["server"]["security"];
         $this->_mailer->Port       = $config["server"]["port"];

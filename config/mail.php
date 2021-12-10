@@ -8,12 +8,7 @@ return [
         "username"  => "2daw.equip01@fp.insjoaquimmir.cat",
         "password"  => "tarda1234",
         # See https://github.com/PHPMailer/PHPMailer/wiki/SMTP-Debugging
-        "debug"     => [
-            // OFF (0), CLIENT (1), SERVER (2), CONNECTION (3), LOWLEVEL (4)
-            "level"     => 0,
-            // "echo" (default), "html", "error_log2
-            "output"    => "error_log"  
-        ]
+        "debug"     => 0
     ],
     "from" => [
         "name"      => "Marc",
