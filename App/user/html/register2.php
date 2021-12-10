@@ -1,4 +1,4 @@
-<?php require_once __DIR__ . "/../../vendor/autoload.php"; ?>
+<?php require_once __DIR__ . "/../../../vendor/autoload.php"; ?>
 <!DOCTYPE html>
 <html lang="ca">
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" type='text/css'>
@@ -9,10 +9,10 @@
             <div class="logo-wrapper">
                 <a class="link link__logo" href="">LOGO</a>
             </div>
-            <form class="formulario" action="/form.php">
+            <form class="formulario" action="login_action.php" method="post">
                 <div class="formulario__row2">
                     <label class="txt">Usuari:</label>
-                    <input class="input">
+                    <input name="username" class="input">
                     <div class="check">
                         <input type="checkbox" id="rememberpasswd" name="rememberpasswd">
                         <label for="rememberpasswd">Recordar sesión</label>
@@ -20,7 +20,7 @@
                 </div>
                 <div class="formulario__row2">
                     <label class="txt">Contrasenya:</label>
-                    <input class="input">
+                    <input name="password" class="input">
                     <a class="recuperarcontra" href="">Recuperar contrasenya</a>
                 </div>
                 <input class="button b2" type="button" value="LOGIN"/>
@@ -28,40 +28,47 @@
         </header>
         <div class="mockup-container">
     <div class="container2">
-        <form class="form component--round">
+        <form class="form component--round" action="register_action1.php" method="post">
+            <div class="form__row">
+                <label class="label">Nom d'usuari</label>
+                <div class="row__wrapper">
+                    <i class="fa fa-user icon"></i>
+                    <input name="username" class="input">
+                </div>
+            </div>
             <div class="form__row">
                 <label class="label">Nom</label>
                 <div class="row__wrapper">
                     <i class="fa fa-user icon"></i>
-                    <input class="input">
+                    <input name="name" class="input">
                 </div>
             </div>
             <div class="form__row">
                 <label class="label">Cognoms</label>
                 <div class="row__wrapper">
                     <i class="fa fa-user icon"></i>
-                    <input class="input">
+                    <input name="lastname" class="input">
                 </div>
             </div>
             <div class="form__row">
                 <label class="label">Contrasenya</label>
                 <div class="row__wrapper">
                     <i class="fa fa-lock icon"></i>
-                    <input class="input">
+                    <input name="password" class="input">
                 </div>
             </div>
             <div class="form__row">
                 <label class="label">Repeteix la contrasenya</label>
                 <div class="row__wrapper">
                     <i class="fa fa-lock icon"></i>
-                    <input class="input">
+                    <input name="passwordrepeat" class="input">
                 </div>
             </div>
             <div class="form__row">
                 <label class="label">Correu</label>
                 <div class="row__wrapper">
                     <i class="fa fa-envelope icon"></i>
-                    <input class="input">
+                    <input name="email" class="input">
                 </div>
             </div>
             <div class="form__row">
