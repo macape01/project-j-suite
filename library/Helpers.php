@@ -16,12 +16,12 @@ class Helpers {
     public static function url(string $path, bool $ssl = false): string 
     {
         $protocol = $ssl ? "https" : "http";
-        return "{$protocol}://localhost/project-j-suite/App{$path}";
+        return "{$protocol}://localhost/tarda/project-j-suite/App{$path}";
     }
     public static function avatarUrl(string $path, bool $ssl = false): string 
     {
         $protocol = $ssl ? "https" : "http";
-        return "{$protocol}://localhost/project-j-suite{$path}";
+        return "{$protocol}://localhost/tarda/project-j-suite{$path}";
     }
     public static function render(string $path, array $__params = []) : string 
     {
