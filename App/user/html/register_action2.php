@@ -13,23 +13,23 @@ $existe = false;
 
 try {
     $db = new Database();
-    $sql = "SELECT token FROM user_tokens WHERE token = '{$_GET['token']}'";
+    $token=$_GET['token'];
+    $sql = "SELECT * FROM user_tokens WHERE token = '$token' AND type = 'A'";
     $sentencia = $db->prepare($sql);
     $sentencia->execute();
-
-    foreach ($sentencia->fetchAll() as $comprobar){
-        if($comprobar['token']==$_GET['token']){
-            $existe = true;
-            break;
-        }
-    }
-    if ($existe){
+    if ($sentencia->rowCount() > 0){
         My\Helpers::log()->debug("ACTUALITZANT COMPTE AMB STATUS 1 A LA TAULA USERS");
+        $db = new Database();
+        $sql = " UPDATE users SET status = 1 where id = {$sentencia->fetchAll()[0]['user_id']}";
+        $sentencia = $db->prepare($sql);
+        $sentencia->execute();
+        $url = Helpers::url("/user/html/login.php?auth=1");
+        Helpers::redirect($url);
     }
     else{
         My\Helpers::log()->debug("ERROR: NO HEM TROBAT EL TOKEN");
     }
 } catch (Exception $e) {
-    My\Helpers::log()->err("ERRORRRRRRRRRRRRR");
+    My\Helpers::log()->error($e);
 }
 ?>
