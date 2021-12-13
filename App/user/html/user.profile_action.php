@@ -164,7 +164,7 @@ else {
         //Obtenim una contrasenya, ja pot ser una nova o la mateixa que estava abans, en qualsevol cas fem update de la contra per no haver de fer dos casuistiques
         $password = GetPassword($id);
         Helpers::log()->debug($password);
-        $query = "UPDATE users SET email='{$email}', status=0, avatar_id = '{$ruta}' password='{$password}' WHERE id = '{$id}';";
+        $query = "UPDATE users SET email='{$email}', status=0, avatar_id = '{$last_id}' password='{$password}' WHERE id = '{$id}';";
         UpdateUserData($query);
         Helpers::log()->debug("La cuenta ha sido actualizada");
         //Afegim token a la query url
