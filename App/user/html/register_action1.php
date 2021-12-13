@@ -66,20 +66,26 @@ else {
         }
     
         if ($existe == false){
+            $date = date('Y-m-d H:i:s');
             $encripta = hash('sha256', $password);
-            $sql = "INSERT INTO users (email, username, 'status', 'password') VALUES ('$email', '$username', 0, '$encripta')";
+            $sql = "INSERT INTO users (email, username, status, password, role_id, created, last_access ) VALUES ('$email', '$username', 0, '$encripta', 2, '{$date}', '{$date}')";
             $sentencia3 = $db->prepare($sql);
             $sentencia3->execute();
             My\Helpers::log()->debug("HASH + CREACIÓ DE USUARIOS GUAY");
-
-            $bytes = random_bytes(20);
-            $token = bin2hex($bytes);
-            $sql = "INSERT INTO user_tokens (token, 'type' ) VALUES ('$token', 'A')";
+            $sql = "SELECT id FROM users WHERE username = '{$username}'";
             $sentencia4 = $db->prepare($sql);
             $sentencia4->execute();
-            if ($sentencia4 == true){
+            $resulttoken = $sentencia4->fetchAll(PDO::FETCH_OBJ);
+            $user=$resulttoken[0];
+            $idtoken=$user->id;
+            $bytes = random_bytes(20);
+            $token = bin2hex($bytes);
+            $sql = "INSERT INTO user_tokens (token, type, user_id, created) VALUES ('$token', 'A', $idtoken, '{$date}')"; //Preguntar como sacar la id, despues de hacer un isert de un nuevo usuario
+            $sentencia5 = $db->prepare($sql);
+            $sentencia5->execute();
+            if ($sentencia5 == true){
                 My\Helpers::log()->debug("TOKEN SUBIDO A YUTUB PERFESTO");
-                $url_seguent = Helpers::url("/user/html/register_action2.php");
+                $url_seguent = Helpers::url("/user/html/register_action2.php?token={$token}");
                 $subject = "Completa tu registro! ";
                 $body = "{$url_seguent}";
                 $isHtml = true;
@@ -96,12 +102,12 @@ else {
                     My\Helpers::log()->debug("NO SE ENVIA EL MAIL");
                 }
             }
-            if ($sentencia4 == false){
+            if ($sentencia5 == false){
                 My\Helpers::log()->debug("NO SE HA ENVIADO EL TOKEN");
             }
         }   
     } catch (Exception $e) {
-        My\Helpers::log()->err("ERRORRRRRRRRRRRRR");
+        My\Helpers::log()->error($e);
     }
 }
 ?>
