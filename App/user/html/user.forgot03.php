@@ -4,18 +4,17 @@
 <?= My\Helpers::render("_commons/head.php", ["subtitle" => "Main"]) ?>
 <link rel="stylesheet" href="../css/user.forgot.css">
 <body>
-   <header>
-
-   </header>
+    <?php My\Helpers::log()->debug('token'.$_GET['token']);?>
    <div class="flex-container">
-    <div class="forgot forgot--change" action="">
+    <div class="forgot forgot--change">
         <form action="forgot2_action.php" method="POST">
+            <input name="token" type="hidden" value="<?=$_GET['token']?>">
             <h1>Recuperación de contraseña</h1>
             <label class="la">Introduce la nueva contraseña:</label>
-            <input class="row__wrapper input--forgot" type="text">
+            <input name="contra1" class="row__wrapper input--forgot" type="password">
             <label class="la">Repite la nueva contraseña:</label>
-            <input class="row__wrapper input--forgot" type="text">
-            <input class="button button--round"type="button" value="Continua">
+            <input name="contra2" class="row__wrapper input--forgot" type="password">
+            <input class="button button--round" type="submit" value="Continua">
         </form>
     </div>
  </div> 
