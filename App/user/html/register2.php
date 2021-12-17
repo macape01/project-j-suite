@@ -14,16 +14,16 @@
                     <label class="txt">Usuari:</label>
                     <input name="username" class="input">
                     <div class="check">
-                        <input type="checkbox" id="rememberpasswd" name="rememberpasswd">
-                        <label for="rememberpasswd">Recordar sesión</label>
+                        <input type="checkbox" id="remember" name="remember">
+                        <label for="remember">Recordar sesión</label>
                     </div>
                 </div>
                 <div class="formulario__row2">
                     <label class="txt">Contrasenya:</label>
-                    <input name="password" class="input">
+                    <input name="password" type="password" class="input">
                     <a class="recuperarcontra" href="">Recuperar contrasenya</a>
                 </div>
-                <input class="button b2" type="button" value="LOGIN"/>
+                <button class="button b2">LOGIN</button>
             </form>
         </header>
         <div class="mockup-container">
