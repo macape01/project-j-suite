@@ -10,7 +10,7 @@ class User{
 
     public static function getToken(): string 
     {
-        $token = $_COOKIE[COOKIE_NAME];
+        $token = $_COOKIE[self::COOKIE_NAME];
         return $token;
     }
     public static function getId(): int 
@@ -20,6 +20,7 @@ class User{
     }
     public static function isAuth(): bool
     {
-        return isset($_COOKIE[COOKIE_NAME]);
+        $is_empty = empty($_COOKIE[self::COOKIE_NAME]);
+        return !$is_empty;
     }
 }
