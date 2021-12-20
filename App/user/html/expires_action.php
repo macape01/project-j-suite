@@ -4,11 +4,12 @@ require_once __DIR__ . "/../../../vendor/autoload.php";
 
 use My\Database;
 use My\Helpers;
+use My\user;
 
 $db = new Database();
 
-if ( !empty($_COOKIE["session_token"]) ){
-    $session_token = $_COOKIE["session_token"];
+if ( User::isAuth() ){
+    $session_token = User::getToken();
     Helpers::log()->debug($session_token);
     $sql = "SELECT token from user_tokens WHERE token = '$session_token' and type = 'S';";
     $sentencia = $db->prepare($sql);
@@ -18,7 +19,7 @@ if ( !empty($_COOKIE["session_token"]) ){
     Helpers::log()->debug($_COOKIE["session_token"]);
 
     if ( $contador < 1 ){
-        setcookie("session_token","",time()-3600);
+        setcookie(User::COOKIE_NAME,"",time()-3600);
         unset($_SESSION["uid"]);
         Helpers::flash("La sessió ha expirat");
     }

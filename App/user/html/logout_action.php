@@ -5,11 +5,12 @@ require_once __DIR__ . "/../../../vendor/autoload.php";
 use My\Database;
 use My\Helpers;
 use My\Mail;
+use My\User;
 use Rakit\Validation\Validator;
 
-if (isset($_COOKIE["session_token"])){
+if (User::isAuth()){
     echo "hola";
-    $session_token=$_COOKIE["session_token"];
+    $session_token=User::getToken();
     $db = new Database();
     $sql = "SELECT token FROM user_tokens WHERE token = '$session_token' and type = 'S';";
     echo $sql;

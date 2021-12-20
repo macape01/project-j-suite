@@ -8,6 +8,7 @@ use My\Helpers;
 use My\Database;
 use My\Token;
 use My\Mail;
+use My\User;
 
 $url = Helpers::url("/user/html/login.php"); // Go to homepage
 
@@ -62,10 +63,10 @@ if ($validation->fails()) {
                 if ($sentencia3 == true){
                     // Create user session cookie
                     $plus = $remember ? 3600*24*7*4*2 : 3600;
-                    setcookie("session_token", $token, time() + $plus);
+                    setcookie(User::COOKIE_NAME, $token, time() + $plus);
                     Helpers::log()->debug("Benvingut ".htmlspecialchars($_COOKIE["session_token"]));
                     session_start();
-                    $_SESSION["session_token"]=$sesioncookie;
+                    $_SESSION[User::COOKIE_NAME]=$sesioncookie;
                     Helpers::log()->debug($sesioncookie);
                     Helpers::flash("Login fet amb session cookie");
                     Helpers::redirect($url);
