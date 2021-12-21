@@ -10,7 +10,8 @@ use My\Token;
 use My\Mail;
 use My\User;
 
-$url = Helpers::url("/user/html/login.php"); // Go to homepage
+$url = Helpers::url("/user/html/register2.php"); // Go to homepage
+$url2 = Helpers::url("/user/html/user.profile.php");
 
 $validator = new Validator();
 
@@ -36,7 +37,7 @@ if ($validation->fails()) {
     try {
         Helpers::log()->debug("Verificant nom d'usuari i contrasenya");
         $db = new Database();
-        $sql = "SELECT * FROM users WHERE username='$username' AND password='$password'";
+        $sql = "SELECT * FROM users WHERE username='$username' AND status=1 AND password='$password'";
         Helpers::log()->debug($sql);
         $sentencia = $db->prepare($sql);
         $sentencia->execute();
@@ -69,7 +70,7 @@ if ($validation->fails()) {
                     $_SESSION[User::COOKIE_NAME]=$sesioncookie;
                     Helpers::log()->debug($sesioncookie);
                     Helpers::flash("Login fet amb session cookie");
-                    Helpers::redirect($url);
+                    Helpers::redirect($url2);
                 } else {
                     Helpers::log()->debug("No aconseguim inserir el token Session");
                 }

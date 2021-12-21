@@ -36,10 +36,16 @@ if ($validation->fails()) {
     $result = $sentencia->fetchAll();
     $contador = count($result);
 
-    $db = new Database();
     $sentencia = $db->prepare("SELECT user_id FROM user_tokens WHERE token = '{$token}';");
     $sentencia->execute();
-    $resultid = $sentencia->fetchAll();
+    
+    $result2 = $sentencia->fetchAll(PDO::FETCH_OBJ);
+    
+    $user = $result2[0];
+    Helpers::log()->debug($result2);
+    $id = $user->user_id;
+
+
     $contador2 = count($resultid);
 
     // $sql = "SELECT id FROM users WHERE email='$email'";
@@ -51,12 +57,18 @@ if ($validation->fails()) {
     if ( $contador >= 1 ){
         var_dump("hola");
         $db = new Database();
-        $sql = "UPDATE users SET password = '{$pass}' where id = {$resultid}";
+        $pass = hash("sha256", $_POST["contra1"]);
+        $sentencia = $db->prepare("UPDATE users SET password = '{$pass}' where id = {$id};");
         $sentencia->execute();
-        $result = $sentencia->fetchAll();
-        Helpers::log()->debug($result);
-        Helpers::log()->debug($sentencia);
-
+        $db->close();
+        $datetime = date('Y-m-d H:i:s');
+        $db = new Database();
+        $uid = $id;
+        $sql = "UPDATE users SET last_access='$datetime' WHERE id=$uid";
+        $sentencia2 = $db->prepare($sql);
+        $sentencia2->execute();
+        $url = Helpers::url("/user/html//register2.php");
+        Helpers::redirect($url); 
         
     }else{
         // Helpers::flash("Incorrecto");

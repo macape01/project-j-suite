@@ -43,6 +43,7 @@ form{
     padding: 2rem;
     text-align: center;
     font-size: 12px;
+    flex-direction: column;
 }
 
 .formulario__row2{

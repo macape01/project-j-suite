@@ -2,7 +2,6 @@
 <!DOCTYPE html>
 <html lang="ca">
 <?= My\Helpers::render("_commons/head.php", ["subtitle" => "Main"]) ?>
-<link rel="stylesheet" href="../css/user.forgot.css">
 <body>
 <div class="flex-container">
    <div class="forgot">
