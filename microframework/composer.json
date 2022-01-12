@@ -1,0 +1,48 @@
+{
+    "name": "2daw/g01",
+    "description": "Projecte web",
+    "type": "project",
+    "license": "copyright",
+    "authors": [
+        {
+            "name": "Marc Carbonell Perez",
+            "email": "macape@fp.insjoaquimmir.cat"
+        },
+        {
+            "name": "Oliver Bocanegra Perez",
+            "email": "olbope@fp.insjoaquimmir.cat"
+        },
+        {
+            "name": "Dumitru Eduard Dobre",
+            "email": "dudo@fp.insjoaquimmir.cat"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^7.4",
+        "alrik11es/cowsayphp": "^1.2",
+        "monolog/monolog": "^2.3",
+        "phpunit/phpunit": "9.5.x-dev",
+        "phpmailer/phpmailer": "dev-master",
+        "rakit/validation": "dev-master",
+        "twig/twig": "3.x-dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "My\\": "library"
+        } 
+
+    },
+    "scripts": {
+        "hello": [
+            "php ./scripts/hello.php"
+        ],
+        "deps": [
+            "ls ./library",
+            "ls ./vendor"
+        ],
+        "tests": [
+            "./vendor/bin/phpunit tests"
+        ]
+    }
+}
