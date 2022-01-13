@@ -18,8 +18,14 @@
     <script>
         const audio = document.getElementById("audio")
         const img = document.getElementById("img")
-        img.mouseenter
-
+        img.onmouseenter = () => {
+            audio.play();
+            console.log("playing")
+        }
+        img.onmouseleave = () => {
+            audio.pause();
+            console.log("paused")
+        }
     </script>
 </body>
 </html>
