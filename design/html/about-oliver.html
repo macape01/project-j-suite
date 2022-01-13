@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style> 
+
+        .miembros{
+            width: 300px;
+            height: 600px;
+        }
+        h2{
+            margin-top: 350px;
+        }
+        
+        .primeraimg{
+            z-index: 2;
+            width: 300px;
+            height: 300px;
+            transform: rotateY(0deg);
+            transition: all 0.7s linear;
+            filter: grayscale(100%);
+        }
+        .imatges{
+            position: relative;
+        }
+
+        .imatges::after{
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            visibility: hidden;
+        }
+        
+        .segundaimg{
+            width: 300px;
+            height: 300px;
+            transition: all 0.7s linear;
+            transform: rotateY(180deg);
+        }
+
+        .primeraimg, .segundaimg {
+            backface-visibility: hidden;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .imatges:hover .primeraimg{
+            transform: rotateY(180deg);
+
+        }
+        .imatges:hover .segundaimg{
+            transform: rotateY(360deg);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="miembros">
+        <h1>Meet our team</h1>
+        <div class="imatges" id="imatges">
+            <img class="primeraimg" src="https://preview.redd.it/8y1t06m6ft071.jpg?auto=webp&s=d1f78ceeebbb62866645c0cbe089435e51000955">
+            <img class="segundaimg" src="https://pbs.twimg.com/media/FIsFZGtWQAI57RG.jpg:medium">
+        </div>
+        <h2>Oliver Bocanegra</h2>
+        <audio id="migrito" controls muted="muted" type="audio/mp3">
+            <source id="sonido" src="../audio/audio.mp3"></source>
+        </audio>
+    </div>
+    <script>
+        document.getElementById("imatges").addEventListener("mouseenter", mouseEnter);
+        document.getElementById("imatges").addEventListener("mouseleave", mouseLeave);
+
+        function mouseEnter() {
+            const audio = document.getElementById("migrito");
+            audio.play();
+            console.log("sonando");
+        }
+
+        function mouseLeave() {
+            const audio = document.getElementById("migrito");
+            audio.pause();
+            console.log("stop");
+        }
+    </script>
+</body>
+</html>
