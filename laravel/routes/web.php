@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SendEmailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +15,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+   Log::info(dd(env('MYSQL_ATTR_SSL_KEY')));
+
+   return view('welcome');
 });
+
+Route::get('sendemail', 'SendEmailController@index')->name('sendemail');
