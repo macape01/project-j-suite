@@ -1,0 +1,67 @@
+html,body{
+    height: 100%;
+    width:100%;
+    margin: 0;
+    background-color: rgba(226, 213, 213, 0.282);
+}
+#creacio{
+    width: 1200px;
+    height: 500px;
+    padding: 50px;
+}
+
+
+
+#tickets-list{
+
+    margin-top: 20px;
+    font-size: 2rem;
+    display: flex;
+    flex-flow: column ;
+    background-color: wheat;
+    border-radius:16px;
+    padding: 16px;
+    gap: 2rem;
+
+}
+
+.tickets-header{
+    display: flex;
+    justify-content: space-around;
+}
+
+.ticket:nth-of-type(even) {
+    background-color: #ac9c6a;
+  }
+
+.ticket{
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 16px;
+    justify-content: space-between;
+    text-align: center;
+    display: flex;
+    gap: 1rem;
+    background-color:rgba(124, 114, 87, 0.994);
+    color: rgb(238, 238, 238);
+}
+.title{
+    text-align: center;
+    flex: 1;
+}
+
+.button{
+    background-color:unset;
+    border:none;
+    color:#fff;
+}
+
+td{
+    flex: 1;
+}
+
+.form-check{
+    width: 40px;
+}
+
+
