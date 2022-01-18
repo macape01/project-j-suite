@@ -1,0 +1,27 @@
+.titolhist th{
+    margin-top: 10px;
+    width: 262px;
+    height: 80px;
+    font-size: 25px;
+    text-align: center;
+    border: 1px solid black;
+}
+
+.cadahis td{
+    color: rgb(54, 54, 59);
+    width: 262px;
+    height: 60px;
+    max-width: 262px;
+    max-height: 100px;
+    font-size: 18px;
+    text-align: center;
+}
+.cadahis text .titolhist text{
+    max-width: 262px;
+    max-height: 100px;
+}
+.historial{
+    border: 1px solid black;
+    align-items: center;
+    height: 100vh;
+}
