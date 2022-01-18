@@ -1,0 +1,102 @@
+@import 'variables.css';
+
+:root{
+    --max-container-width: 300px;
+}
+
+.component--round{
+    border-radius: 1.6rem;
+}
+
+.form{
+    padding: 2rem;
+    width: 100%;
+    height: 86.2vh;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 1.2rem;
+    background-color: var(--system-midblue);
+}
+
+.form__row {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: stretch ;
+    gap: 1rem;
+}
+
+.icon{
+    justify-content: center;
+    align-items:center;
+}
+
+.row__wrapper{
+    border: 1px solid var(--system-darkblue);
+    background-color: var(--system-midblue);
+    border-radius: .6rem;
+    padding: .8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    gap: .8rem;
+}
+
+.button__wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.row__wrapper--checkbox{
+    border: none;
+}
+
+.input{
+    flex: 1;
+    background-color: var(--system-midblue);
+    border: none;
+}
+.input--checkbox{
+    flex: unset;
+    border: 1px solid var(--system-darkblue);
+}
+
+.accordion{
+    width: 100%;
+    height: 100%;
+    padding: 2rem;
+    background-color: var(--system-midblue);
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    gap: 1rem;
+}
+
+.accordion__title{
+    align-self: center;
+}
+
+.message{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: .5rem;
+    width: 100%;
+    padding: 1rem;
+    color: #fff;
+    background-color: var(--system-darkblue);
+    border-radius: 1.6rem;
+}
+
+.message__subject{
+    font-size: 1.5rem;
+}
+
+.message__author{
+    color:var(--system-darkgrey);
+    background-color: var(--system-lightblue);
+    border-radius: .8rem;
+    padding: .5rem 2rem;
+}
