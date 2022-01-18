@@ -100,6 +100,11 @@ document.getElementById("volveralmenu").addEventListener('click',(event) => {
     event.preventDefault()
     document.getElementById("historial").style.display = "none";
 })
+document.getElementById("deletetask").addEventListener('click',(event) => {
+    event.preventDefault()
+    var histo = document.getElementById("cadahis");
+    histo.removeChild(histo);
+})
 
 
 function auth(data, user, passwd){

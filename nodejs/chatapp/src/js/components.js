@@ -79,17 +79,17 @@ export const creaHTMLFormulariAfegir = (user,grup,usuarisList, grupsList, messag
                 let cada_data = messageList.cercaData(message.created);
 
                 html +=`
-                    <tr class="cadahis">
-                        <td>${cada_mensid}</td>
-                        <td>${cada_autormensid}</td>
-                        <td>${cada_mens}</td>
-                        <td>${cada_usuari} </td>
-                        <td>${cada_grup}</td>
-                        <td>${cada_data}</td>
-                        <td>
+                    <tr class="cadahis" id="cadahis">
+                        <td id="a">${cada_mensid}</td>
+                        <td id="b">${cada_autormensid}</td>
+                        <td id="c">${cada_mens}</td>
+                        <td id="d">${cada_usuari} </td>
+                        <td id="e">${cada_grup}</td>
+                        <td id="f">${cada_data}</td>
+                        <td id="g">
                             <button><i class="fa fa-eye"></i></button>
                             <button><i class="fa fa-edit"></i></button>
-                            <button><i class="fa fa-trash"></i></button>
+                            <button id="deletetask"><i class="fa fa-trash"></i></button>
                         </td>
                     </tr>
                         `
