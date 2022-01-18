@@ -4,7 +4,7 @@ import { TicketsList } from "./js/classes/ticketsList";
 import { UsersList } from "./globalClasses/usuaris-list-class";
 import { AssetsList } from "./js/classes/assets-list-class";
 import { Ticket } from "./js/classes/tickets";
-import { Modal } from "./js/classes/modalElement";
+import "./js/classes/modalElement";
 
 /* function BorrarLlista(llista){
     document.removeChild()
@@ -30,10 +30,18 @@ export function HandleForm(){
     PrintTicketList(ticketsList);
     
     const button = document.getElementById("createButton");
+    const filterButton = document.getElementById("open-filter");
+    const filterInput = document.getElementById("filter");
     var deleteButtons = document.getElementsByClassName("delete");
     var editButtons = document.getElementsByClassName("edit");
     var checkBoxes = document.getElementsByClassName("checkk");
 
+    filterButton.addEventListener("click",(e)=>{
+        e.preventDefault();
+        let value = filterInput.value;
+        PrintTicketList(ticketsList,value);
+        
+    })
     button.addEventListener("click",(e)=>{
         e.preventDefault();
         var id = ticketsList.getLastId() +1;
@@ -85,18 +93,22 @@ function HandleEditModal(ticketsList,id){
     
 }
 
-function PrintTicketList(ticketsList){
+function PrintTicketList(ticketsList,filter=null){
+    console.log("filter",filter)
     var el = document.getElementById("llista")
     if (el) el.remove();
-
     var cos= document.createElement('div');
     cos.id="llista"
     let tickets = ticketsList.tickets.filter(ticket => !ticket.deleted);
-
+    if ( filter!== null && filter!== undefined ){
+        console.log("tusa")
+        tickets = ticketsList.tickets.filter(ticket => ticket.desc === filter);
+    }
     cos.innerHTML+=createTicketHtml(tickets);
     const container = document.getElementById("creacio");
     container.append(cos);
 }
+
 
 
 function HandleDelete(ticketsList,ticket,id){

@@ -29,6 +29,8 @@ export const createTicketForm = (assetsList,usersList) => {
             <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
             <label class="form-check-label" for="flexSwitchCheckDefault">Ocultar</label>
         </div>
+        <input type="text" id="filter" placeholder="Descripcio" />
+        <button id="open-filter">Filtrar</button>
     </form>
     `
 
