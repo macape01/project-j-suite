@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style> 
 
@@ -62,7 +63,7 @@
 <body>
     <div class="miembros">
         <h1>Meet our team</h1>
-        <div class="imatges" id="imatges">
+        <div class="imatges" id="imatges" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
             <img class="primeraimg" src="https://preview.redd.it/8y1t06m6ft071.jpg?auto=webp&s=d1f78ceeebbb62866645c0cbe089435e51000955">
             <img class="segundaimg" src="https://pbs.twimg.com/media/FIsFZGtWQAI57RG.jpg:medium">
         </div>
@@ -70,8 +71,50 @@
         <audio id="migrito" controls muted="muted" type="audio/mp3">
             <source id="sonido" src="../audio/audio.mp3"></source>
         </audio>
+    </div>           
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active" data-bs-interval="10000">
+                            <video controls  id="video1" width="100%" height="500px">
+                                <source src="../video/LoveTik.com - llorando por tu culito bb_normal_540_0.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="carousel-item" data-bs-interval="2000">
+                            <video controls  id="video2" width="100%" height="500px">
+                                <source src="../video/LoveTik.com - illojuan .mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="carousel-item">
+                            <video controls  id="video3" width="100%" height="500px">
+                                <source src="../video/LoveTik.com - He tenido que cambiar mi look para que nadie me_watermarked.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+            </div>
+        </div>
     </div>
-    <script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
         document.getElementById("imatges").addEventListener("mouseenter", mouseEnter);
         document.getElementById("imatges").addEventListener("mouseleave", mouseLeave);
 
