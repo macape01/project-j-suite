@@ -1,0 +1,60 @@
+*{
+    font-family: Consolas,monaco,monospace;
+    }
+    body{
+    background-color:turquoise;
+    }
+    h1{
+    display: flex;
+    justify-content: center;
+    size: 20px;
+    color: red;
+    }
+    #antes{
+    margin-top: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    }
+    .ibai1{
+    display: flex;
+    filter: grayscale(100%);
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin:0 auto;
+    
+    }
+    .ibai2{
+    display: flex;
+    filter: grayscale(100%);
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin:0 auto;
+    opacity: 0;
+    }
+    #antes:hover .ibai1{
+    cursor: default;
+    transform: rotate(360deg);
+    transition: all 1s ease-in-out 0s;
+
+    
+    }
+    
+    #antes:hover .ibai2{
+    cursor: default;
+    transform: rotate(360deg);
+    transition: all 1s ease-in-out 0s;
+    opacity: 1;
+    filter:saturate(150%);
+    
+    }
+
+
+
