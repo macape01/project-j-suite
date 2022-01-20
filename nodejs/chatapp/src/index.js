@@ -100,11 +100,14 @@ document.getElementById("volveralmenu").addEventListener('click',(event) => {
     event.preventDefault()
     document.getElementById("historial").style.display = "none";
 })
-document.getElementById("deletetask").addEventListener('click',(event) => {
+const elementsCollection = document.getElementsByClassName("deletetask");
+const elementsArray = [...elementsCollection];
+elementsArray.forEach(element=>element.addEventListener('click',(event) => {
     event.preventDefault()
-    var histo = document.getElementById("cadahis");
-    histo.removeChild(histo);
-})
+    let message = element.parentNode.parentNode;
+    console.log("message",message)
+    message.remove();
+}))
 
 
 function auth(data, user, passwd){
