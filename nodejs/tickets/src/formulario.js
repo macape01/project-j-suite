@@ -25,7 +25,9 @@ export function HandleForm(){
     cos.innerHTML=createTicketForm(assets,users);
     document.body.append(cos);
     
-    var ticketsList = new TicketsList();
+    let ticketsList = new TicketsList();
+
+
 
     PrintTicketList(ticketsList);
     
@@ -39,7 +41,7 @@ export function HandleForm(){
     filterButton.addEventListener("click",(e)=>{
         e.preventDefault();
         let value = filterInput.value;
-        PrintTicketList(ticketsList,value);
+        FilterTicketList(ticketsList,value);
         
     })
     button.addEventListener("click",(e)=>{
@@ -92,18 +94,28 @@ function HandleEditModal(ticketsList,id){
     
     
 }
+function FilterTicketList(ticketsList,filter){
+    debugger
+    console.log("filter",filter)
+    let pattern = new RegExp(filter);
+    
+    var el = document.getElementById("llista")
+    if (el) el.remove();
+    var cos= document.createElement('div');
+    cos.id="llista"
+    let tickets = ticketsList.tickets.filter(ticket => ticket.nom.match(pattern) && !ticket.deleted);
+    cos.innerHTML+=createTicketHtml(tickets);
+    const container = document.getElementById("creacio");
+    container.append(cos);
+}
 
-function PrintTicketList(ticketsList,filter=null){
+function PrintTicketList(ticketsList){
     console.log("filter",filter)
     var el = document.getElementById("llista")
     if (el) el.remove();
     var cos= document.createElement('div');
     cos.id="llista"
     let tickets = ticketsList.tickets.filter(ticket => !ticket.deleted);
-    if ( filter!== null && filter!== undefined ){
-        console.log("tusa")
-        tickets = ticketsList.tickets.filter(ticket => ticket.desc === filter);
-    }
     cos.innerHTML+=createTicketHtml(tickets);
     const container = document.getElementById("creacio");
     container.append(cos);
