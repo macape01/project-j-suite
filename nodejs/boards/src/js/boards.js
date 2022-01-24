@@ -73,9 +73,10 @@ const createNewTaskElement = function(taskString, areaString, llista) {
   label.innerText = taskString;
   area.innerText = areaString;
   console.log(label.value);
-
-  let task = new Task(1,taskString,area.value);
+  let id=llista.getLastId();
+  let task = new Task(id,1,taskString,area.value);
   llista.newTask(task);
+  listItem.id=id
   // each element needs appending
   listItem.appendChild(checkBox);
   listItem.appendChild(label);
@@ -114,15 +115,36 @@ var addTask = function() {
 }
 
 // Edit an existing task
-var editTask = function() {
+var editTask = function(id) {
   console.log("Edit Task...");
-  
-  var listItem = this.parentNode;
-  
+
+    
+    console.log(this);
+    var listItem = document.getElementById(id);
+
+
   var editInput = listItem.querySelector("input[type=text]")
-  
-  
+  var areaImput = listItem.querySelector("textarea")
+
   var label = listItem.querySelector("label");
+
+  let task = llista.tasks.find(task=>task.id === id*1);
+  let index = llista.tasks.indexOf(task);
+  llista.tasks[index].titol = editInput.value
+  llista.tasks[index].comentari = areaImput.value
+  llista.desarLocalStorage();
+
+
+
+
+
+
+
+  
+
+  
+  
+
 
   
   var containsClass = listItem.classList.contains("editMode");
@@ -150,32 +172,47 @@ var editTask = function() {
 
 
 // Delete an existing task
-var deleteTask = function() {
+var deleteTask = function(id) {
   console.log("Delete task...");
-  var listItem = this.parentNode;
+  const listItem = document.getElementById(id);
   var ul = listItem.parentNode;
-  
   //Remove the parent list item from the ul
   ul.removeChild(listItem);
+
+  let newLlista = llista.tasks.filter(task=>task.id!==(id*1));
+  llista.tasks=newLlista;3
+  llista.desarLocalStorage();
+
+
 }
 
 // Mark a task as complete 
-var taskCompleted = function() {
+var taskCompleted = function(id) {
+  
   console.log("Task complete...");
   //Append the task list item to the #completed-tasks
-  var listItem = this.parentNode;
+  const listItem = document.getElementById(id);
   completedTasksHolder.appendChild(listItem);
   bindTaskEvents(listItem, taskIncomplete);
+  let task = llista.tasks.find(task=>task.id === id*1);
+  let index = llista.tasks.indexOf(task);
+  llista.tasks[index].todo = !llista.tasks[index].todo
+  llista.desarLocalStorage();
+
 }
 
 // Mark a task as incomplete
-var taskIncomplete = function() {
+var taskIncomplete = function(id) {
   console.log("Task Incomplete...");
   // When checkbox is unchecked
   // Append the task list item #incomplete-tasks
-  var listItem = this.parentNode;
+  const listItem = document.getElementById(id);
   incompleteTasksHolder.appendChild(listItem);
   bindTaskEvents(listItem, taskCompleted);
+  let task = llista.tasks.find(task=>task.id === id*1);
+  let index = llista.tasks.indexOf(task);
+  llista.tasks[index].todo = !llista.tasks[index].todo
+  llista.desarLocalStorage();
 }
 
 var bindTaskEvents = function(taskListItem, checkBoxEventHandler) {
@@ -186,14 +223,23 @@ var bindTaskEvents = function(taskListItem, checkBoxEventHandler) {
   var deleteButton = taskListItem.querySelector("button.delete");
   
   //bind editTask to edit button
-  editButton.onclick = editTask;
-  
+  editButton.addEventListener("click",e=>{
+
+    let elementId = e.target.parentNode.id;
+    editTask(elementId);
+  });
   
   //bind deleteTask to delete button
-  deleteButton.onclick = deleteTask;
+    deleteButton.addEventListener("click",e=>{
+    let elementId = e.target.parentNode.id;
+    deleteTask(elementId);
+  });
   
   //bind checkBoxEventHandler to checkbox
-  checkBox.onchange = checkBoxEventHandler;
+  checkBox.addEventListener("change",e=>{
+    let elementId = e.target.parentNode.id;
+    checkBoxEventHandler(elementId);
+  });
 }
 
 var ajaxRequest = function() {
