@@ -5,7 +5,7 @@ import { Task } from "./classes/tasks";
 
 export function Board(){
 
-
+  
   let llista = new taskList();
 
 
@@ -93,7 +93,7 @@ var comm = [];
 var addTask = function() {
   console.log("Add task...");
   //Create a new list item with the text from #new-task:
-
+  
   var listItem = createNewTaskElement(taskInput.value, areaImput.value,llista);
 
   // let value=taskInput.value;
@@ -113,6 +113,44 @@ var addTask = function() {
   taskInput.value = "";  
   areaImput.value = "";
 }
+
+
+// var findTask=function(valor){
+
+
+//   console.log("find task...")
+//   const listItem = document.getElementById(valor);
+//   let encontradas = llista.tasks.filter(task=>task.id===(valor));
+// 	for ( valor of valors ){
+// 		if ( task.textContent === value ){
+// 			return task;
+// 		}
+// 	}
+// 	return null;
+// }
+
+
+// var searchTask=function(){
+// 	if ( searchTaskInput.value.length == 0 ) return;
+// 	searchValue = searchTaskInput.value
+
+// 	taskFound = findTask(searchValue) 
+// 	if ( taskFound ) {
+// 		taskParent = taskFound.parentNode
+// 		taskParent.style.backgroundColor = "#FFC300"
+// 	}
+// 	else{
+// 		alert("No se ha encontrado la tarea....")
+// 	}
+// 	searchTaskInput.value = "";	
+	
+// }
+
+
+
+
+
+
 
 // Edit an existing task
 var editTask = function(id) {
@@ -135,18 +173,6 @@ var editTask = function(id) {
   llista.desarLocalStorage();
 
 
-
-
-
-
-
-  
-
-  
-  
-
-
-  
   var containsClass = listItem.classList.contains("editMode");
     //if the class of the parent is .editMode 
   if(containsClass) {
@@ -180,7 +206,7 @@ var deleteTask = function(id) {
   ul.removeChild(listItem);
 
   let newLlista = llista.tasks.filter(task=>task.id!==(id*1));
-  llista.tasks=newLlista;3
+  llista.tasks=newLlista;
   llista.desarLocalStorage();
 
 
