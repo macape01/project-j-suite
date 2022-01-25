@@ -21,4 +21,9 @@ export class Ticket {
     setTicketCheck(check){
         this.checked = check;
     }
+    editTicket(nom=this.nom,desc=this.desc,assignedId=this.assignedId){
+        this.nom = nom;
+        this.desc = desc;
+        this.assignedId = assignedId;
+    }
 }

@@ -52,16 +52,19 @@ export const createTicketHtml = (ticketsList) => {
             <td>${ticket.assignedId}</td>
             <td>${ticket.assetId}</td>
             <td>
-                <edit-modal>
-                    <label>Editar nom</label>
-                    <input id="update-nom" type="text" value=${ticket.nom}>
-                    <label>Editar descripció</label>
-                    <input id="update-desc" type="text" value=${ticket.desc}>
-                    <label>Editar persona assignada</label>
-                    <input id="update-assigned" type="number" value=${ticket.assignedId}>
-                    <button id="update-button">Update</button>
-                </edit-modal>
+                <button class="button edit">
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                </button>
                 <button class="button delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                <form id="edit-form" style="display:none;">
+                    <label>Editar nom</label>
+                    <input id="update-nom" value="${ticket.nom}" type="text"/>
+                    <label>Editar descripció</label>
+                    <input id="update-desc" value="${ticket.desc}" type="text"/>
+                    <label>Editar persona assignada</label>
+                    <input id="update-assigned" value="${ticket.assignedId}" type="number"/>
+                    <button id="update-button">Update</button>
+                </form>
             </td>
         </tr>
         `;

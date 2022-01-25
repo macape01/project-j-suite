@@ -68,9 +68,6 @@ export class Modal extends HTMLElement {
                 margin: 20px 2px
             }
         </style>
-        <button class="button edit">
-            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-        </button>
         <div class="modal">
             <div class="modal-content">
                 <div class="modal-header">

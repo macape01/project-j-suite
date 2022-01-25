@@ -37,7 +37,7 @@ export function HandleForm(){
     var deleteButtons = document.getElementsByClassName("delete");
     var editButtons = document.getElementsByClassName("edit");
     var checkBoxes = document.getElementsByClassName("checkk");
-
+    
     filterButton.addEventListener("click",(e)=>{
         e.preventDefault();
         let value = filterInput.value;
@@ -82,20 +82,31 @@ export function HandleForm(){
         element.addEventListener("click",(e)=>{
             let ticket = element.parentNode.parentNode;
             let id = ticket.id;
-            HandleEditModal(ticketsList,id,modal);
+            HandleEdit(ticketsList,id);
         })
         
     }
 }
 
-function HandleEditModal(ticketsList,id){
-    var modal = document.getElementById("e-modal");
+function HandleEdit(ticketsList,id){
+    var form = document.getElementById("edit-form");
+    var button = document.getElementById("update-button");
+    var name = document.getElementById("update-nom");
+    var desc = document.getElementById("update-desc");
+    var assigned = document.getElementById("update-assigned");
+    form.style.display="block";
+
+    button.addEventListener("click",(e)=>{
+        let newTicketList = ticketsList.tickets;
+        let ticketObject = newTicketList.find(ticketObj=>ticketObj.id === parseInt(id));
+        ticketObject.editTicket(name.value,desc.value,assigned.value);
+        ticketsList.updateList(newTicketList);
+    })
     console.log(modal)
     
     
 }
 function FilterTicketList(ticketsList,filter){
-    debugger
     console.log("filter",filter)
     let pattern = new RegExp(filter);
     
