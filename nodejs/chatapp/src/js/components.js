@@ -56,6 +56,10 @@ export const creaHTMLFormulariAfegir = (user,grup,usuarisList, grupsList, messag
                             <label for="password">Password: <input type="text" id="password "></label>
                             <button id="savenam">login</button>
                         </div>
+                        <div class="filtre">
+                            <input type="text" id="filt">
+                            <button id="buttonfilt">Filtrar</button>
+                        </div>
                     </div>
                 </form>
                 <table id="historial" class="historial" style="display: none;">
@@ -82,13 +86,13 @@ export const creaHTMLFormulariAfegir = (user,grup,usuarisList, grupsList, messag
                     <tr class="cadahis">
                         <td>${cada_mensid}</td>
                         <td>${cada_autormensid}</td>
-                        <td>${cada_mens}</td>
+                        <td class="menscomplete">${cada_mens}</td>
                         <td>${cada_usuari} </td>
                         <td>${cada_grup}</td>
                         <td>${cada_data}</td>
                         <td>
-                            <button><i class="fa fa-eye"></i></button>
-                            <button><i class="fa fa-edit"></i></button>
+                            <button class="seetask"><i class="fa fa-eye"></i></button>
+                            <button class="edittask"><i class="fa fa-edit"></i></button>
                             <button class="deletetask"><i class="fa fa-trash"></i></button>
                         </td>
                     </tr>

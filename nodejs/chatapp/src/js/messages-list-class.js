@@ -14,6 +14,22 @@ export class MessageList {
                         ? JSON.parse( localStorage.getItem('messages') )
                         : [];
     }
+    removeMessage(idmens){
+        let message = this.Messages.find(message=> message.id === idmens)
+        let index = this.Messages.indexOf(message);
+        this.Messages.splice(index,1);
+        this.SaveLocalStorage();
+    }
+    editMessage(idmens, newmens){
+        let messageid = this.Messages.find(message=> message.id === idmens)
+        let index = this.Messages.indexOf(messageid);
+        this.Messages[index].message=newmens;
+        this.SaveLocalStorage();
+    }
+    filterMessage(filterinput){
+        let filtre = this.Messages.filter(message => message.message === filterinput)
+        console.log(filtre);
+    }
     cercaMissatgeID(id) {
         for (let i of this.Messages)
         {

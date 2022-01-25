@@ -100,15 +100,48 @@ document.getElementById("volveralmenu").addEventListener('click',(event) => {
     event.preventDefault()
     document.getElementById("historial").style.display = "none";
 })
+
 const elementsCollection = document.getElementsByClassName("deletetask");
 const elementsArray = [...elementsCollection];
 elementsArray.forEach(element=>element.addEventListener('click',(event) => {
     event.preventDefault()
     let message = element.parentNode.parentNode;
-    console.log("message",message)
+    let text = message.getElementsByTagName("td")[0];
+    let mensid= text.innerText;
     message.remove();
+    messageList.removeMessage(mensid*1);
 }))
 
+const elementsCollection2 = document.getElementsByClassName("edittask");
+const elementsArray2 = [...elementsCollection2];
+elementsArray2.forEach(element=>element.addEventListener('click',(event) => {
+    event.preventDefault()
+    let message = element.parentNode.parentNode;
+    let id = message.getElementsByTagName("td")[0];
+    let idmens= id.innerText;
+    let text = message.getElementsByTagName("td")[2];
+    let menscomplete= text.innerText;
+    var newmens = prompt("Edita el teu missatge:", menscomplete);
+    messageList.editMessage(idmens*1, newmens);
+}))
+
+const elementsCollection3 = document.getElementsByClassName("seetask");
+const elementsArray3 = [...elementsCollection3];
+elementsArray3.forEach(element=>element.addEventListener('click',(event) => {
+    event.preventDefault()
+    let message = element.parentNode.parentNode;
+    let text = message.getElementsByTagName("td")[2];
+    let menscomplete= text.innerText;
+    window.alert("Aqui tens el missatge complet: " + menscomplete);
+}))
+
+const filtro = document.getElementById("buttonfilt");
+filtro.addEventListener('click',(event) => {
+    event.preventDefault()
+    let filterinput = document.getElementById("filt");
+    messageList.filterMessage(filterinput);
+    
+})
 
 function auth(data, user, passwd){
     var auth = false;
