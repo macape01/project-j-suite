@@ -14,7 +14,7 @@ export function generateHtml(tasks){
   }
 
   for (let task of completedTasks)  {
-    completed += ` <li id="${task.id}"><input type="hidden" value="${task.author_id}"/><input type='checkbox'><label>${task.titol}</label><textarea>${task.comentari}</textarea><input type="text"><button class='edit'>Edit</button><button class='delete' id="delete-button">Delete</button></li>`
+    completed += ` <li id="${task.id}"><input type="hidden" value="${task.author_id}"/><input type='checkbox' checked><label>${task.titol}</label><textarea>${task.comentari}</textarea><input type="text"><button class='edit'>Edit</button><button class='delete' id="delete-button">Delete</button></li>`
   }
   
 	var html = `
