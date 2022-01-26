@@ -13,7 +13,6 @@ import { Messages } from "./js/messages";
 import { UsuarisList } from "./js/usuaris-list-class";
 import { creaHTMLFormulariAfegir } from "./js/components.js";
 
-
 let usuarisList = new UsuarisList();
 let user = usuarisList.usuaris;
 let messageList = new MessageList();
@@ -55,6 +54,7 @@ document.getElementById("enviarmissatge").addEventListener('click',(event) => {
     }
     var newMessage = new Messages(id, author_id, message, created, publicgroup_id, privateuser_id);
     messageList.NewText(newMessage);
+    location.reload();
 })
 document.getElementById("priv").addEventListener('click',(event) => {
     event.preventDefault()
@@ -95,10 +95,12 @@ if(localStorage.getItem('username') != ""){
 document.getElementById("veuremens").addEventListener('click',(event) => {
     event.preventDefault()
     document.getElementById("historial").style.display = "block";
+    document.getElementById("filtre").style.display = "block";
 })
 document.getElementById("volveralmenu").addEventListener('click',(event) => {
     event.preventDefault()
     document.getElementById("historial").style.display = "none";
+    document.getElementById("filtre").style.display = "none";
 })
 
 const elementsCollection = document.getElementsByClassName("deletetask");
@@ -123,6 +125,7 @@ elementsArray2.forEach(element=>element.addEventListener('click',(event) => {
     let menscomplete= text.innerText;
     var newmens = prompt("Edita el teu missatge:", menscomplete);
     messageList.editMessage(idmens*1, newmens);
+    location.reload();
 }))
 
 const elementsCollection3 = document.getElementsByClassName("seetask");
@@ -135,13 +138,27 @@ elementsArray3.forEach(element=>element.addEventListener('click',(event) => {
     window.alert("Aqui tens el missatge complet: " + menscomplete);
 }))
 
-const filtro = document.getElementById("buttonfilt");
-filtro.addEventListener('click',(event) => {
-    event.preventDefault()
-    let filterinput = document.getElementById("filt");
-    messageList.filterMessage(filterinput);
-    
-})
+
+const filtre = document.getElementById("filt");
+filtre.addEventListener("keyup", myFilter);
+function myFilter() {
+    var filter, table, tr, td, i, txtValue;
+    filter = filtre.value.toUpperCase();
+    table = document.getElementById("historial");
+    tr = table.getElementsByTagName("tr");
+
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[2];
+        if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }       
+    }
+}
 
 function auth(data, user, passwd){
     var auth = false;

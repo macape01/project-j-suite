@@ -26,10 +26,6 @@ export class MessageList {
         this.Messages[index].message=newmens;
         this.SaveLocalStorage();
     }
-    filterMessage(filterinput){
-        let filtre = this.Messages.filter(message => message.message === filterinput)
-        console.log(filtre);
-    }
     cercaMissatgeID(id) {
         for (let i of this.Messages)
         {

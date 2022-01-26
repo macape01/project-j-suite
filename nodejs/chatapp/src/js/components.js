@@ -56,9 +56,8 @@ export const creaHTMLFormulariAfegir = (user,grup,usuarisList, grupsList, messag
                             <label for="password">Password: <input type="text" id="password "></label>
                             <button id="savenam">login</button>
                         </div>
-                        <div class="filtre">
-                            <input type="text" id="filt">
-                            <button id="buttonfilt">Filtrar</button>
+                        <div id="filtre" style="display: none;">
+                            <input type="text" class="filt" id="filt" onchange="myFilter()" placeholder="Filtra els teus missatges...">
                         </div>
                     </div>
                 </form>
