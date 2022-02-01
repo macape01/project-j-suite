@@ -15,14 +15,14 @@ body{
 }
 #miky{
     position: relative;
-    width: 350px;
-    height: 350px;
+    width: 320px;
+    height: 310px;
 }
 #before{
     background-image: url('../images/personajes.png');
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-position: 250px 320px; 
+    background-position: 460px 300px; 
     z-index: 1;
     filter: grayscale(100%);
     opacity: 1;
@@ -37,7 +37,7 @@ body{
     background-image: url('../images/personajes.png');
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-position: 0px 350px; 
+    background-position: 460px -12px; 
     filter: contrast(150%);
     opacity: 0;
     transition: opacity 2s;
@@ -59,8 +59,8 @@ body{
 
 .primeraimg{
     z-index: 2;
-    width: 350px;
-    height: 350px;
+    width: 320px;
+    height: 310px;
     transform: rotateY(0deg);
     transition: all 0.7s linear;
     filter: grayscale(100%);
@@ -80,8 +80,8 @@ body{
 }
 
 .segundaimg{
-    width: 350px;
-    height: 350px;
+    width: 320px;
+    height: 310px;
     transition: all 0.7s linear;
     transform: rotateY(180deg);
 }
@@ -113,10 +113,14 @@ body{
 
 }
 .ibai1{
+    background-image: url('../images/personajes.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: 385px -15px; 
     display: flex;
     filter: grayscale(100%);
-    width: 350px;
-    height: 350px;
+    width: 320px;
+    height: 310px;
     position: absolute;
     left: 0;
     right: 0;
@@ -124,10 +128,14 @@ body{
 
 }
 .ibai2{
+    background-image: url('../images/personajes.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: -440px 0px; 
     display: flex;
     filter: grayscale(100%);
-    width: 350px;
-    height: 350px;
+    width: 320px;
+    height: 310px;
     position: absolute;
     left: 0;
     right: 0;
