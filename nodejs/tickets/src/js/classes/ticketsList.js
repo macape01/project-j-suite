@@ -1,7 +1,7 @@
 export class TicketsList {
     tickets;
-    constructor() {
-        this.carregarLocalStorage();
+    constructor(data) {
+        this.tickets = data;
     }
     nouTicket(ticket) {
         this.tickets.push(ticket);
