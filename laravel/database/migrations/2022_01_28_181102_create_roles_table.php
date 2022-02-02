@@ -15,12 +15,15 @@ class CreateRolesTable extends Migration
     {
         Schema::create('roles', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->string("name")->unique();
         });
         Schema::table('users', function (Blueprint $table) {
             $table->foreignId('role_id')->constrained();
         });
+        Artisan::call('db:seed', [
+            '--class' => 'RoleSeeder',
+            '--force' => true
+        ]);
     }
 
     /**
