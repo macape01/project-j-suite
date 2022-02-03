@@ -20,6 +20,11 @@ export function generateHtml(tasks){
 	var html = `
   <body>
     <div class="container">
+
+    <p>
+    <label class="label-title" for="search-task">Buscar</label><input required id="search-task" type="text"><button id="buttonSearch">Buscar</button>
+    </p>
+
       <p>
         <label for="new-task">Add Item</label><input id="new-task" type="text"><button>Add</button>
         <textarea id="area"></textarea>
