@@ -57,19 +57,25 @@ body{
 }
 /* Oliver */
 
+
 .primeraimg{
     z-index: 2;
-    width: 320px;
-    height: 310px;
-    transform: rotateY(0deg);
+    background-image: url('../images/personajes.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: 320px 300px; 
     transition: all 0.7s linear;
     filter: grayscale(100%);
+    width: 320px;
+    height: 310px;
+    
+
 }
-.imatges{
+#imatges{
     position: relative;
 }
 
-.imatges:after{
+#imatges:after{
     content: '';
     position: absolute;
     left: 0;
@@ -78,8 +84,11 @@ body{
     right: 0;
     visibility: hidden;
 }
-
 .segundaimg{
+    background-image: url('../images/personajes.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: -840px -320px; 
     width: 320px;
     height: 310px;
     transition: all 0.7s linear;
@@ -93,11 +102,11 @@ body{
     left: 0;
 }
 
-.imatges:hover .primeraimg{
+#imatges:hover .primeraimg{
     transform: rotateY(180deg);
 
 }
-.imatges:hover .segundaimg{
+#imatges:hover .segundaimg{
     transform: rotateY(360deg);
 }
 
