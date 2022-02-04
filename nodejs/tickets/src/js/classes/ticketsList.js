@@ -2,6 +2,7 @@ export class TicketsList {
     tickets;
     constructor(data) {
         this.tickets = data;
+        
     }
     nouTicket(ticket) {
         this.tickets.push(ticket);

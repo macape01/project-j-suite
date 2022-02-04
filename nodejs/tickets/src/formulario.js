@@ -12,14 +12,14 @@ import "./js/classes/modalElement";
 
 export function HandleForm(data){
     console.log("datanew",data)
-    let [userData,ticketsData] = data;
+    let [userData,ticketsData,assetsData] = data;
     console.log("data1",userData)
 
     var cos= document.createElement('div');
     cos.id="creacio"
     console.log("data",userData)
     
-    let assetsList = new AssetsList();
+    let assetsList = new AssetsList(assetsData);
     let assets = assetsList.assets;
     
     let userList = new UsersList(userData);
@@ -37,6 +37,7 @@ export function HandleForm(data){
     PrintTicketList(ticketsList);
     
     const button = document.getElementById("createButton");
+    button.style
     const filterButton = document.getElementById("open-filter");
     const filterInput = document.getElementById("filter");
     var deleteButtons = document.getElementsByClassName("delete");
