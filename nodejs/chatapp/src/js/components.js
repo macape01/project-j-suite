@@ -1,16 +1,15 @@
-export const creaHTMLFormulariAfegir = (user,grup,usuarisList, grupsList, messageList) => {
+export const creaHTMLFormulariAfegir = (users,grups,messageList) => {
  
 
-    console.log(messageList)
     let opcionsusers='';
     let opcionsgrups='';
 
-    usuarisList.forEach( (i) => {
+    users.forEach( (i) => {
 
         opcionsusers += "<option value='" + i.id_usuari + "'>"+ i.username +"</option>";
     });
 
-    grupsList.forEach( (i) => {
+    grups.forEach( (i) => {
 
         opcionsgrups += "<option value='" + i.id_grup + "'>"+ i.name +"</option>";
     });

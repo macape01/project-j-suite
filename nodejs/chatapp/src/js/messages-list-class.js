@@ -1,7 +1,11 @@
 export class MessageList {
-    constructor() {
-        this.LoadLocalStorage();
+
+    Messages;
+
+    constructor(data) {
+        this.Messages = data;
     }
+
     NewText(message) {
         this.Messages.push(message);
         this.SaveLocalStorage();
@@ -19,6 +23,23 @@ export class MessageList {
         let index = this.Messages.indexOf(message);
         this.Messages.splice(index,1);
         this.SaveLocalStorage();
+    }
+
+    async setMessages(message,id) {
+
+        try {
+        const res= await fetch('https://project-j-suite-default-rtdb.europe-west1.firebasedatabase.app/Messages/'+id+'.json',
+            { 
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(message)
+            })
+        }
+
+        catch (error) {
+        }
     }
     editMessage(idmens, newmens){
         let messageid = this.Messages.find(message=> message.id === idmens)
