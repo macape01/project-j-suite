@@ -37,7 +37,6 @@ export function HandleForm(data){
     PrintTicketList(ticketsList);
     
     const button = document.getElementById("createButton");
-    button.style
     const filterButton = document.getElementById("open-filter");
     const filterInput = document.getElementById("filter");
     var deleteButtons = document.getElementsByClassName("delete");
