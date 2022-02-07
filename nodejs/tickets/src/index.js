@@ -3,9 +3,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap';
 import 'bootstrap/js/dist/modal';
 import './css/modal.css';
-/* import "./bootstrap.min.css";
-import "./bootstrap.bundle.min"
-import "./bootstrap.min" */
+import { obtenirDades } from './asyncData';
 
-HandleForm();
+obtenirDades()
+.then(data=>{
+    console.log("data",data)
+    HandleForm(data);
+})
+.catch(e=>{
+    console.log("Cagaste")
+})
+
 

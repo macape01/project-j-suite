@@ -14,7 +14,8 @@ export function Board(){
   html.innerHTML = generateHtml(llista.tasks);
   document.body.append(html);
     
-
+  var searchTaskInput=document.getElementById("buttonSearch");
+  var searchTaskValue=document.getElementById("search-task");
   var checkBoxes = document.querySelectorAll("input[type=checkbox]");
   var editButtons = document.querySelectorAll("button.edit");
   var deleteButtons = document.querySelectorAll("button.delete");
@@ -36,7 +37,8 @@ export function Board(){
   // Solution: Add interactivity so the user can manage daily tasks
 
   var taskInput = document.getElementById("new-task");
-  var addButton = document.getElementsByTagName("button")[0];
+  var addButton2 = document.getElementsByTagName("button")[0];
+  var addButton = document.getElementsByTagName("button")[1];
   var incompleteTasksHolder = document.getElementById("incomplete-tasks");
   var completedTasksHolder = document.getElementById("completed-tasks");
   var areaImput = document.getElementById("area");
@@ -117,7 +119,6 @@ var addTask = function() {
 
 // var findTask=function(valor){
 
-
 //   console.log("find task...")
 //   const listItem = document.getElementById(valor);
 //   let encontradas = llista.tasks.filter(task=>task.id===(valor));
@@ -132,9 +133,10 @@ var addTask = function() {
 
 // var searchTask=function(){
 // 	if ( searchTaskInput.value.length == 0 ) return;
-// 	searchValue = searchTaskInput.value
+// 	searchValue = searchTaskInput.value;
 
-// 	taskFound = findTask(searchValue) 
+
+// 	taskFound = findTask(searchValue) ;
 // 	if ( taskFound ) {
 // 		taskParent = taskFound.parentNode
 // 		taskParent.style.backgroundColor = "#FFC300"
@@ -209,8 +211,20 @@ var deleteTask = function(id) {
   llista.tasks=newLlista;
   llista.desarLocalStorage();
 
+}
+
+
+var findTask = function(id){
+  console.log("Edit Task...");
+  let task = llista.tasks.filter(task=>task.titol === id);
+  for (i of task){
+    let tassk = document.getElementById(i.id+"")
+    tassk.style.backgroundColor="#FFC300";
+  }
 
 }
+
+
 
 // Mark a task as complete 
 var taskCompleted = function(id) {
@@ -265,6 +279,11 @@ var bindTaskEvents = function(taskListItem, checkBoxEventHandler) {
   checkBox.addEventListener("change",e=>{
     let elementId = e.target.parentNode.id;
     checkBoxEventHandler(elementId);
+  });
+
+  searchTaskInput.addEventListener("click",e=>{
+    let elementId = searchTaskValue.value;
+    findTask(elementId);
   });
 }
 

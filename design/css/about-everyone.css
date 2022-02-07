@@ -2,20 +2,27 @@ html,body{
     width: 100%;
     height: 100%;
 }
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 #about-us{
     position: relative;
     display: flex;
     
 }
-
-/*Marc*/
 #miky{
     position: relative;
-    width: 600px;
-    height: 600px;
+    width: 320px;
+    height: 310px;
 }
 #before{
+    background-image: url('../images/personajes.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: 460px 300px; 
     z-index: 1;
     filter: grayscale(100%);
     opacity: 1;
@@ -27,6 +34,10 @@ html,body{
     height: 100%;
 }
 #after{
+    background-image: url('../images/personajes.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: 460px -12px; 
     filter: contrast(150%);
     opacity: 0;
     transition: opacity 2s;
@@ -38,34 +49,33 @@ html,body{
     object-fit: cover;
 
 }
-#img:hover #before{
+#miky:hover #before{
     opacity: 0;
 }
-#img:hover #after{
+#miky:hover #after{
     opacity: 1;
 }
-.miembros{
-    width: 300px;
-    height: 600px;
-}
 /* Oliver */
-h2{
-    margin-top: 350px;
-}
+
 
 .primeraimg{
     z-index: 2;
-    width: 300px;
-    height: 300px;
-    transform: rotateY(0deg);
+    background-image: url('../images/personajes.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: 320px 300px; 
     transition: all 0.7s linear;
     filter: grayscale(100%);
+    width: 320px;
+    height: 310px;
+    
+
 }
-.imatges{
+#imatges{
     position: relative;
 }
 
-.imatges:after{
+#imatges:after{
     content: '';
     position: absolute;
     left: 0;
@@ -74,10 +84,13 @@ h2{
     right: 0;
     visibility: hidden;
 }
-
 .segundaimg{
-    width: 300px;
-    height: 300px;
+    background-image: url('../images/personajes.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: -840px -320px; 
+    width: 320px;
+    height: 310px;
     transition: all 0.7s linear;
     transform: rotateY(180deg);
 }
@@ -89,10 +102,71 @@ h2{
     left: 0;
 }
 
-.imatges:hover .primeraimg{
+#imatges:hover .primeraimg{
     transform: rotateY(180deg);
 
 }
-.imatges:hover .segundaimg{
+#imatges:hover .segundaimg{
     transform: rotateY(360deg);
 }
+
+/*Eduard*/
+
+body{
+    background-color:turquoise;
+}
+#antes{
+    position: relative;
+    width: 350px;
+    height: 350px;
+
+}
+.ibai1{
+    background-image: url('../images/personajes.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: 385px -15px; 
+    display: flex;
+    filter: grayscale(100%);
+    width: 320px;
+    height: 310px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin:0 auto;
+
+}
+.ibai2{
+    background-image: url('../images/personajes.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: -440px 0px; 
+    display: flex;
+    filter: grayscale(100%);
+    width: 320px;
+    height: 310px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin:0 auto;
+    opacity: 0;
+}
+#antes:hover .ibai1{
+    cursor: default;
+    transform: rotate(360deg);
+    transition: all 1s ease-in-out 0s;
+
+
+}
+
+#antes:hover .ibai2{
+cursor: default;
+transform: rotate(360deg);
+transition: all 1s ease-in-out 0s;
+opacity: 1;
+filter:saturate(150%);
+
+}
+
+
+

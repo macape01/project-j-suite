@@ -3,9 +3,9 @@ export class AssetsList {
 
     assets;
 
-    constructor() {
+    constructor(data) {
 
-        this.assets = this.obtenirDades();
+        this.assets = data
         //this.obtenirDades().then ((data) =>  { this.assets=data; console.log(data) } );
 
     }

@@ -10,14 +10,19 @@ import "./js/classes/modalElement";
     document.removeChild()
 } */
 
-export function HandleForm(){
+export function HandleForm(data){
+    console.log("datanew",data)
+    let [userData,ticketsData,assetsData] = data;
+    console.log("data1",userData)
+
     var cos= document.createElement('div');
     cos.id="creacio"
+    console.log("data",userData)
     
-    let assetsList = new AssetsList();
+    let assetsList = new AssetsList(assetsData);
     let assets = assetsList.assets;
     
-    let userList = new UsersList();
+    let userList = new UsersList(userData);
     let users = userList.users;
     var modal = document.getElementById("e-modal");
     console.log(modal)
@@ -25,9 +30,9 @@ export function HandleForm(){
     cos.innerHTML=createTicketForm(assets,users);
     document.body.append(cos);
     
-    let ticketsList = new TicketsList();
+    let ticketsList = new TicketsList(ticketsData);
 
-
+    console.log(ticketsList.tickets)
 
     PrintTicketList(ticketsList);
     

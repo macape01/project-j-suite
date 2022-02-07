@@ -10,86 +10,191 @@
 </head>
 <body>
     <div id="about-us">
-        <div id="miky" data-bs-toggle="modal" data-bs-target="#staticBackdrop" >
-            <img id="before" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fyt3.ggpht.com%2Fa%2FAATXAJxCnWOYVFkFRlR5ANt3DKMxsc758cnU3z6kiA%3Ds900-c-k-c0xffffffff-no-rj-mo&f=1&nofb=1"></img>
-            <img id="after" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.ytimg.com%2Fvi%2FMNG9CzixWo8%2Fmaxresdefault.jpg&f=1&nofb=1"></img>
-            <audio id="audio" controls>
-                <source src="../audio/yt1s.comHansZimmerTime.mp3" type="audio/mp3">
-                Your browser does not support the audio tag.
-            </audio> 
-        </div>
-        <div id="ibai" data-bs-toggle="modal" data-bs-target="#staticBackdrop" >
-            <img id="before" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fyt3.ggpht.com%2Fa%2FAATXAJxCnWOYVFkFRlR5ANt3DKMxsc758cnU3z6kiA%3Ds900-c-k-c0xffffffff-no-rj-mo&f=1&nofb=1"></img>
-            <img id="after" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.ytimg.com%2Fvi%2FMNG9CzixWo8%2Fmaxresdefault.jpg&f=1&nofb=1"></img>
-            <audio id="audio" controls>
-                <source src="../audio/yt1s.comHansZimmerTime.mp3" type="audio/mp3">
-                Your browser does not support the audio tag.
-            </audio> 
-        </div>
-        <div id="energuia" data-bs-toggle="modal" data-bs-target="#staticBackdrop" >
-            <img id="before" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fyt3.ggpht.com%2Fa%2FAATXAJxCnWOYVFkFRlR5ANt3DKMxsc758cnU3z6kiA%3Ds900-c-k-c0xffffffff-no-rj-mo&f=1&nofb=1"></img>
-            <img id="after" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.ytimg.com%2Fvi%2FMNG9CzixWo8%2Fmaxresdefault.jpg&f=1&nofb=1"></img>
-            <audio id="audio" controls>
-                <source src="../audio/yt1s.comHansZimmerTime.mp3" type="audio/mp3">
-                Your browser does not support the audio tag.
-            </audio> 
-        </div>
+      <div id="miky" data-bs-toggle="modal" data-bs-target="#staticBackdrop" >
+        <div id="before" ></div>
+        <div id="after"></div>
+        <audio id="audio" >
+            <source src="../audio/yt1s.comHansZimmerTime.mp3" type="audio/mp3">
+            Your browser does not support the audio tag.
+        </audio> 
+      </div>
+      <div id="antes"  data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
+        <div class="ibai1" ></div>
+        <div class="ibai2" ></div>
+        <audio muted id="audio2" >
+            <source src="../audio/ibai.mp3" type="audio/mp3">
+        </audio>
+      </div>
+      <div  id="imatges" data-bs-toggle="modal" data-bs-target="#staticBackdrop3">
+          <div class="primeraimg" ></div>
+          <div class="segundaimg" ></div>
+          <audio id="migrito" controls muted="muted" type="audio/mp3">
+              <source id="audio3" src="../audio/audio.mp3"></source>
+          </audio>
+      </div>
     </div>
       <!-- Modal -->
-      <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div id="carouselExampleInterval" class="carousel carousel-dark slide" data-bs-ride="carousel">
-                    <!-- <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                      </div> -->
-                    <div class="carousel-inner">
-                      <div class="carousel-item active" data-bs-interval="10000">
-                        <video autoplay muted controls  id="video1" width="100%" height="400px">
-                            <source src="../video/siguiente-receta.mp4" type="video/mp4">
-                            Your browser does not support HTML video.
-                        </video>
-                      </div>
-                      <div class="carousel-item" data-bs-interval="2000">
-                        <video controls  id="video2" width="100%" height="400px">
-                            <source src="../video/club-penguin.mp4" type="video/mp4">
-                            Your browser does not support HTML video.
-                        </video>
-                      </div>
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <div id="carouselExampleInterval" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                  <!-- <div class="carousel-indicators">
+                      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    </div> -->
+                  <div class="carousel-inner">
+                    <div class="carousel-item active" data-bs-interval="10000">
+                      <video autoplay muted controls  id="video1" width="100%" height="400px">
+                          <source src="../video/siguiente-receta.mp4" type="video/mp4">
+                          Your browser does not support HTML video.
+                      </video>
                     </div>
-                    <button id="arrow" class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                      </button>
-                      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                      </button>
+                    <div class="carousel-item" data-bs-interval="2000">
+                      <video controls  id="video2" width="100%" height="400px">
+                          <source src="../video/club-penguin.mp4" type="video/mp4">
+                          Your browser does not support HTML video.
+                      </video>
+                    </div>
                   </div>
-                
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
+                  <button id="arrow" class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+              
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
+    </div>
+
+    <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <div id="carouselExampleInterval2" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                  <!-- <div class="carousel-indicators">
+                      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    </div> -->
+                  <div class="carousel-inner">
+                    <div class="carousel-item active" data-bs-interval="10000">
+                      <video autoplay muted controls  id="video1" width="100%" height="400px">
+                          <source src="../video/llanosexamen.mp4" type="video/mp4">
+                          Your browser does not support HTML video.
+                      </video>
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2000">
+                      <video controls  id="video2" width="100%" height="400px">
+                          <source src="../video/llanosexamen2.mp4" type="video/mp4">
+                          Your browser does not support HTML video.
+                      </video>
+                    </div>
+                  </div>
+                  <button id="arrow" class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval2" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval2" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+              
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="staticBackdrop3" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <div id="carouselExampleInterval3" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                  <!-- <div class="carousel-indicators">
+                      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    </div> -->
+                  <div class="carousel-inner">
+                    <div class="carousel-item active" data-bs-interval="10000">
+                      <video autoplay muted controls  id="video1" width="100%" height="400px">
+                          <source src="../video/LoveTik.com - llorando por tu culito bb_normal_540_0.mp4" type="video/mp4">
+                          Your browser does not support HTML video.
+                      </video>
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2000">
+                      <video controls  id="video2" width="100%" height="400px">
+                          <source src="../video/LoveTik.com - illojuan .mp4" type="video/mp4">
+                          Your browser does not support HTML video.
+                      </video>
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2000">
+                      <video controls  id="video2" width="100%" height="400px">
+                          <source src="../video/LoveTik.com - He tenido que cambiar mi look para que nadie me_watermarked.mp4" type="video/mp4">
+                          Your browser does not support HTML video.
+                      </video>
+                    </div>
+                  </div>
+                  <button id="arrow" class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval3" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval3" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+              
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
       <script>
-        const video = document.getElementById("video1")
         const audio = document.getElementById("audio")
-        const img = document.getElementById("img")
+        const audio2 = document.getElementById("audio2")
+        const audio3 = document.getElementById("audio3")
+        const img = document.getElementById("miky")
+        const img2 = document.getElementById("antes")
+        const img3 = document.getElementById("imatges")
         
         audio.oncanplaythrough = (event) => {
-            startPlay();
+            startPlay(audio,img);
         };
-        function startPlay(){
+        audio2.oncanplaythrough = (event) => {
+            startPlay(audio2,img2);
+        };
+        audio3.oncanplaythrough = (event) => {
+            startPlay(audio3,img3);
+        };
+        function startPlay(audio,img){
             img.onmouseenter = () => {
                 audio.play().then(_ => {
                     console.log("playing")
