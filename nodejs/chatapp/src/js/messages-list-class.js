@@ -26,21 +26,52 @@ export class MessageList {
     }
 
     async setMessages(message,id) {
-
         try {
-        const res= await fetch('https://project-j-suite-default-rtdb.europe-west1.firebasedatabase.app/Messages/'+id+'.json',
-            { 
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(message)
-            })
+            this.Messages.push(message);
+            const res= await fetch('https://project-j-suite-default-rtdb.europe-west1.firebasedatabase.app/Messages/'+id+'.json',
+                { 
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(message)
+                })
+            location.reload();
         }
 
         catch (error) {
         }
     }
+
+    async RemMessages(id){
+        try {
+            const res= await fetch('https://project-j-suite-default-rtdb.europe-west1.firebasedatabase.app/Messages/'+id+'.json',
+                {
+                    method: 'DELETE',
+                })
+            location.reload();
+        }
+
+        catch (error) {
+        }
+
+    }
+
+    async EditMessages(newmens,id){
+        try {
+            const res= await fetch('https://project-j-suite-default-rtdb.europe-west1.firebasedatabase.app/Messages/'+id+'.json',
+                {   method: 'PATCH',
+                    body: JSON.stringify(newmens),
+                    headers: {
+                    'Content-type': 'application/json; charset=UTF-8'
+                    }
+                })
+            location.reload();
+        }
+        catch (error) {
+        }
+    }
+
     editMessage(idmens, newmens){
         let messageid = this.Messages.find(message=> message.id === idmens)
         let index = this.Messages.indexOf(messageid);

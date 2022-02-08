@@ -46,7 +46,7 @@ export function AppTotal(data){
         
         const id = messageList.getLastId()+1;
         var author_id= usuarisList.cercaUserAuthID(username);
-        const message = document.getElementById("text").value;
+        var message = document.getElementById("text").value;
         const created= new Date();
         var publicgroup_id = document.getElementById("grups").value;
         var privateuser_id = document.getElementById("users").value;
@@ -57,7 +57,6 @@ export function AppTotal(data){
         }
         var newMessage = new Messages(id, author_id, message, created, publicgroup_id, privateuser_id);
         messageList.setMessages(newMessage,id);
-        location.reload();
     })
     document.getElementById("priv").addEventListener('click',(event) => {
         event.preventDefault()
@@ -113,7 +112,7 @@ export function AppTotal(data){
         let text = message.getElementsByTagName("td")[0];
         let mensid= text.innerText;
         message.remove();
-        messageList.removeMessage(mensid*1);
+        messageList.RemMessages(mensid*1);
     }))
 
     const elementsCollection2 = document.getElementsByClassName("edittask");
