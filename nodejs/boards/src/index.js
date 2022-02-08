@@ -1,7 +1,12 @@
-const { Board } = require("./js/boards");
-const { taskList } = require("./js/classes/taskList");
+const { obtenirDades } = require("./js/asyncData");
 const { ValidUser } = require("./js/validaUserform");
 
 
-
-ValidUser();
+obtenirDades()
+.then(data=>{
+    console.log("data",data)
+    ValidUser(data);
+})
+.catch(e=>{
+    console.log("Cagaste")
+})

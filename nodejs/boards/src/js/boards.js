@@ -3,10 +3,12 @@ import "../css/boards.css"
 import { taskList } from "./classes/taskList";
 import { Task } from "./classes/tasks";
 
-export function Board(){
+export function Board(data){
 
-  
-  let llista = new taskList();
+  let [boardsData,ticketsData] = data;
+  console.log(boardsData)
+  console.log(ticketsData)
+  let llista = new taskList(boardsData);
 
 
   var html = document.createElement("div");
@@ -77,7 +79,7 @@ const createNewTaskElement = function(taskString, areaString, llista) {
   console.log(label.value);
   let id=llista.getLastId();
   let task = new Task(id,1,taskString,area.value);
-  llista.newTask(task);
+  llista.newTask(task,id);
   listItem.id=id
   // each element needs appending
   listItem.appendChild(checkBox);
@@ -95,7 +97,7 @@ var comm = [];
 var addTask = function() {
   console.log("Add task...");
   //Create a new list item with the text from #new-task:
-  
+  console.log(llista.tasks)
   var listItem = createNewTaskElement(taskInput.value, areaImput.value,llista);
 
   // let value=taskInput.value;
@@ -201,6 +203,7 @@ var editTask = function(id) {
 
 // Delete an existing task
 var deleteTask = function(id) {
+  delTask(id);
   console.log("Delete task...");
   const listItem = document.getElementById(id);
   var ul = listItem.parentNode;
@@ -218,8 +221,8 @@ var findTask = function(id){
   console.log("Edit Task...");
   let task = llista.tasks.filter(task=>task.titol === id);
   for (i of task){
-    let tassk = document.getElementById(i.id+"")
-    tassk.style.backgroundColor="#FFC300";
+    let tasska = document.getElementById(i.id+"")
+    tasska.style.backgroundColor="#FFC300";
   }
 
 }
@@ -309,6 +312,32 @@ for(var i = 0; i <  completedTasksHolder.children.length; i++) {
   bindTaskEvents(completedTasksHolder.children[i], taskIncomplete); 
 
 }
+
+
+  async function delTask(id)
+
+{
+
+  try {
+    const res= await fetch(`https://project-j-suite-default-rtdb.europe-west1.firebasedatabase.app/Boards/${id}.json`,
+
+  {
+
+  method: 'DELETE',
+
+  })
+
+  }
+
+  catch (error) {
+
+  }
+
+}
+
+
+
+
 
 
 

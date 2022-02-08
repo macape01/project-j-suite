@@ -3,7 +3,7 @@ import { generateHtml } from "./structboard";
 import { generateHtml2 } from "./structValidauser";
 
 
-export function ValidUser(){
+export function ValidUser(data){
     var html = document.createElement("div");
     html.id = "crear";
     html.innerHTML = generateHtml2();
@@ -15,24 +15,13 @@ export function ValidUser(){
     const user = document.getElementById("user");
     const pass = document.getElementById("password");
     const b = document.getElementById("boton");
-        b.onclick = (event)=>{
-        localStorage.setItem("usuari",user.value);
-        localStorage.setItem("contraseña",pass.value);
-        document.body.innerHTML="";
+    b.onclick = (event)=>{
 
-        Board();   
+        document.body.innerHTML="";
+        Board(data);   
 
     
     }
 }
 
 
-export function Boards(){
-    if ( !document.getElementById("crear2")) {
-        var html = document.createElement("div");
-        html.id = "crear2";
-        html.innerHTML = generateHtml();
-        document.body.append(html);
-    }
-    return;
-}
