@@ -6,12 +6,12 @@ export class TicketsList {
     }
     nouTicket(ticket) {
         this.tickets.push(ticket);
-        this.desarLocalStorage();
+        //this.desarLocalStorage();
     }
     async setNewTicket(ticket,id) {
         //localStorage.setItem('tickets',JSON.stringify(this.tickets));
         try {
-
+            this.tickets.push(ticket);
             const res = await fetch(`https://project-j-suite-default-rtdb.europe-west1.firebasedatabase.app/tickets/${id}.json`,
             {
                 method: 'PUT',
@@ -20,13 +20,24 @@ export class TicketsList {
             },
                 body: JSON.stringify(ticket)
             })
-            await this.tickets.push(ticket);
-            
         }
         catch (error) {
             console.log("error al afegir un ticker")
         }
     }
+
+    async deleteTicket(id) {
+        try {
+            const res = await fetch(`https://project-j-suite-default-rtdb.europe-west1.firebasedatabase.app/tickets/${id}.json`,
+            {
+                method: 'DELETE',
+            })
+        }
+        catch (error) {
+            console.log("error al eliminar un ticker")
+        }
+    }
+
     carregarLocalStorage() {
         this.tickets = ( localStorage.getItem('tickets') )
                         ? JSON.parse( localStorage.getItem('tickets') )
@@ -38,6 +49,5 @@ export class TicketsList {
     }
     updateList(newList){
         this.tickets = newList;
-        this.desarLocalStorage();
     }
 }

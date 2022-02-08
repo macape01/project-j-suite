@@ -11,13 +11,10 @@ import "./js/classes/modalElement";
 } */
 
 export function HandleForm(data){
-    console.log("datanew",data)
     let [userData,ticketsData,assetsData] = data;
-    console.log("data1",userData)
 
     var cos= document.createElement('div');
     cos.id="creacio"
-    console.log("data",userData)
     
     let assetsList = new AssetsList(assetsData);
     let assets = assetsList.assets;
@@ -25,14 +22,11 @@ export function HandleForm(data){
     let userList = new UsersList(userData);
     let users = userList.users;
     var modal = document.getElementById("e-modal");
-    console.log(modal)
     
     cos.innerHTML=createTicketForm(assets,users);
     document.body.append(cos);
     
     let ticketsList = new TicketsList(ticketsData);
-
-    console.log(ticketsList.tickets)
 
     PrintTicketList(ticketsList);
     
@@ -57,9 +51,15 @@ export function HandleForm(data){
         const assigned = document.getElementById("assigned").value;
         const asset = document.getElementById("assets").value;
         var newTicket = new Ticket(id,name,desc,asset,assigned);
-        ticketsList.nouTicket(newTicket);
+        console.log("ticket",newTicket)
+        ticketsList.setNewTicket(newTicket,id)
+        .then(res=>{
+            console.log("res",res)
+        })
+        .catch(e=>{
+            console.log("Error",e)
+        })
         PrintTicketList(ticketsList);
-        window.location.reload();
 
     })
     for (let index = 0; index < deleteButtons.length; index++) {
@@ -146,8 +146,8 @@ function HandleDelete(ticketsList,ticket,id){
     console.log("list",Object.getOwnPropertyNames(ticketObject))
     ticket.remove();
     ticketObject.deleted = true;
-    console.log(ticketObject.deleted)
     ticketsList.updateList(newTicketList);
+    ticketsList.deleteTicket(id);
 }
 
 function HandleCheck(ticketsList,id,elementState){
