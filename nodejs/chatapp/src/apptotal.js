@@ -122,11 +122,20 @@ export function AppTotal(data){
         let message = element.parentNode.parentNode;
         let id = message.getElementsByTagName("td")[0];
         let idmens= id.innerText;
+        let authid = message.getElementsByTagName("td")[1];
+        let author_id= authid.innerText;
         let text = message.getElementsByTagName("td")[2];
         let menscomplete= text.innerText;
+        let privuser_id = message.getElementsByTagName("td")[3];
+        let privateuser_id= privuser_id.innerText;
+        let pubgroup_id = message.getElementsByTagName("td")[4];
+        let publicgroup_id= pubgroup_id.innerText;
+        let crea = message.getElementsByTagName("td")[5];
+        let created= crea.innerText;
         var newmens = prompt("Edita el teu missatge:", menscomplete);
-        messageList.editMessage(idmens*1, newmens);
-        location.reload();
+
+        var newMessage = new Messages(idmens, author_id, newmens, created, publicgroup_id, privateuser_id);
+        messageList.EditMessages(newMessage, idmens*1);
     }))
 
     const elementsCollection3 = document.getElementsByClassName("seetask");
