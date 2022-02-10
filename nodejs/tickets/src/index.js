@@ -4,6 +4,7 @@ import 'bootstrap/dist/js/bootstrap';
 import 'bootstrap/js/dist/modal';
 import './css/modal.css';
 import { obtenirDades } from './asyncData';
+import 'jquery';
 
 obtenirDades()
 .then(data=>{

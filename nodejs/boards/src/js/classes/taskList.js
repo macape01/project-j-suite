@@ -1,13 +1,40 @@
 export class taskList {
  
 
-    constructor(){
-        this.carregarLocalStorage();
+    constructor(data){
+        this.tasks=data;
     }
 
-    newTask(task){
-        this.tasks.push(task);
-        this.desarLocalStorage();
+
+    async newTask(task,id){
+
+
+
+
+            try {
+                this.tasks.push(task);
+                const res= await fetch(`https://project-j-suite-default-rtdb.europe-west1.firebasedatabase.app/Boards/${id}.json`,
+            
+            {
+            
+                method: 'PUT',
+                
+                headers: {
+                
+                'Content-Type': 'aplication/json'
+                
+                },
+            
+                body: JSON.stringify(task)
+            
+            })
+            
+            }
+            
+            catch (error) {
+                console.log("error, fallan cositas");
+            }
+
     }
 
     desarLocalStorage() {
