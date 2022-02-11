@@ -26,6 +26,7 @@ export class MessageList {
     }
 
     async setMessages(message,id) {
+
         try {
             this.Messages.push(message);
             const res= await fetch('https://project-j-suite-default-rtdb.europe-west1.firebasedatabase.app/Messages/'+id+'.json',
@@ -45,6 +46,7 @@ export class MessageList {
 
     async RemMessages(id){
         try {
+            
             const res= await fetch('https://project-j-suite-default-rtdb.europe-west1.firebasedatabase.app/Messages/'+id+'.json',
                 {
                     method: 'DELETE',

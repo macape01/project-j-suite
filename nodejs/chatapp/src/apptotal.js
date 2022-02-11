@@ -12,10 +12,13 @@ import { MessageList } from "./js/messages-list-class";
 import { Messages } from "./js/messages";
 import { UsuarisList } from "./js/usuaris-list-class";
 import { creaHTMLFormulariAfegir } from "./js/components.js";
+import { Usuari } from "./js/usuari-class";
 
 export function AppTotal(data){
 
     let [usuarisData,grupData,messageData] = data;
+
+    messageData = messageData.filter(Boolean);
 
     let usuarisList = new UsuarisList(usuarisData);
     let users = usuarisList.usuaris;
@@ -40,7 +43,6 @@ export function AppTotal(data){
     document.body.append(div2);
 
     document.getElementById("enviarmissatge").addEventListener('click',(event) => {
-        console.debug("enviarmissatge")
         event.preventDefault();
         var username = document.getElementById("username").value;
         
@@ -55,8 +57,8 @@ export function AppTotal(data){
         }else if(document.getElementById("userlists").style.display == 'none'){
             privateuser_id=null
         }
-        var newMessage = new Messages(id, author_id, message, created, publicgroup_id, privateuser_id);
-        messageList.setMessages(newMessage,id);
+        var newMessage = new Messages(id*1, author_id, message, created, publicgroup_id, privateuser_id);
+        messageList.setMessages(newMessage,id*1);
     })
     document.getElementById("priv").addEventListener('click',(event) => {
         event.preventDefault()
@@ -78,16 +80,9 @@ export function AppTotal(data){
             localStorage.setItem('username', document.getElementById("username").value);
         }else{
             alert("No se encuentra el usuari con esa contraseña, lo vamos a registrar.")
-            var newUser={
-                'id_usuari':(data[data.length-1]['id_usuari']+1),
-                'username':username,
-                'password':passwd,
-                "id_role":0}
-            console.log(newUser)
-            usuarisList.addUser(newUser)
-            usuarisList.LoadLocalStorage();
-            console.log(usuarisList.obtenerUsuaris())
-            localStorage.setItem('username', document.getElementById("username").value);
+            let id_usuari = usuarisList.getLastId()+1;
+            var newUser= new Usuari(id_usuari, username, passwd, 0);
+            usuarisList.setUsers(newUser,id_usuari);
         }
     })
     if(localStorage.getItem('username') != ""){
