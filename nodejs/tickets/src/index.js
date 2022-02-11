@@ -12,7 +12,7 @@ obtenirDades()
     HandleForm(data);
 })
 .catch(e=>{
-    console.log("Cagaste")
+    console.log("Cagaste",e)
 })
 
 

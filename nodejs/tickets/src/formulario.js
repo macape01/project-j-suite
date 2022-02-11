@@ -12,6 +12,8 @@ import "./js/classes/modalElement";
 
 export function HandleForm(data){
     let [userData,ticketsData,assetsData] = data;
+    console.log(data)
+    ticketsData = ticketsData.filter(Boolean);
 
     var cos= document.createElement('div');
     cos.id="creacio"
@@ -140,14 +142,16 @@ function PrintTicketList(ticketsList){
 
 
 function HandleDelete(ticketsList,ticket,id){
+    debugger
     console.log("id",id)
-    let newTicketList = ticketsList.tickets;
-    let ticketObject = newTicketList.find(ticketObj=>ticketObj.id === parseInt(id));
-    console.log("list",Object.getOwnPropertyNames(ticketObject))
     ticket.remove();
-    ticketObject.deleted = true;
-    ticketsList.updateList(newTicketList);
-    ticketsList.deleteTicket(id);
+    ticketsList.deleteTicket(id)
+    .then(res=>{
+        console.log("responseDel",res)
+    })
+    .catch(e=>{
+
+    })
 }
 
 function HandleCheck(ticketsList,id,elementState){

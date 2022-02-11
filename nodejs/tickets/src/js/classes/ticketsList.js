@@ -32,6 +32,7 @@ export class TicketsList {
             {
                 method: 'DELETE',
             })
+            return res
         }
         catch (error) {
             console.log("error al eliminar un ticker")
