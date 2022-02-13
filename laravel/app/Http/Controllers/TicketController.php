@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\User;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
-class UserController extends Controller
+use App\Models\TicketModel;
+class TicketController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,11 +14,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        //$users = User::all("name","email");
-        $users = DB::table('users')
-        ->select('name', 'id as user_id')
+        $tickets = DB::table('tickets')
+        ->select('id', 'description', 'title', 'assigned_id', 'asset_id')
         ->get();
-        return \response($users);
+        return \response($tickets);
     }
 
     /**
@@ -29,7 +28,14 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'description' => 'required|max:255',
+            'title' => 'required|max:50',
+            'assigned_id' => 'required',
+            'asset_id' => 'required',
+        ]);
+        $ticket = TicketModel::create($request->all());
+        return \response($ticket);
     }
 
     /**
@@ -40,7 +46,11 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $tickets = DB::table('tickets')
+        ->select('id', 'description', 'title', 'assigned_id', 'asset_id')
+        ->where('id','=',$id)
+        ->get();
+        return \response($tickets);
     }
 
     /**
