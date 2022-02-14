@@ -5,6 +5,7 @@ export function generateHtml(tasks){
   let completed='';
 
   // Creem les opcions del select, a partir de les dades
+  console.log(tasks);
   const todoTasks = tasks.filter(task => task.todo !== true);
   console.log("toodo",todoTasks)
   const completedTasks = tasks.filter(task=> task.todo === true);

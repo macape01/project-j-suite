@@ -8,8 +8,10 @@ export function Board(data){
   let [boardsData,ticketsData] = data;
   console.log(boardsData)
   console.log(ticketsData)
+  
+  boardsData = boardsData.filter(Boolean);
   let llista = new taskList(boardsData);
-
+  console.log("cositas", boardsData)
 
   var html = document.createElement("div");
   html.id = "crear";
