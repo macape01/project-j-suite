@@ -12,7 +12,12 @@ import "./js/classes/modalElement";
 
 export function HandleForm(data){
     let [userData,ticketsData,assetsData] = data;
-    console.log(data)
+    
+    if ( !Array.isArray(ticketsData) ){
+        debugger
+        ticketsData = Object.values(ticketsData);
+    }
+    
     ticketsData = ticketsData.filter(Boolean);
 
     var cos= document.createElement('div');
@@ -142,7 +147,6 @@ function PrintTicketList(ticketsList){
 
 
 function HandleDelete(ticketsList,ticket,id){
-    debugger
     console.log("id",id)
     ticket.remove();
     ticketsList.deleteTicket(id)
