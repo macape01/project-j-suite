@@ -20,6 +20,8 @@ export function AppTotal(data){
 
     messageData = messageData.filter(Boolean);
 
+    console.log("SE VE O NO",messageData)
+
     let usuarisList = new UsuarisList(usuarisData);
     let users = usuarisList.usuaris;
     let messageList = new MessageList(messageData);
@@ -46,19 +48,19 @@ export function AppTotal(data){
         event.preventDefault();
         var username = document.getElementById("username").value;
         
-        const id = messageList.getLastId()+1;
+        const id = messageList.getLastId()+1*1;
         var author_id= usuarisList.cercaUserAuthID(username);
         var message = document.getElementById("text").value;
         const created= new Date();
-        var publicgroup_id = document.getElementById("grups").value;
-        var privateuser_id = document.getElementById("users").value;
+        var publicgroup_id = document.getElementById("grups").value*1;
+        var privateuser_id = document.getElementById("users").value*1;
         if( document.getElementById("groupslists").style.display == 'none'){
             publicgroup_id=null
         }else if(document.getElementById("userlists").style.display == 'none'){
             privateuser_id=null
         }
-        var newMessage = new Messages(id*1, author_id, message, created, publicgroup_id, privateuser_id);
-        messageList.setMessages(newMessage,id*1);
+        var newMessage = new Messages(id, author_id*1, message, created, publicgroup_id, privateuser_id);
+        messageList.setMessages(newMessage,id);
     })
     document.getElementById("priv").addEventListener('click',(event) => {
         event.preventDefault()
@@ -122,14 +124,20 @@ export function AppTotal(data){
         let text = message.getElementsByTagName("td")[2];
         let menscomplete= text.innerText;
         let privuser_id = message.getElementsByTagName("td")[3];
-        let privateuser_id= privuser_id.innerText;
+        let privateuser_id= privuser_id.innerText*1;
         let pubgroup_id = message.getElementsByTagName("td")[4];
-        let publicgroup_id= pubgroup_id.innerText;
+        let publicgroup_id= pubgroup_id.innerText*1;
         let crea = message.getElementsByTagName("td")[5];
         let created= crea.innerText;
         var newmens = prompt("Edita el teu missatge:", menscomplete);
 
-        var newMessage = new Messages(idmens, author_id, newmens, created, publicgroup_id, privateuser_id);
+        if(message.getElementsByTagName("td")[4] == 'undefined'){
+            publicgroup_id=null
+        }else if(message.getElementsByTagName("td")[3] == 'undefined'){
+            privateuser_id=null
+        }
+
+        var newMessage = new Messages(idmens*1, author_id*1, newmens, created, publicgroup_id, privateuser_id);
         messageList.EditMessages(newMessage, idmens*1);
     }))
 

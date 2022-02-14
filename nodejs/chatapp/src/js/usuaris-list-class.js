@@ -21,7 +21,7 @@ export class UsuarisList {
       for (let i of this.usuaris)
       {
           if (i.username == username)
-              return i.id_usuari;
+              return i.id_usuari*1;
       }
       return "Ninguna id usuari"
     }

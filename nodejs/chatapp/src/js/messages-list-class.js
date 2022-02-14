@@ -126,6 +126,6 @@ export class MessageList {
     }
     getLastId() {
         let id = this.Messages.length > 0 ? this.Messages[this.Messages.length-1].id : 0;
-        return id;
+        return id*1;
     }
 }
