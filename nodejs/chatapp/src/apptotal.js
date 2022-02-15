@@ -47,20 +47,33 @@ export function AppTotal(data){
     document.getElementById("enviarmissatge").addEventListener('click',(event) => {
         event.preventDefault();
         var username = document.getElementById("username").value;
-        
+        var passwd =  document.getElementById("password ").value;
+        var data = usuarisList.obtenerUsuaris();
+
         const id = messageList.getLastId()+1*1;
         var author_id= usuarisList.cercaUserAuthID(username);
         var message = document.getElementById("text").value;
         const created= new Date();
         var publicgroup_id = document.getElementById("grups").value*1;
         var privateuser_id = document.getElementById("users").value*1;
-        if( document.getElementById("groupslists").style.display == 'none'){
+        if(document.getElementById("groupslists").style.display == 'none'){
             publicgroup_id=null
         }else if(document.getElementById("userlists").style.display == 'none'){
             privateuser_id=null
         }
         var newMessage = new Messages(id, author_id*1, message, created, publicgroup_id, privateuser_id);
-        messageList.setMessages(newMessage,id);
+        if(!auth(data, username, passwd)){
+            alert("Fes login amb algun usuari sisplau!")
+        }
+        else if(message == ""){
+            alert("Missatge buit! Escriu alguna cosa")
+        }
+        else if(privateuser_id == 0 && publicgroup_id==null && document.getElementById("userlists").style.display == 'none'){
+            alert("No has seleccionat destinatari del missatge")
+        }
+        else{
+            messageList.setMessages(newMessage,id);
+        }
     })
     document.getElementById("priv").addEventListener('click',(event) => {
         event.preventDefault()
