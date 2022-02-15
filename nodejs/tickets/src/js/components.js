@@ -56,14 +56,14 @@ export const createTicketHtml = (ticketsList) => {
                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                 </button>
                 <button class="button delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                <form id="edit-form" style="display:none;">
+                <form id="edit-form-${ticket.id}" style="display:none;">
                     <label>Editar nom</label>
-                    <input id="update-nom" value="${ticket.nom}" type="text"/>
+                    <input id="update-nom-${ticket.id}" value="${ticket.nom}" type="text"/>
                     <label>Editar descripció</label>
-                    <input id="update-desc" value="${ticket.desc}" type="text"/>
+                    <input id="update-desc-${ticket.id}" value="${ticket.desc}" type="text"/>
                     <label>Editar persona assignada</label>
-                    <input id="update-assigned" value="${ticket.assignedId}" type="number"/>
-                    <button id="update-button">Update</button>
+                    <input id="update-assigned-${ticket.id}" value="${ticket.assignedId}" type="number"/>
+                    <button id="update-button-${ticket.id}">Update</button>
                 </form>
             </td>
         </tr>

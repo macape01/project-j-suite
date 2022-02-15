@@ -14,7 +14,6 @@ export function HandleForm(data){
     let [userData,ticketsData,assetsData] = data;
     
     if ( !Array.isArray(ticketsData) ){
-        debugger
         ticketsData = Object.values(ticketsData);
     }
     
@@ -35,14 +34,11 @@ export function HandleForm(data){
     
     let ticketsList = new TicketsList(ticketsData);
 
-    PrintTicketList(ticketsList);
     
     const button = document.getElementById("createButton");
     const filterButton = document.getElementById("open-filter");
     const filterInput = document.getElementById("filter");
-    var deleteButtons = document.getElementsByClassName("delete");
-    var editButtons = document.getElementsByClassName("edit");
-    var checkBoxes = document.getElementsByClassName("checkk");
+    PrintTicketList(ticketsList);
     
     filterButton.addEventListener("click",(e)=>{
         e.preventDefault();
@@ -62,57 +58,41 @@ export function HandleForm(data){
         ticketsList.setNewTicket(newTicket,id)
         .then(res=>{
             console.log("res",res)
+
+            PrintTicketList(ticketsList);
         })
         .catch(e=>{
             console.log("Error",e)
         })
-        PrintTicketList(ticketsList);
 
     })
-    for (let index = 0; index < deleteButtons.length; index++) {
-        const element = deleteButtons[index];
-        element.addEventListener("click",(e)=>{
-            e.preventDefault();
-            let ticket = element.parentNode.parentNode;
-            let id = ticket.id;
-            HandleDelete(ticketsList,ticket,id);
-        })
-        
-    }
-    for (let index = 0; index < checkBoxes.length; index++) {
-        const element = checkBoxes[index];
-        element.addEventListener("click",(e)=>{
-            let elementState = element.checked;
-            let ticket = element.parentNode.parentNode;
-            let id = ticket.id;
-            HandleCheck(ticketsList,id,elementState);
-        })
-        
-    }
-    for (let index = 0; index < editButtons.length; index++) {
-        const element = editButtons[index];
-        element.addEventListener("click",(e)=>{
-            let ticket = element.parentNode.parentNode;
-            let id = ticket.id;
-            HandleEdit(ticketsList,id);
-        })
-        
-    }
+    
 }
 
 function HandleEdit(ticketsList,id){
-    var form = document.getElementById("edit-form");
-    var button = document.getElementById("update-button");
-    var name = document.getElementById("update-nom");
-    var desc = document.getElementById("update-desc");
-    var assigned = document.getElementById("update-assigned");
-    form.style.display="block";
+    var name = $(`#update-nom-${id}`);
+    var desc = $(`#update-desc-${id}`);
+    var assigned = $(`#update-assigned-${id}`);
 
-    button.addEventListener("click",(e)=>{
+    $(`#edit-form-${id}`).toggle();
+
+    $(`#update-button-${id}`).click((e)=>{
+        e.preventDefault()
+        let ticket = e.parentNode.parentNode;
+        
         let newTicketList = ticketsList.tickets;
+        
         let ticketObject = newTicketList.find(ticketObj=>ticketObj.id === parseInt(id));
-        ticketObject.editTicket(name.value,desc.value,assigned.value);
-        ticketsList.updateList(newTicketList);
+        
+        let index = newTicketList.indexOf(ticketObject);
+        
+        ticketObject.editTicket(name[0].value,desc[0].value,assigned[0].value);
+        
+        ticketsList.tickets[index] = ticketObject;
+        $(`#edit-form-${id}`).hide();
+        console.log("a")
+
+
     })
     console.log(modal)
     
@@ -142,6 +122,38 @@ function PrintTicketList(ticketsList){
     cos.innerHTML+=createTicketHtml(tickets);
     const container = document.getElementById("creacio");
     container.append(cos);
+    var deleteButtons = document.getElementsByClassName("delete");
+    var editButtons = document.getElementsByClassName("edit");
+    var checkBoxes = document.getElementsByClassName("checkk");
+    for (let index = 0; index < deleteButtons.length; index++) {
+        const element = deleteButtons[index];
+        element.addEventListener("click",(e)=>{
+            e.preventDefault();
+            let ticket = element.parentNode.parentNode;
+            let id = ticket.id;
+            HandleDelete(ticketsList,ticket,id);
+        })
+        
+    }
+    for (let index = 0; index < checkBoxes.length; index++) {
+        const element = checkBoxes[index];
+        element.addEventListener("click",(e)=>{
+            let elementState = element.checked;
+            let ticket = element.parentNode.parentNode;
+            let id = ticket.id;
+            HandleCheck(ticketsList,id,elementState);
+        })
+        
+    }
+    for (let index = 0; index < editButtons.length; index++) {
+        const element = editButtons[index];
+        element.addEventListener("click",(e)=>{
+            let ticket = element.parentNode.parentNode;
+            let id = ticket.id;
+            HandleEdit(ticketsList,id);
+        })
+        
+    }
 }
 
 

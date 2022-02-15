@@ -28,6 +28,9 @@ export class TicketsList {
 
     async deleteTicket(id) {
         try {
+            let ticket = this.tickets.find(ticket=>ticket.id === id*1)
+            let index = this.tickets.indexOf(ticket)
+            this.tickets.splice(index,1);
             const res = await fetch(`https://project-j-suite-default-rtdb.europe-west1.firebasedatabase.app/tickets/${id}.json`,
             {
                 method: 'DELETE',
