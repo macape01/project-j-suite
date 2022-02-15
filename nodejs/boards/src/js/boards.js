@@ -80,8 +80,10 @@ const createNewTaskElement = function(taskString, areaString, llista) {
   area.innerText = areaString;
   console.log(label.value);
   let id=llista.getLastId();
-  let task = new Task(id,1,taskString,area.value);
-  llista.newTask(task,id);
+  let data = new Date();
+  let todo = false;
+  let task = new Task(id*1,1,data,taskString,area.value,todo);
+  llista.newTask(task,id*1);
   listItem.id=id
   // each element needs appending
   listItem.appendChild(checkBox);
@@ -178,6 +180,9 @@ var editTask = function(id) {
   llista.tasks[index].comentari = areaImput.value
   llista.desarLocalStorage();
 
+  task = new Task(id*1,1,llista.tasks[index].titol,llista.tasks[index].comentari,false);
+  llista.EditTask(task,id*1);
+
 
   var containsClass = listItem.classList.contains("editMode");
     //if the class of the parent is .editMode 
@@ -242,9 +247,17 @@ var taskCompleted = function(id) {
   let task = llista.tasks.find(task=>task.id === id*1);
   let index = llista.tasks.indexOf(task);
   llista.tasks[index].todo = !llista.tasks[index].todo
-  llista.desarLocalStorage();
+   id=llista.getLastId();
+  let data = new Date();
+  let todo = true;
+
+  task = new Task(id*1,1,data,llista.tasks[index].titol,llista.tasks[index].comentari,todo);
+  llista.EditTask(task,id*1);
+
 
 }
+
+
 
 // Mark a task as incomplete
 var taskIncomplete = function(id) {
