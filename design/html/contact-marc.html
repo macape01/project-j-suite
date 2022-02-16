@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css' rel='stylesheet' />
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js'></script>
     <style>
         @font-face {
             font-family: awakebeauty;
@@ -65,8 +67,28 @@
             z-index: -1;
         }
         #visitUsContainer{
+            margin-top: 40px;
             height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items:center;
         }
+        .visitTitle{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+        }
+
+        .mapboxgl-canvas-container {
+
+        height: 300vh;
+
+    }   
+        
+
     </style>
 </head>
 <body>
@@ -86,9 +108,46 @@
             <h2>VISIT US HERE!</h2>
             <p>Locate us in this map:</p>
         </div>
-        <div class="map">
+        <div id='map' style='width: 99vw; height: 90vh;'></div>
+        <script>
+        // TO MAKE THE MAP APPEAR YOU MUST
+        // ADD YOUR ACCESS TOKEN FROM
+        // https://account.mapbox.com
+        mapboxgl.accessToken = 'pk.eyJ1IjoibWFjYXBlMDEiLCJhIjoiY2t6b2dnYmpwNG43cjJ1bzFmc2pjY2E4aSJ9.vJr-igyAMktNLO2ESCq5ag';
+        const map = new mapboxgl.Map({
+        container: 'map', // container ID
+        style: 'mapbox://styles/mapbox/streets-v11', // style URL
+        center: [1.72878 , 41.23112], // starting position [lng, lat]
+        zoom: 17      // starting zoom
+        });
+        const marker1 = new mapboxgl.Marker()
+        .setLngLat([1.72878 , 41.23112])
+        .addTo(map);
 
-        </div>
+        var geolocate = new mapboxgl.GeolocateControl({
+            positionOptions: {
+            enableHighAccuracy: true
+            },
+            // When active the map will receive updates to the device's location as it changes.
+            trackUserLocation: true,
+            // Draw an arrow next to the location dot to indicate which direction the device is heading.
+            showUserHeading: true
+            })
+
+        map.addControl(geolocate)
+
+        geolocate.on('geolocate', function(e) {
+        var lon = e.coords.longitude;
+        var lat = e.coords.latitude
+        var position = [lon, lat];
+        console.log(position);
+        const marker2 = new mapboxgl.Marker()
+        .setLngLat(position)
+        .addTo(map);
+        });
+
+        </script>   
+
     </div>
     <footer>
 

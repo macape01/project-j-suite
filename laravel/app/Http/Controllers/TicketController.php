@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\TicketModel;
+use App\Models\Ticket;
 class TicketController extends Controller
 {
     /**
@@ -34,7 +34,7 @@ class TicketController extends Controller
             'assigned_id' => 'required',
             'asset_id' => 'required',
         ]);
-        $ticket = TicketModel::create($request->all());
+        $ticket = Ticket::create($request->all());
         return \response($ticket);
     }
 
