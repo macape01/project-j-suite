@@ -179,8 +179,8 @@ var editTask = function(id) {
   llista.tasks[index].titol = editInput.value
   llista.tasks[index].comentari = areaImput.value
   llista.desarLocalStorage();
-
-  task = new Task(id*1,1,llista.tasks[index].titol,llista.tasks[index].comentari,false);
+  let data = new Date();
+  task = new Task(id*1,1,data,llista.tasks[index].titol,llista.tasks[index].comentari,false);
   llista.EditTask(task,id*1);
 
 
@@ -245,14 +245,17 @@ var taskCompleted = function(id) {
   completedTasksHolder.appendChild(listItem);
   bindTaskEvents(listItem, taskIncomplete);
   let task = llista.tasks.find(task=>task.id === id*1);
+  console.log(id,"maikel2");
+  delTask(id);
   let index = llista.tasks.indexOf(task);
   llista.tasks[index].todo = !llista.tasks[index].todo
    id=llista.getLastId();
   let data = new Date();
   let todo = true;
-
   task = new Task(id*1,1,data,llista.tasks[index].titol,llista.tasks[index].comentari,todo);
   llista.EditTask(task,id*1);
+  console.log(id,"maikel");
+  
 
 
 }
@@ -268,9 +271,14 @@ var taskIncomplete = function(id) {
   incompleteTasksHolder.appendChild(listItem);
   bindTaskEvents(listItem, taskCompleted);
   let task = llista.tasks.find(task=>task.id === id*1);
+  delTask(id);
   let index = llista.tasks.indexOf(task);
   llista.tasks[index].todo = !llista.tasks[index].todo
-  llista.desarLocalStorage();
+  id=llista.getLastId();
+  let data = new Date();
+  let todo = false;
+  task = new Task(id*1,1,data,llista.tasks[index].titol,llista.tasks[index].comentari,todo);
+  llista.EditTask(task,id*1);
 }
 
 var bindTaskEvents = function(taskListItem, checkBoxEventHandler) {
