@@ -78,24 +78,18 @@ function HandleEdit(ticketsList,id){
 
     $(`#update-button-${id}`).click((e)=>{
         e.preventDefault()
-        let ticket = e.parentNode.parentNode;
-        
-        let newTicketList = ticketsList.tickets;
-        
-        let ticketObject = newTicketList.find(ticketObj=>ticketObj.id === parseInt(id));
-        
-        let index = newTicketList.indexOf(ticketObject);
-        
-        ticketObject.editTicket(name[0].value,desc[0].value,assigned[0].value);
-        
-        ticketsList.tickets[index] = ticketObject;
+        const values = {
+            nom:name[0].value,
+            desc:desc[0].value,
+            assignedId:assigned[0].value
+        }
+
+        ticketsList.editTicket(id,values)
+
         $(`#edit-form-${id}`).hide();
-        console.log("a")
 
-
-    })
-    console.log(modal)
-    
+        PrintTicketList(ticketsList);
+    })    
     
 }
 function FilterTicketList(ticketsList,filter){
