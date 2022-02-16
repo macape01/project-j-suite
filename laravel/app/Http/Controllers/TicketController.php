@@ -62,7 +62,9 @@ class TicketController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $ticket=Ticket::find($id);
+        $ticket->update($request->all());
+        return $ticket;
     }
 
     /**
@@ -73,6 +75,6 @@ class TicketController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return Ticket::destroy($id);
     }
 }
