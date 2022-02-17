@@ -16,9 +16,9 @@ class ChatTest extends TestCase
     public function test_messages_can_be_listed()
     {
         //Responses
-        $responseStatus = $this->get('/api/Messages');
+        $responseStatus = $this->get('/api/messages');
 
-        $response = $this->getJson('/api/Messages');
+        $response = $this->getJson('/api/messages');
         
         //Assertions
         $responseStatus->assertStatus(200);
@@ -40,7 +40,7 @@ class ChatTest extends TestCase
         ];
 
         //Responses
-        $response = $this->postJson('/api/Messages', $message);
+        $response = $this->postJson('/api/messages', $message);
 
         //Assertions
         $response
@@ -52,7 +52,7 @@ class ChatTest extends TestCase
     public function test_messages_can_be_retrieved()
     {
         //Responses
-        $response = $this->get('/api/Messages/1');
+        $response = $this->get('/api/messages/1');
 
         //Assertions
         $response->assertStatus(200);
@@ -67,7 +67,7 @@ class ChatTest extends TestCase
         ];
 
         //Responses
-        $response = $this->put('/api/Messages/1', $message);
+        $response = $this->put('/api/messages/1', $message);
 
         //Assertions
         $response->assertStatus(200);
@@ -77,7 +77,7 @@ class ChatTest extends TestCase
     {
 
         //Responses
-        $response = $this->delete('/api/Messages/1');
+        $response = $this->delete('/api/messages/1');
 
         //Assertions
         $response->assertStatus(200);
