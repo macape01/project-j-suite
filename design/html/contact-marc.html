@@ -179,13 +179,20 @@ background: linear-gradient(0deg, rgba(229,63,251,1) 23%, rgba(255,33,106,1) 78%
 
         map.addControl(geolocate)
 
+        var el = document.createElement('div');
+        el.className = 'marker';
+
+        // make a marker for each feature and add to the map
+        
+
         geolocate.on('geolocate', function(e) {
         var lon = e.coords.longitude;
         var lat = e.coords.latitude
         var position = [lon, lat];
         console.log(position);
-        const marker2 = new mapboxgl.Marker()
+        const popup = new mapboxgl.Popup({ closeOnClick: true })
         .setLngLat(position)
+        .setHTML('<h3>Tu estàs aquii!</h3>')
         .addTo(map);
         });
 
