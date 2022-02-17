@@ -64,7 +64,7 @@ class TaskController extends Controller
         $ttask=Ticket::find($id);
         $task->update($request->all());
         return $task;
-    }-
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -74,6 +74,6 @@ class TaskController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return Task::destroy($id);
     }
 }
