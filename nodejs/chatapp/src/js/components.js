@@ -53,7 +53,8 @@ export const creaHTMLFormulariAfegir = (users,grups,messageList) => {
                         <div class="nameregis>
                             <label for="name">User name: <input type="text" id="username"></label><br>
                             <label for="password">Password: <input type="text" id="password "></label>
-                            <button id="savenam">login</button>
+                            <button id="savenam">Login</button>
+                            <button id="registerme">Register</button>
                         </div>
                         <div id="filtre" style="display: none;">
                             <input type="text" class="filt" id="filt" onchange="myFilter()" placeholder="Filtra els teus missatges...">

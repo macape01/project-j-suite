@@ -17,7 +17,9 @@ import { Usuari } from "./js/usuari-class";
 export function AppTotal(data){
 
     let [usuarisData,grupData,messageData] = data;
-
+    if (!Array.isArray(messageData) ){
+        messageData = Object.values(messageData);
+    }
     messageData = messageData.filter(Boolean);
 
     console.log("SE VE O NO",messageData)
@@ -94,7 +96,18 @@ export function AppTotal(data){
             alert("Logeado "+username)
             localStorage.setItem('username', document.getElementById("username").value);
         }else{
-            alert("No se encuentra el usuari con esa contraseña, lo vamos a registrar.")
+            alert("No se encuentra el usuari con esa contraseña, pruebe a registrarlo!")
+        }
+    })
+    document.getElementById("registerme").addEventListener('click',(event) => {
+        event.preventDefault()
+        var username =  document.getElementById("username").value;
+        var passwd =  document.getElementById("password ").value;
+        var data = usuarisList.obtenerUsuaris();
+        if(auth(data, username, passwd)){
+            alert("Aquest usuari ja existeix, fes login!")
+        }else{
+            alert("Registramos su usuario, bienvenido "+username)
             let id_usuari = usuarisList.getLastId()+1;
             var newUser= new Usuari(id_usuari, username, passwd, 0);
             usuarisList.setUsers(newUser,id_usuari);
@@ -196,7 +209,6 @@ export function AppTotal(data){
                 return true;
             }
         })
-
         return auth
     }
 }
