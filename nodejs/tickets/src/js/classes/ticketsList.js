@@ -54,4 +54,25 @@ export class TicketsList {
     updateList(newList){
         this.tickets = newList;
     }
+    async editTicket(id,{nom,desc,assignedId}){
+        try {
+            let ticket = this.tickets.find(ticket=>ticket.id===id*1);
+            let index = this.tickets.indexOf(ticket);
+            this.tickets[index].nom = nom;
+            this.tickets[index].desc = desc;
+            this.tickets[index].assignedId = assignedId;
+            const res = await fetch(`https://project-j-suite-default-rtdb.europe-west1.firebasedatabase.app/tickets/${id}.json`,
+            {
+                method: 'PATCH',
+                headers: {
+                'Content-Type': 'application/json'
+            },
+                body: JSON.stringify(this.tickets[index])
+            })
+            return res
+        }
+        catch (error) {
+            console.log("error al actualitzar un ticket")
+        }
+    }
 }
