@@ -11,10 +11,18 @@
             font-family: awakebeauty;
             src: url('../DK\ Jambo.otf');
         }
+        @font-face {
+            font-family: saiyan;
+            src: url('../Saiyan-Sans.ttf');
+        }
         body,html{
             width: 100%;
-            height: 100%;
             margin: 0;
+            scroll-behavior: smooth;
+        }
+        body{
+            background: rgb(229,63,251);
+background: linear-gradient(0deg, rgba(229,63,251,1) 23%, rgba(255,33,106,1) 78%); 
         }
         #backgroundContainer{
             width: 100%;
@@ -43,6 +51,7 @@
         }   
         .readMore{
             user-select: none;
+            text-decoration: none;
             cursor: pointer;
             font-weight: 800;
             font-size: 24px;
@@ -76,6 +85,10 @@
             align-items:center;
         }
         .visitTitle{
+            font-family: saiyan;
+            word-spacing: 2px;
+            letter-spacing: 3px;
+            font-size: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -98,17 +111,20 @@
         </video>
         <div class="title">
             <h1>CONTACT-US</h1>
-            <button class="readMore">
+            <a href="#visit" class="readMore">
                 Read More
-            </button>
+            </a>
         </div>
     </div>
     <div id="visitUsContainer">
-        <div class="visitTitle">
+        <div id="visit" class="visitTitle">
             <h2>VISIT US HERE!</h2>
-            <p>Locate us in this map:</p>
+            <h3>Locate us in this map:</h3>
         </div>
-        <div id='map' style='width: 99vw; height: 90vh;'></div>
+        <div id='map' style='width: 95vw; height: 90vh;'></div>
+        <script>
+            const element = document.getElementById("")
+        </script>
         <script>
         // TO MAKE THE MAP APPEAR YOU MUST
         // ADD YOUR ACCESS TOKEN FROM
