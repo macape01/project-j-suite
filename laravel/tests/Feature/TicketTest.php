@@ -31,35 +31,43 @@ class TicketTest extends TestCase
     {
         //Mock data ticket
 
-        $ticket_data = [
-            'description' => 'tusa',
-            'title' => 'hola',
-            'assigned_id' => 1,
-            'asset_id' => 2,
-            'author_id' => 5,
+        $ticket_data=[
+            'title'=>'sexo en New TICKET',
+            'description'=>'no se pudo rodar por falta de LOS FATALISIMOS TICKETSSSSSSS',
+            'assigned_id'=>1,
+            'asset_id'=>2,
+            'created_at'=>"2022-02-17 17:49:56",
+            'updated_at'=>"2022-02-17 17:49:56",
+            'author_id'=>1,
         ];
 
         //Responses
         $response = $this->postJson('/api/tickets', $ticket_data);
 
         //Assertions
-        $response
-            ->assertStatus(201)
-            ->assertJson([
-                'created' => true,
-            ]);
+        $response->assertStatus(200);
+        
+        $json = json_decode($response->getContent());
+        
+        return $json->id;
 
     }
-    public function test_ticket_can_be_retrieved()
+    /**
+    * @depends test_ticket_can_be_created
+    */
+    public function test_ticket_can_be_retrieved($id)
     {
         //Responses
-        $response = $this->get('/api/tickets/1');
+        $response = $this->get("/api/tickets/{$id}");
 
         //Assertions
         $response->assertStatus(200);
 
     }
-    public function test_ticket_can_be_updated()
+    /**
+    * @depends test_ticket_can_be_created
+    */
+    public function test_ticket_can_be_updated($id)
     {
         //Mock data ticket
 
@@ -69,17 +77,20 @@ class TicketTest extends TestCase
         ];
 
         //Responses
-        $response = $this->put('/api/tickets/1', $ticket_data);
+        $response = $this->put("/api/tickets/{$id}", $ticket_data);
 
         //Assertions
         $response->assertStatus(200);
 
     }
-    public function test_ticket_can_be_deleted()
+    /**
+    * @depends test_ticket_can_be_created
+    */
+    public function test_ticket_can_be_deleted($id)
     {
 
         //Responses
-        $response = $this->delete('/api/tickets/1');
+        $response = $this->delete("/api/tickets/{$id}");
 
         //Assertions
         $response->assertStatus(200);
