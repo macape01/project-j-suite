@@ -36,7 +36,6 @@ class TaskTest extends TestCase
 
         $task_data = [
             'comentari' => 'jeepeta',
-            'id' => 1,
             'author_id' => 1,
             'titol' => 'bichota',
         ];
@@ -45,23 +44,28 @@ class TaskTest extends TestCase
         $response = $this->postJson('/api/tasks', $task_data);
 
         //Assertions
-        $response
-            ->assertStatus(201)
-            ->assertJson([
-                'created' => true,
-            ]);
+        $response->assertStatus(200);
+        $json = json_decode($response->getContent());
+        return $json->id;
 
     }
-    public function test_task_can_be_retrieved()
+    /** 
+     *@depends test_task_can_be_created 
+    */
+
+    public function test_task_can_be_retrieved($id)
     {
         //Responses
-        $response = $this->get('/api/tasks/1');
+        $response = $this->get('/api/tasks/{$id}');
 
         //Assertions
         $response->assertStatus(200);
 
     }
-    public function test_task_can_be_updated()
+      /** 
+     *@depends test_task_can_be_created 
+    */
+    public function test_task_can_be_updated($id)
     {
         //Mock data ticket
 
@@ -71,17 +75,20 @@ class TaskTest extends TestCase
         ];
 
         //Responses
-        $response = $this->put('/api/tasks/1', $task_data);
+        $response = $this->put("/api/tasks/{$id}", $task_data);
 
         //Assertions
         $response->assertStatus(200);
 
     }
-    public function test_task_can_be_deleted()
+      /** 
+     *@depends test_task_can_be_created 
+    */
+    public function test_task_can_be_deleted($id)
     {
 
         //Responses
-        $response = $this->delete('/api/tasks/1');
+        $response = $this->delete('/api/tasks/{$id}');
 
         //Assertions
         $response->assertStatus(200);
