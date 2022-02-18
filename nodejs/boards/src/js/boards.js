@@ -103,16 +103,7 @@ var addTask = function() {
   //Create a new list item with the text from #new-task:
   console.log(llista.tasks)
   var listItem = createNewTaskElement(taskInput.value, areaImput.value,llista);
-
-  // let value=taskInput.value;
-  // let area=areaImput.value;
-
-  // tasks.push(taskInput.value);
-  // comm.push(areaImput.value);
-  // localStorage.setItem('tasks', JSON.stringify(tasks));
-  // localStorage.setItem('comm', JSON.stringify(comm));
-  // localStorage.setItem("tasca", taskInput.value );
-  // localStorage.setItem("coment", areaImput.value );
+  
   
   //Append listItem to incompleteTasksHolder
   incompleteTasksHolder.appendChild(listItem);
@@ -121,43 +112,6 @@ var addTask = function() {
   taskInput.value = "";  
   areaImput.value = "";
 }
-
-
-// var findTask=function(valor){
-
-//   console.log("find task...")
-//   const listItem = document.getElementById(valor);
-//   let encontradas = llista.tasks.filter(task=>task.id===(valor));
-// 	for ( valor of valors ){
-// 		if ( task.textContent === value ){
-// 			return task;
-// 		}
-// 	}
-// 	return null;
-// }
-
-
-// var searchTask=function(){
-// 	if ( searchTaskInput.value.length == 0 ) return;
-// 	searchValue = searchTaskInput.value;
-
-
-// 	taskFound = findTask(searchValue) ;
-// 	if ( taskFound ) {
-// 		taskParent = taskFound.parentNode
-// 		taskParent.style.backgroundColor = "#FFC300"
-// 	}
-// 	else{
-// 		alert("No se ha encontrado la tarea....")
-// 	}
-// 	searchTaskInput.value = "";	
-	
-// }
-
-
-
-
-
 
 
 // Edit an existing task
@@ -198,15 +152,12 @@ var editTask = function(id) {
       //input value becomes the label's text
     editInput.value = label.innerText;
     
-    
   }
   
     // Toggle .editMode on the parent
   listItem.classList.toggle("editMode");
-  
- 
-}
 
+}
 
 // Delete an existing task
 var deleteTask = function(id) {
@@ -223,7 +174,6 @@ var deleteTask = function(id) {
 
 }
 
-
 var findTask = function(id){
   console.log("Edit Task...");
   let task = llista.tasks.filter(task=>task.titol === id);
@@ -233,8 +183,6 @@ var findTask = function(id){
   }
 
 }
-
-
 
 // Mark a task as complete 
 var taskCompleted = function(id) {
@@ -256,10 +204,7 @@ var taskCompleted = function(id) {
   llista.EditTask(task,id*1);
   console.log(id,"maikel");
   
-
-
 }
-
 
 
 // Mark a task as incomplete
@@ -357,15 +302,6 @@ for(var i = 0; i <  completedTasksHolder.children.length; i++) {
   }
 
 }
-
-
-
-
-
-
-
-
-
 
 
 }
