@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Models\Task;
 
 class TaskController extends Controller
 {
@@ -13,9 +15,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = DB::table('tasks')
-        ->select('comentari', 'id', 'author_id', 'titol')
-        ->get();
+        $tasks = DB::table('tasks')->select('comentari', 'id', 'author_id', 'titol')->get();
         return \response($tasks);
     }
 
@@ -28,9 +28,8 @@ class TaskController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'comentari' => 'max:255',
-            'id' => 'required|max:50',
             'author_id' => 'required',
+            'comentari' => 'max:255',
             'titol' => 'required',
         ]);
         $task = Task::create($request->all());
@@ -61,7 +60,7 @@ class TaskController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $ttask=Ticket::find($id);
+        $task=Task::find($id);
         $task->update($request->all());
         return $task;
     }
