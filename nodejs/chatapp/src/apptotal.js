@@ -13,6 +13,8 @@ import { Messages } from "./js/messages";
 import { UsuarisList } from "./js/usuaris-list-class";
 import { creaHTMLFormulariAfegir } from "./js/components.js";
 import { Usuari } from "./js/usuari-class";
+import 'jquery';
+
 
 export function AppTotal(data){
 
@@ -46,8 +48,7 @@ export function AppTotal(data){
     div2.innerHTML=footer
     document.body.append(div2);
 
-    document.getElementById("enviarmissatge").addEventListener('click',(event) => {
-        event.preventDefault();
+    $("#enviarmissatge").on("click",(event)=> {
         var username = document.getElementById("username").value;
         var passwd =  document.getElementById("password ").value;
         var data = usuarisList.obtenerUsuaris();
@@ -77,54 +78,56 @@ export function AppTotal(data){
             messageList.setMessages(newMessage,id);
         }
     })
-    document.getElementById("priv").addEventListener('click',(event) => {
-        event.preventDefault()
-        document.getElementById("userlists").style.display = "block";
-        document.getElementById("groupslists").style.display = "none";
+    $("#priv").on({
+        click:((event)=>{
+            $("#userlists").show();
+                $("#groupslists").hide();
+        })
     })
-    document.getElementById("pub").addEventListener('click',(event) => {
-        event.preventDefault()
-        document.getElementById("groupslists").style.display = "block";
-        document.getElementById("userlists").style.display = "none";
+    $("#pub").on({
+        click:((event)=>{
+            $("#groupslists").show();
+                $("#userlists").hide();
+        })
     })
-    document.getElementById("savenam").addEventListener('click',(event) => {
-        event.preventDefault()
-        var username =  document.getElementById("username").value;
-        var passwd =  document.getElementById("password ").value;
+    $("#savenam").on("click",(event)=> {
+        var username = document.getElementById("username").value;
+        var passwd = document.getElementById("password ").value;
         var data = usuarisList.obtenerUsuaris();
         if(auth(data, username, passwd)){
-            alert("Logeado "+username)
             localStorage.setItem('username', document.getElementById("username").value);
+            alert("Logeado "+username)
         }else{
             alert("No se encuentra el usuari con esa contraseña, pruebe a registrarlo!")
         }
     })
-    document.getElementById("registerme").addEventListener('click',(event) => {
-        event.preventDefault()
+    $("#registerme").on("click",(event)=> {
         var username =  document.getElementById("username").value;
         var passwd =  document.getElementById("password ").value;
         var data = usuarisList.obtenerUsuaris();
         if(auth(data, username, passwd)){
             alert("Aquest usuari ja existeix, fes login!")
         }else{
-            alert("Registramos su usuario, bienvenido "+username)
             let id_usuari = usuarisList.getLastId()+1;
             var newUser= new Usuari(id_usuari, username, passwd, 0);
             usuarisList.setUsers(newUser,id_usuari);
+            alert("Registramos su usuario, bienvenido "+username)
         }
     })
     if(localStorage.getItem('username') != ""){
         document.getElementById("username").value = localStorage.getItem("username");
     }
-    document.getElementById("veuremens").addEventListener('click',(event) => {
-        event.preventDefault()
-        document.getElementById("historial").style.display = "block";
-        document.getElementById("filtre").style.display = "block";
+    $("#veuremens").on({
+        click:((event)=>{
+            document.getElementById("historial").style.display = "block";
+            document.getElementById("filtre").style.display = "block";
+        })
     })
-    document.getElementById("volveralmenu").addEventListener('click',(event) => {
-        event.preventDefault()
-        document.getElementById("historial").style.display = "none";
-        document.getElementById("filtre").style.display = "none";
+    $("#volveralmenu").on({
+        click:((event)=>{
+            document.getElementById("historial").style.display = "none";
+            document.getElementById("filtre").style.display = "none";
+        })
     })
 
     const elementsCollection = document.getElementsByClassName("deletetask");
@@ -170,7 +173,6 @@ export function AppTotal(data){
     const elementsCollection3 = document.getElementsByClassName("seetask");
     const elementsArray3 = [...elementsCollection3];
     elementsArray3.forEach(element=>element.addEventListener('click',(event) => {
-        event.preventDefault()
         let message = element.parentNode.parentNode;
         let text = message.getElementsByTagName("td")[2];
         let menscomplete= text.innerText;
