@@ -7,6 +7,7 @@
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css' rel='stylesheet' />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js'></script>
+    <script src="../js/mousetrap.js"></script>
     <style>
         @font-face {
             font-family: awakebeauty;
@@ -21,9 +22,8 @@
             margin: 0;
             scroll-behavior: smooth;
         }
-        body{
-            background: rgb(229,63,251);
-background: linear-gradient(0deg, rgba(229,63,251,1) 23%, rgba(255,33,106,1) 78%); 
+        body {
+	        background: rgba(199, 19, 235, 0.589);
         }
         #backgroundContainer{
             width: 100%;
@@ -36,10 +36,14 @@ background: linear-gradient(0deg, rgba(229,63,251,1) 23%, rgba(255,33,106,1) 78%
             z-index: 1;
             display: flex;
             flex-direction: column;
+            gap: 1rem;
             justify-content: center;
             align-items: center;
             height: 300px;
-            inset: 0 0 0 0;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
             margin: auto;
 
         }
@@ -93,10 +97,12 @@ background: linear-gradient(0deg, rgba(229,63,251,1) 23%, rgba(255,33,106,1) 78%
             align-items:center;
         }
         .visitTitle{
-            font-family: saiyan;
+            font-family: awakebeauty;
+
+            color:rgb(255, 157, 173);
             word-spacing: 2px;
             letter-spacing: 3px;
-            font-size: 20px;
+            font-size: 36px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -110,11 +116,12 @@ background: linear-gradient(0deg, rgba(229,63,251,1) 23%, rgba(255,33,106,1) 78%
         }   
 
         .footer{
+            border-top: 5px dotted rgb(136, 130, 158);
+            margin-top: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            background-image:url(../images/Captura.png);
             height: 5vw;
             padding: 20px;
             gap:1.5rem;
@@ -138,7 +145,7 @@ background: linear-gradient(0deg, rgba(229,63,251,1) 23%, rgba(255,33,106,1) 78%
         </video>
         <div class="title">
             <h1>CONTACT-US</h1>
-            <a href="#visit" class="readMore">
+            <a href="#visit" accesskey="m" class="readMore">
                 Read More
             </a>
         </div>
@@ -158,10 +165,10 @@ background: linear-gradient(0deg, rgba(229,63,251,1) 23%, rgba(255,33,106,1) 78%
         // https://account.mapbox.com
         mapboxgl.accessToken = 'pk.eyJ1IjoibWFjYXBlMDEiLCJhIjoiY2t6b2dnYmpwNG43cjJ1bzFmc2pjY2E4aSJ9.vJr-igyAMktNLO2ESCq5ag';
         const map = new mapboxgl.Map({
-        container: 'map', // container ID
-        style: 'mapbox://styles/mapbox/streets-v11', // style URL
-        center: [1.72878 , 41.23112], // starting position [lng, lat]
-        zoom: 17      // starting zoom
+            container: 'map', // container ID
+            style: 'mapbox://styles/mapbox/streets-v11', // style URL
+            center: [1.72878 , 41.23112], // starting position [lng, lat]
+            zoom: 17      // starting zoom
         });
         const marker1 = new mapboxgl.Marker()
         .setLngLat([1.72878 , 41.23112])
@@ -184,19 +191,34 @@ background: linear-gradient(0deg, rgba(229,63,251,1) 23%, rgba(255,33,106,1) 78%
 
         // make a marker for each feature and add to the map
         
-
+        let lon,lat;
+        
         geolocate.on('geolocate', function(e) {
-        var lon = e.coords.longitude;
-        var lat = e.coords.latitude
-        var position = [lon, lat];
-        console.log(position);
-        const popup = new mapboxgl.Popup({ closeOnClick: true })
-        .setLngLat(position)
-        .setHTML('<h3>Tu estàs aquii!</h3>')
-        .addTo(map);
+            lon = e.coords.longitude;
+            lat = e.coords.latitude;
+            var position = [lon, lat];
+
+            console.log(position);
+
+            const popup = new mapboxgl.Popup({ closeOnClick: true })
+                .setLngLat(position)
+                .setHTML('<h3>Tu estàs aquii!</h3>')
+                .addTo(map);
+            
+            Mousetrap.bind('ctrl+alt+g', function(e) {
+                let message = `Position X: ${lon}\nPosition Y: ${lat}`
+                alert(message)
+            });
+            Mousetrap.bind('ctrl+alt+c', function(e) {
+                map.flyTo({
+                    center: [1.72878 , 41.23112],
+                    zoom: 17,
+                    essential: true // this animation is considered essential with respect to prefers-reduced-motion
+                });
+            });
         });
 
-        </script>   
+    </script>   
 
     </div>
     <footer>
