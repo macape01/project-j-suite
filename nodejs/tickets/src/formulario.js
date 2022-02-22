@@ -27,7 +27,6 @@ export function HandleForm(data){
     
     let userList = new UsersList(userData);
     let users = userList.users;
-    var modal = document.getElementById("e-modal");
     
     cos.innerHTML=createTicketForm(assets,users);
     document.body.append(cos);
@@ -35,7 +34,7 @@ export function HandleForm(data){
     let ticketsList = new TicketsList(ticketsData);
 
     
-    const button = document.getElementById("createButton");
+    var button = $(" #createButton ");
     const filterButton = document.getElementById("open-filter");
     const filterInput = document.getElementById("filter");
     PrintTicketList(ticketsList);
@@ -46,13 +45,13 @@ export function HandleForm(data){
         FilterTicketList(ticketsList,value);
         
     })
-    button.addEventListener("click",(e)=>{
+    button.on("click",(e)=>{
         e.preventDefault();
         var id = ticketsList.getLastId() +1;
-        const name = document.getElementById("name").value;
-        const desc = document.getElementById("desc").value;
-        const assigned = document.getElementById("assigned").value;
-        const asset = document.getElementById("assets").value;
+        const name = $("#name").val();
+        const desc = $("#desc").val();
+        const assigned = $("#assigned").val();
+        const asset = $("#assets").val();
         var newTicket = new Ticket(id,name,desc,asset,assigned);
         console.log("ticket",newTicket)
         ticketsList.setNewTicket(newTicket,id)
@@ -76,7 +75,7 @@ function HandleEdit(ticketsList,id){
 
     $(`#edit-form-${id}`).toggle();
 
-    $(`#update-button-${id}`).click((e)=>{
+    $(`#update-button-${id}`).on("click",(e)=>{
         e.preventDefault()
         const values = {
             nom:name[0].value,
@@ -116,9 +115,9 @@ function PrintTicketList(ticketsList){
     cos.innerHTML+=createTicketHtml(tickets);
     const container = document.getElementById("creacio");
     container.append(cos);
-    var deleteButtons = document.getElementsByClassName("delete");
-    var editButtons = document.getElementsByClassName("edit");
-    var checkBoxes = document.getElementsByClassName("checkk");
+    var deleteButtons = $(".delete");
+    var editButtons = $(".edit");
+    var checkBoxes = $(".checkk");
     for (let index = 0; index < deleteButtons.length; index++) {
         const element = deleteButtons[index];
         element.addEventListener("click",(e)=>{
