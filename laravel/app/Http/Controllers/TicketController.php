@@ -15,7 +15,7 @@ class TicketController extends Controller
     public function index()
     {
         $tickets = DB::table('tickets')
-        ->select('id', 'description', 'title', 'assigned_id', 'asset_id')
+        ->select('id', 'description', 'title', 'assigned_id', 'asset_id','author_id')
         ->get();
         return \response($tickets);
     }
@@ -47,7 +47,7 @@ class TicketController extends Controller
     public function show($id)
     {
         $tickets = DB::table('tickets')
-        ->select('id', 'description', 'title', 'assigned_id', 'asset_id')
+        ->select('id', 'description', 'title', 'assigned_id', 'asset_id', 'author_id')
         ->where('id','=',$id)
         ->get();
         return \response($tickets);
