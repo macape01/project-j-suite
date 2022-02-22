@@ -50,7 +50,7 @@ class TaskTest extends TestCase
 
     }
     /** 
-     *@depends test_task_can_be_created 
+    * @depends test_task_can_be_created 
     */
 
     public function test_task_can_be_retrieved($id)
@@ -62,16 +62,16 @@ class TaskTest extends TestCase
         $response->assertStatus(200);
 
     }
-      /** 
-     *@depends test_task_can_be_created 
+    /** 
+    * @depends test_task_can_be_created 
     */
     public function test_task_can_be_updated($id)
     {
         //Mock data ticket
 
         $task_data = [
-            'titol' => 'cosas',
-            'comentari' => 'cositas',
+            'titol' => 'preg',
+            'comentari' => 'nat',
         ];
 
         //Responses
@@ -81,14 +81,14 @@ class TaskTest extends TestCase
         $response->assertStatus(200);
 
     }
-      /** 
-     *@depends test_task_can_be_created 
+    /** 
+    * @depends test_task_can_be_created 
     */
     public function test_task_can_be_deleted($id)
     {
 
         //Responses
-        $response = $this->delete('/api/tasks/{$id}');
+        $response = $this->delete("/api/tasks/{$id}");
 
         //Assertions
         $response->assertStatus(200);
