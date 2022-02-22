@@ -31,7 +31,7 @@ class MessageTest extends TestCase
 
         $message = [
             'author_id' => 1,
-            'message' => 'hola que tal',
+            'message' => 'mufasa',
             'created_at' => '2/2/22',
             'updated_at' => '5/2/22',
             'publicgroup_id' => 5,
@@ -42,7 +42,7 @@ class MessageTest extends TestCase
         $response = $this->postJson('/api/messages', $message);
 
         //Assertions
-        $response->assertStatus(201);
+        $response->assertStatus(200);
 
         $json = json_decode($response->getContent());
 
@@ -68,7 +68,7 @@ class MessageTest extends TestCase
         //Mock data ticket
 
         $message = [
-            'message' => 'esto es un hola dos',
+            'message' => 'amigdala',
         ];
 
         //Responses
