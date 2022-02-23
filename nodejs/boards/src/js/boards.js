@@ -18,8 +18,8 @@ export function Board(data){
   html.innerHTML = generateHtml(llista.tasks);
   document.body.append(html);
     
-  var searchTaskInput=document.getElementById("buttonSearch");
-  var searchTaskValue=document.getElementById("search-task");
+  var searchTaskInput=$("#buttonSearch");
+  var searchTaskValue=$("#search-task");
   var checkBoxes = document.querySelectorAll("input[type=checkbox]");
   var editButtons = document.querySelectorAll("button.edit");
   var deleteButtons = document.querySelectorAll("button.delete");
@@ -40,7 +40,7 @@ export function Board(data){
   // Problem: User interaction doesn't provide desired results.
   // Solution: Add interactivity so the user can manage daily tasks
 
-  var taskInput = document.getElementById("new-task");
+  var taskInput =$("#new-task");
   var addButton2 = document.getElementsByTagName("button")[0];
   var addButton = document.getElementsByTagName("button")[1];
   var incompleteTasksHolder = document.getElementById("incomplete-tasks");
@@ -102,7 +102,7 @@ var addTask = function() {
   console.log("Add task...");
   //Create a new list item with the text from #new-task:
   console.log(llista.tasks)
-  var listItem = createNewTaskElement(taskInput.value, areaImput.value,llista);
+  var listItem = createNewTaskElement(taskInput.val(), areaImput.value,llista);
   
   
   //Append listItem to incompleteTasksHolder
@@ -252,8 +252,8 @@ var bindTaskEvents = function(taskListItem, checkBoxEventHandler) {
     checkBoxEventHandler(elementId);
   });
 
-  searchTaskInput.addEventListener("click",e=>{
-    let elementId = searchTaskValue.value;
+  searchTaskInput.on("click",e=>{
+    let elementId = searchTaskValue.val();
     findTask(elementId);
   });
 }
