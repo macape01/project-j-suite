@@ -41,5 +41,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "fork-ts-checker-webpack-plugin": "^7.2.1"
   }
 }
