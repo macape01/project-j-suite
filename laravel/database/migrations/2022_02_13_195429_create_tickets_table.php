@@ -40,6 +40,9 @@ class CreateTicketsTable extends Migration
         Schema::table('tickets', function(Blueprint $table){
             $table->dropForeign(['assigned_id']);
             $table->dropColumn('assigned_id');
+
+            $table->dropForeign(['author_id']);
+            $table->dropColumn('author_id');
         });
         Schema::dropIfExists('tickets');
     }
