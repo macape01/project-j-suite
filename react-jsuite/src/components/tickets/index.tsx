@@ -3,16 +3,34 @@ import styles from "./styles.module.scss";
 import Ticket from "./ticket";
 
 const Tickets = ({ticketArray,assetArray,userArray}:TicketsProps) => {
+  console.log(ticketArray)
   return (
-    <div className={styles.tickets}>
+    <table className={styles.tickets}>
+      <tbody>
+      <tr>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Asset</th>
+        <th>Assigned</th>
+      </tr>
       {
-        ticketArray.map((ticket,index)=>{
-          let asset = assetArray.find(asset=>asset.id === ticket.assetId);
-          let user = userArray.find(user=>user.id === ticket.assignedId);
-          return <Ticket id={ticket.id} title={ticket.title} description={ticket.description} asset={asset} assigned={user} assetId={ticket.assetId} assignedId={ticket.assignedId} />
+        ticketArray.map(({id,assetId,assignedId,description,title})=>{
+          let asset = assetArray.find(asset=>asset.id === assetId);
+          let user = userArray.find(user=>user.id === assignedId);
+          return (
+            <Ticket
+              id={id}
+              title={title}
+              description={description}
+              asset={asset?.model}
+              assigned={user?.username}
+            />
+          );
         })
       }
-    </div>
+      </tbody>
+    </table>
   );
 };
 export default Tickets;

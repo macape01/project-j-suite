@@ -1,85 +1,85 @@
 [
     {
         "id_role": 0,
-        "id_usuari": 0,
+        "id": 0,
         "password": "maletin",
         "username": "armand"
     },
     {
         "id_role": 1,
-        "id_usuari": 1,
+        "id": 1,
         "password": "maletin",
         "username": "pep"
     },
     {
         "id_role": 3,
-        "id_usuari": 2,
+        "id": 2,
         "password": "maletin",
         "username": "jordi"
     },
     {
         "id_role": 2,
-        "id_usuari": 3,
+        "id": 3,
         "password": "maletin",
         "username": "alicia"
     },
     {
         "id_role": 0,
-        "id_usuari": 4,
+        "id": 4,
         "password": "maletin",
         "username": "cristina"
     },
     {
         "id_role": 0,
-        "id_usuari": 5,
+        "id": 5,
         "password": "marc",
         "username": "marc"
     },
     {
         "id_role": 0,
-        "id_usuari": 6,
+        "id": 6,
         "password": "oliver",
         "username": "oliver"
     },
     {
         "id_role": 0,
-        "id_usuari": 7,
+        "id": 7,
         "password": "edu",
         "username": "edu"
     },
     {
         "id_role": 0,
-        "id_usuari": 8,
+        "id": 8,
         "password": "manolo",
         "username": "manolo"
     },
     {
         "id_role": 0,
-        "id_usuari": 9,
+        "id": 9,
         "password": "somaliano",
         "username": "somaliano"
     },
     {
         "id_role": 0,
-        "id_usuari": 10,
+        "id": 10,
         "password": "somalia",
         "username": "somalia"
     },
     {
         "id_role": 0,
-        "id_usuari": 11,
+        "id": 11,
         "password": "moha",
         "username": "moha"
     },
     {
         "id_role": 0,
-        "id_usuari": 12,
+        "id": 12,
         "password": "moldy",
         "username": "moldy"
     },
     {
         "id_role": 0,
-        "id_usuari": 13,
+        "id": 13,
         "password": "mama",
         "username": "mama"
     }

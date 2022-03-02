@@ -1,24 +1,24 @@
 [
     {
-        "assetId": "0",
-        "assignedId": "0",
+        "assetId": 0,
+        "assignedId": 0,
         "checked": false,
         "createdDate": "2022-02-15T16:05:24.781Z",
         "deleted": false,
-        "desc": "asd",
+        "description": "asd",
         "id": 0,
-        "nom": "s",
+        "title": "s",
         "updatedDate": "2022-02-15T16:05:24.781Z"
     },
     {
-        "assetId": "0",
-        "assignedId": "0",
+        "assetId": 0,
+        "assignedId": 0,
         "checked": false,
         "createdDate": "2022-02-15T16:05:24.781Z",
         "deleted": false,
-        "desc": "asd",
+        "description": "asd",
         "id": 1,
-        "nom": "a",
+        "title": "a",
         "updatedDate": "2022-02-15T16:05:24.781Z"
     }
 ]

@@ -1,11 +1,15 @@
-import { TicketProps } from "../../../interfaces/ticket";
+import { RenderedTicketProps } from "../../../interfaces/renderedTicket";
 import styles from "./styles.module.scss";
 
-const Ticket = (props:TicketProps) => {
+const Ticket = ({description,id,title,asset,assigned}:RenderedTicketProps) => {
   return (
-    <div className={styles.ticket}>
-      <p>This is a Ticket</p>
-    </div>
+    <tr className={styles.ticket}>
+      <td>{id}</td>
+      <td>{title}</td>
+      <td>{description}</td>
+      <td>{asset}</td>
+      <td>{assigned}</td>
+    </tr>
   );
 };
 export default Ticket;
