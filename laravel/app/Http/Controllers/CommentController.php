@@ -54,7 +54,24 @@ class CommentController extends Controller
         ->where('ticket_id','=',$tid)
         ->where('id','=',$id)
         ->get();
-        return \response($comment);
+
+        
+
+        /* $ticket = Ticket::find($tid);
+        if ($ticket) {
+            $comment = Comment::find($id);
+            if ($comment) {
+                if ($comment->ticket_id != $tid) {
+                    return \response(["message" => "Comment $id doesn't belong to ticket $tid"], 403);
+                } else {
+                    return \response($comment, 200);
+                }
+            } else {
+                return \response(["message" => "Comment $id not found"], 404);
+            }
+        } else {
+            return \response(["message" => "Ticket $tid not found"], 404);
+        } */
     }
 
     /**
@@ -67,7 +84,7 @@ class CommentController extends Controller
      */
     public function update(Request $request, $tid, $id)
     {
-        $comment=Comment::where('ticket_id', '=', $tid)->firstOrFail($id);
+        $comment=Comment::find($id);
         $comment->update($request->all());
         return $comment;
     }
