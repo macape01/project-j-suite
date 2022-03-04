@@ -69,7 +69,6 @@ class MessageController extends Controller
         return $message;
     }
 
-
     /**
      * Remove the specified resource from storage.
      *
