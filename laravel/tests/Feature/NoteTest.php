@@ -8,7 +8,6 @@ use Tests\TestCase;
 
 class NoteTest extends TestCase
 {
-    const TAID = 1;
     /**
      * A basic feature test example.
      *
@@ -16,9 +15,9 @@ class NoteTest extends TestCase
      */
     public function test_note_listed()
     {
-        $taid = self::TAID;
             //Responses
-            $responseStatus = $this->get("/api/task/{$taid}/notes");
+            $responseStatus = $this->get("/api/notes");
+            $response = $this->getJson("/api/notes");
             
             //Assertions
             $responseStatus->assertStatus(200);
@@ -26,23 +25,17 @@ class NoteTest extends TestCase
 
     public function test_note_can_be_created()
     {
-        $taid = self::TAID;
 
         $note_data = [
             'body' => 'notebichota',
-            "task_id" => $taid,
         ];
 
-        //Responses
-        $response = $this->postJson("/api/task/{$taid}/notes", $note_data);
+        //Responses        $response = $this->postJson("/api/notes", $note_data);
 
         //Assertions
         $response->assertStatus(200);
         $json = json_decode($response->getContent());
-        return [
-           "id" => $json->id,
-           "taid" => $taid,
-        ];
+        return $json->id;
 
 
     }

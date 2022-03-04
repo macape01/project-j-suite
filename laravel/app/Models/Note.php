@@ -15,7 +15,6 @@ class Note extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'id',
         'body',
         'task_id',
     ];

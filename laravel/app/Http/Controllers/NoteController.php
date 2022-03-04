@@ -14,11 +14,9 @@ class NoteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($taid)
+    public function index()
     {
-        $notes = DB::table('notes')->select('id', 'body', 'task_id')
-        ->where('task_id', '=', "{$taid}")
-        ->get();
+        $notes = DB::table('notes')->select('id', 'body', 'task_id')->get();
         return \response($notes);
     }
 
@@ -42,15 +40,13 @@ class NoteController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @param  int  $taid
      * @return \Illuminate\Http\Response
      */
-    public function show($taid,$id)
+    public function show($id)
     {
         $notes = DB::table('notes')
         ->select('id', 'body', 'task_id')
         ->where('task_id','=',$id)
-        ->where('id','=',$taid)
         ->get();
         return \response($notes);
     }
@@ -60,12 +56,11 @@ class NoteController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @param  int  $taid
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id, $taid)
+    public function update(Request $request, $id)
     {
-        $note=Note::where('task_id', '=', $taid)->firstOrFail($id);
+        $note=Note::find($id);
         $note->update($request->all());
         return $note;
     }
@@ -74,13 +69,10 @@ class NoteController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @param  int  $taid
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id, $taid)
+    public function destroy($id)
     {
-
-        $note=Note::where('task_id', '=', $taid)->firstOrFail($id);
         return Note::destroy($id);
 
     }
