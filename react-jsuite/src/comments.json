@@ -1,0 +1,23 @@
+[
+    {
+        "id": 0,
+        "author_id": 1,
+        "ticket_id": 0,
+        "msg": "El fum era negre. Cridar als bombers si es repeteix",
+        "created": "22/2/22"
+    },
+    {
+        "id": 1,
+        "author_id": 2,
+        "ticket_id": 2,
+        "msg": "De vegades, de vgades no ... és confús",
+        "created": "22/2/22"
+    },
+    {
+        "id": 2,
+        "author_id": 3,
+        "ticket_id": 3,
+        "msg": "Please, saldo de color cyan i groc també !!!",
+        "created": "22/2/22"
+    }
+]
