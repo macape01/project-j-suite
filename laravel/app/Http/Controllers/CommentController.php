@@ -43,19 +43,14 @@ class CommentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $tid
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($tid,$id)
+    public function show($id)
     {
-        $comment = DB::table('comments')
-        ->select('id', 'ticket_id', 'msg', 'created','author_id')
-        ->where('ticket_id','=',$tid)
-        ->where('id','=',$id)
-        ->get();
+        $comment = Comment::find($id);
 
-        
+        return \response($comment);
 
         /* $ticket = Ticket::find($tid);
         if ($ticket) {
@@ -78,11 +73,10 @@ class CommentController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $tid
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $tid, $id)
+    public function update(Request $request, $id)
     {
         $comment=Comment::find($id);
         $comment->update($request->all());

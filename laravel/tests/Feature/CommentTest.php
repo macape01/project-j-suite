@@ -37,7 +37,7 @@ class CommentTest extends TestCase
 
         $response = $this->postJson("/api/tickets/{$tid}/comments", $comment_data);
 
-        $responseStatus->assertStatus(200);
+        $response->assertStatus(200);
         
         $json = json_decode($response->getContent());
         

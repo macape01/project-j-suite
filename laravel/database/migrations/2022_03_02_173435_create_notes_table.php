@@ -33,7 +33,7 @@ class CreateNotesTable extends Migration
 
         Schema::table('notes', function (Blueprint $table) {
             $table->dropForeign(['task_id']);
-            $table->dropColumn(['authortask']);
+            $table->dropColumn('task_id');
         });
 
         Schema::dropIfExists('notes');
