@@ -1,92 +1,101 @@
 <?php
 
 namespace Tests\Feature;
+
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class MessageTest extends TestCase
 {
+    const CID = 1;
+
     /**
      * A basic feature test example.
      *
      * @return void
      */
-    public function test_messages_can_be_listed()
+    public function test_message_of_a_chat_can_be_listed()
     {
-        //Responses
-        $responseStatus = $this->get('/api/messages');
+        $chatid = self::CID;
+        $responseStatus = $this->get("/api/chats/{$chatid}/messages");
 
-        $response = $this->getJson('/api/messages');
-        
-        //Assertions
         $responseStatus->assertStatus(200);
-        /* $response->assertJson(fn (AssertableJson $json) =>
-        $json->hasAll('id', 'description', 'title', 'assigned_id', 'asset_id')
-        ); */
-    }
-    public function test_messages_can_be_created()
-    {
-        //Mock data ticket
 
-        $message = [
-            'author_id' => 1,
+    }
+    
+    public function test_message_of_a_chat_can_be_created()
+    {
+        $chatid = self::CID;
+
+        $message=[
+            'author_id' => 6,
             'message' => 'mufasa',
-            'created_at' => '2/2/22',
-            'updated_at' => '5/2/22',
             'publicgroup_id' => 5,
             'privateuser_id' => 0,
+            'chatid'=>$chatid
         ];
 
-        //Responses
-        $response = $this->postJson('/api/messages', $message);
+        $response = $this->postJson("/api/chats/{$chatid}/messages", $message);
 
-        //Assertions
-        $response->assertStatus(200);
-
+        $responseStatus->assertStatus(200);
+        
         $json = json_decode($response->getContent());
-
-        return $json->id;
+        
+        return [
+            'chatid' => $chatid, 
+            'id'  => $json->id
+        ];
     }
     /**
-     * @depends test_messages_can_be_created
-     */
-    public function test_messages_can_be_retrieved($id)
+    * @depends test_message_of_a_chat_can_be_created
+    */
+    public function test_message_of_a_chat_can_be_retrieved($params)
     {
+        //Variables
+        $chatid = $params[0];
+        $id = $params[1];
+
         //Responses
-        $response = $this->get("/api/messages/{$id}");
+        $response = $this->get("/api/chats/{$chatid}/messages/{$id}");
 
         //Assertions
         $response->assertStatus(200);
 
     }
     /**
-     * @depends test_messages_can_be_created
-     */
-    public function test_messages_can_be_updated($id)
+    * @depends test_message_of_a_chat_can_be_created
+    */
+    public function test_message_of_a_chat_can_be_updated($params)
     {
+        //Variables
+        $chatid = $params[0];
+        $id = $params[1];
+
         //Mock data ticket
 
         $message = [
-            'message' => 'amigdala',
+            'message' => 'amor'
         ];
 
         //Responses
-        $response = $this->put("/api/messages/{$id}", $message);
+        $response = $this->put("/api/chats/{$chatid}/messages/{$id}", $message);
 
         //Assertions
         $response->assertStatus(200);
 
     }
     /**
-     * @depends test_messages_can_be_created
-     */
-    public function test_messages_can_be_deleted($id)
+    * @depends test_message_of_a_chat_can_be_created
+    */
+    public function test_message_of_a_chat_can_be_deleted($params)
     {
+        //Variables
+        $chatid = $params[0];
+        $id = $params[1];
 
-        //Responses            'id' => 'required',
-
-        $response = $this->delete("/api/messages/{$id}");
+        //Responses
+        $response = $this->delete("/api/chats/{$chatid}/messages/{$id}");
 
         //Assertions
         $response->assertStatus(200);

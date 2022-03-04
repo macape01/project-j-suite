@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Messages;
-
+namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Chat;
+
 
 
 class ChatController extends Controller
@@ -15,10 +16,10 @@ class ChatController extends Controller
      */
     public function index()
     {
-        $message = DB::table('Messages')
-        ->select('id', 'author_id', 'message', 'created', 'publicgroup_id', 'privateuser_id')
+        $chat = DB::table('chats')
+        ->select('id', 'name', 'author_id', 'created')
         ->get();
-        return \response($message);
+        return \response($chat);
     }
 
     /**
@@ -31,14 +32,12 @@ class ChatController extends Controller
     {
         $request->validate([
             'id' => 'required',
+            'name' => 'required',
             'author_id' => 'required',
-            'message' => 'required',
             'created' => 'required',
-            'publicgroup_id' => 'required',
-            'privateuser_id' => 'required',
         ]);
-        $message = Messages::create($request->all());
-        return \response($message);
+        $chat = Chat::create($request->all());
+        return \response($chat);
     }
 
     /**
@@ -49,11 +48,11 @@ class ChatController extends Controller
      */
     public function show($id)
     {
-        $message = DB::table('Messages')
-        ->select('id', 'author_id', 'message', 'created', 'publicgroup_id', 'privateuser_id')
+        $chat = DB::table('chats')
+        ->select('id', 'author_id', 'message', 'created_at', 'updated_at', 'publicgroup_id', 'privateuser_id')
         ->where('id','=',$id)
         ->get();
-        return \response($message);
+        return \response($chat);
     }
 
     /**
@@ -65,9 +64,9 @@ class ChatController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $message=Messages::find($id);
-        $message->update($request->all());
-        return $message;
+        $chat=Chat::find($id);
+        $chat->update($request->all());
+        return $chat;
     }
 
 
@@ -79,6 +78,6 @@ class ChatController extends Controller
      */
     public function destroy($id)
     {
-        return Messages::destroy($id);
+        return Chat::destroy($id);
     }
 }
