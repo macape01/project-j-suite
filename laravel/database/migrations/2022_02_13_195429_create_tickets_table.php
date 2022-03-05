@@ -27,6 +27,8 @@ class CreateTicketsTable extends Migration
             $table->foreign('assigned_id')->references('id')->on('users');
             $table->unsignedBigInteger('author_id');
             $table->foreign('author_id')->references('id')->on('users');
+            $table->unsignedBigInteger('status_id');
+            $table->foreign('status_id')->references('id')->on('statuses');
         });
     }
 
@@ -43,6 +45,9 @@ class CreateTicketsTable extends Migration
 
             $table->dropForeign(['author_id']);
             $table->dropColumn('author_id');
+
+            $table->dropForeign(['status_id']);
+            $table->dropColumn('status_id');
         });
         Schema::dropIfExists('tickets');
     }

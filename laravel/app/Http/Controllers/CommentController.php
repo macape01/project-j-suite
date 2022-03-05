@@ -15,10 +15,11 @@ class CommentController extends Controller
      */
     public function index($tid)
     {
-        $comments = DB::table('comments')
+        $comments = Comment::where('ticket_id','=',$tid)->get();
+        /* $comments = DB::table('comments')
         ->select('id', 'ticket_id', 'msg', 'created','author_id')
         ->where('ticket_id','=',$tid)
-        ->get();
+        ->get(); */
         return \response($comments);
     }
 
@@ -33,7 +34,6 @@ class CommentController extends Controller
         $request->validate([
             'msg' => 'required|max:255',
             'author_id' => 'required',
-            'created' => 'required',
             'ticket_id' => 'required',
         ]);
         $comment = Comment::create($request->all());
@@ -43,12 +43,13 @@ class CommentController extends Controller
     /**
      * Display the specified resource.
      *
+     * @param  int  $tid
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($tid,$id)
     {
-        $comment = Comment::find($id);
+        $comment = Comment::where('ticket_id','=',$tid)->findOrFail($id);
 
         return \response($comment);
 
@@ -91,6 +92,6 @@ class CommentController extends Controller
      */
     public function destroy($id)
     {
-        return Comment::destroy($id);   
+        return Comment::destroy($id);
     }
 }

@@ -15,7 +15,7 @@ class CreateCommentsTable extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->timestamp('created');
+            $table->timestamps();
             $table->string('msg',255);
         });
         Schema::table('comments', function (Blueprint $table) {
@@ -39,7 +39,7 @@ class CreateCommentsTable extends Migration
 
             $table->dropForeign(['author_id']);
             $table->dropColumn('author_id');
-            
+
         });
         Schema::dropIfExists('comments');
     }
