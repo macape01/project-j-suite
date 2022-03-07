@@ -49,7 +49,7 @@ class ChatController extends Controller
     public function show($id)
     {
         $chat = DB::table('chats')
-        ->select('id', 'author_id', 'message', 'created_at', 'updated_at', 'publicgroup_id', 'privateuser_id')
+        ->select('id', 'name', 'author_id','created')
         ->where('id','=',$id)
         ->get();
         return \response($chat);

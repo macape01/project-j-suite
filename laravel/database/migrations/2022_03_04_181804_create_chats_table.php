@@ -15,10 +15,17 @@ class CreateChatsTable extends Migration
     {
         Schema::create('chats', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('name');
+            $table->integer('author_id');
+            $table->timestamp('created');
         });
-    }
 
+        Schema::table('chats', function (Blueprint $table) {
+            $table->unsignedBigInteger('author_id');
+            $table->foreign('author_id')->references('id')->on('users');
+            });
+    }
+ 
     /**
      * Reverse the migrations.
      *
@@ -26,6 +33,10 @@ class CreateChatsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('chats');
+        Schema::table('chats', function(Blueprint $table){
+            $table->dropForeign(['author_id']);
+            $table->dropColumn('author_id');
+        });
+        Schema::dropIfExists('name');
     }
 }
