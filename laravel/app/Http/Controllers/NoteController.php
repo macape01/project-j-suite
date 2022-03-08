@@ -43,7 +43,7 @@ class NoteController extends Controller
      * @param  int  $taid
      * @return \Illuminate\Http\Response
      */
-    public function show($taid,$id)
+    public function show($id)
     {
         $notes = Note::where('task_id','=',$taid)->findOrFail($id);
         return \response($notes);
