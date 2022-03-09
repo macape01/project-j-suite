@@ -8,7 +8,7 @@ use Tests\TestCase;
 
 class CommentTest extends TestCase
 {
-    const TID = 1;
+    const TID = 2;
 
     /**
      * A basic feature test example.
@@ -23,7 +23,7 @@ class CommentTest extends TestCase
         $responseStatus->assertStatus(200);
 
     }
-    
+
     public function test_comment_of_a_ticket_can_be_created()
     {
         $tid = self::TID;
@@ -38,22 +38,18 @@ class CommentTest extends TestCase
         $response = $this->postJson("/api/tickets/{$tid}/comments", $comment_data);
 
         $response->assertStatus(200);
-        
+
         $json = json_decode($response->getContent());
-        
-        return [
-            'tid' => $tid, 
-            'id'  => $json->id
-        ];
+
+        return $json->id;
     }
     /**
     * @depends test_comment_of_a_ticket_can_be_created
     */
-    public function test_comment_of_a_ticket_can_be_retrieved($params)
+    public function test_comment_of_a_ticket_can_be_retrieved($id)
     {
         //Variables
-        $tid = $params[0];
-        $id = $params[1];
+        $tid = self::TID;
 
         //Responses
         $response = $this->get("/api/tickets/{$tid}/comments/{$id}");
@@ -65,11 +61,10 @@ class CommentTest extends TestCase
     /**
     * @depends test_comment_of_a_ticket_can_be_created
     */
-    public function test_comment_of_a_ticket_can_be_updated($params)
+    public function test_comment_of_a_ticket_can_be_updated($id)
     {
         //Variables
-        $tid = $params[0];
-        $id = $params[1];
+        $tid = self::TID;
 
         //Mock data ticket
 
@@ -87,11 +82,10 @@ class CommentTest extends TestCase
     /**
     * @depends test_comment_of_a_ticket_can_be_created
     */
-    public function test_comment_of_a_ticket_can_be_deleted($params)
+    public function test_comment_of_a_ticket_can_be_deleted($id)
     {
         //Variables
-        $tid = $params[0];
-        $id = $params[1];
+        $tid = self::TID;
 
         //Responses
         $response = $this->delete("/api/tickets/{$tid}/comments/{$id}");

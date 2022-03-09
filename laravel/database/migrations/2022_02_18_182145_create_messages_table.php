@@ -25,7 +25,7 @@ class CreateMessagesTable extends Migration
         Schema::table('messages', function (Blueprint $table) {
             $table->unsignedBigInteger('author_id');
             $table->foreign('author_id')->references('id')->on('users');
-            });
+        });
     }
  
     /**

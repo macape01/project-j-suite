@@ -1,24 +1,46 @@
 [
     {
-        "assetId": 0,
-        "assignedId": 0,
-        "checked": false,
-        "createdDate": "2022-02-15T16:05:24.781Z",
-        "deleted": false,
-        "description": "asd",
         "id": 0,
-        "title": "s",
-        "updatedDate": "2022-02-15T16:05:24.781Z"
+        "title": "No funciona projector",
+        "description": "El projector ha cascat. Ha fet puff, ha tret fum i adeu",
+        "author_id": 4,
+        "assigned_id": 1,
+        "status_id": 0,
+        "asset_id": 7,
+        "created": "21/01/2022",
+        "updated": "21/01/2022"
     },
     {
-        "assetId": 0,
-        "assignedId": 0,
-        "checked": false,
-        "createdDate": "2022-02-15T16:05:24.781Z",
-        "deleted": false,
-        "description": "asd",
         "id": 1,
-        "title": "a",
-        "updatedDate": "2022-02-15T16:05:24.781Z"
+        "title": "El monitor no tira",
+        "description": "No s'encen des de fa dies i ningú em fa cas",
+        "author_id": 3,
+        "assigned_id": 0,
+        "status_id": 1,
+        "asset_id": 3,
+        "created": "22/01/2022",
+        "updated": "22/01/2022"
+    },
+    {
+        "id": 2,
+        "title": "El switch ha petat",
+        "description": "No va l'internet. Socorrrr",
+        "author_id": 2,
+        "assigned_id": 1,
+        "status_id": 2,
+        "asset_id": 6,
+        "created": "23/01/2022",
+        "updated": "23/01/2022"
+    },
+    {
+        "id": 3,
+        "title": "No tinc saldo",
+        "description": "La tinta s ha acabao",
+        "author_id": 1,
+        "assigned_id": 2,
+        "status_id": 2,
+        "asset_id": 5,
+        "created": "23/01/2022",
+        "updated": "23/01/2022"
     }
 ]

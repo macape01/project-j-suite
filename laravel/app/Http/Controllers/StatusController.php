@@ -1,13 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\Chat;
+use App\Models\Status;
 
 
-
-class ChatController extends Controller
+class StatusController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,10 +16,10 @@ class ChatController extends Controller
      */
     public function index()
     {
-        $chat = DB::table('chats')
-        ->select('id', 'name', 'author_id', 'created')
-        ->get();
-        return \response($chat);
+        $status = Status::all();
+
+        return \response($status);
+
     }
 
     /**
@@ -31,13 +31,10 @@ class ChatController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'id' => 'required',
-            'name' => 'required',
-            'author_id' => 'required',
-            'created' => 'required',
+            'name' => 'required|max:30',
         ]);
-        $chat = Chat::create($request->all());
-        return \response($chat);
+        $status = Status::create($request->all());
+        return \response($status);
     }
 
     /**
@@ -48,11 +45,9 @@ class ChatController extends Controller
      */
     public function show($id)
     {
-        $chat = DB::table('chats')
-        ->select('id', 'name', 'author_id','created')
-        ->where('id','=',$id)
-        ->get();
-        return \response($chat);
+        $status = Status::find($id);
+
+        return \response($status);
     }
 
     /**
@@ -64,11 +59,9 @@ class ChatController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $chat=Chat::find($id);
-        $chat->update($request->all());
-        return $chat;
+        $status = Status::findOrFail($id)->update($request->all());
+        return response($status);
     }
-
 
     /**
      * Remove the specified resource from storage.
@@ -78,6 +71,6 @@ class ChatController extends Controller
      */
     public function destroy($id)
     {
-        return Chat::destroy($id);
+        return Status::destroy($id);
     }
 }

@@ -46,7 +46,7 @@ class ChatTest extends TestCase
         ];
     }
     /**
-    * @depends test_message_of_a_chat_can_be_created
+    * @depends test_chat_can_be_created
     */
     public function test_chat_can_be_retrieved($params)
     {
@@ -61,7 +61,7 @@ class ChatTest extends TestCase
 
     }
     /**
-    * @depends test_message_of_a_chat_can_be_created
+    * @depends test_chat_can_be_created
     */
     public function test_chat_can_be_updated($params)
     {
@@ -82,7 +82,7 @@ class ChatTest extends TestCase
 
     }
     /**
-    * @depends test_message_of_a_chat_can_be_created
+    * @depends test_chat_can_be_created
     */
     public function test_chat_can_be_deleted($params)
     {

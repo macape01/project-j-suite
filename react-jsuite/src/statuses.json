@@ -1,0 +1,34 @@
+[
+    {
+        "id": 0,
+        "name": "Iniciat"
+    },
+    {
+        "id": 1,
+        "name": "Pendent"
+    },
+    {
+        "id": 2,
+        "name": "En Execució"
+    },
+    {
+        "id": 3,
+        "name": "Pendent de Servei Extern"
+    },
+    {
+        "id": 4,
+        "name": "Pendent de Compra de Material"
+    },
+    {
+        "id": 5,
+        "name": "Desestimada"
+    },
+    {
+        "id": 6,
+        "name": "Irresoluble"
+    },
+    {
+        "id": 7,
+        "name": "Resolta"
+    }
+]
