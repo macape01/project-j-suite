@@ -8,7 +8,7 @@ use Tests\TestCase;
 
 class CommentTest extends TestCase
 {
-    const TID = 2;
+    const TID = 4;
 
     /**
      * A basic feature test example.
@@ -31,7 +31,6 @@ class CommentTest extends TestCase
         $comment_data=[
             'author_id'=>1,
             'msg'=>"2022-02-17 17:49:56",
-            'created'=>"2022-02-17 17:49:56",
             'ticket_id'=>$tid
         ];
 
