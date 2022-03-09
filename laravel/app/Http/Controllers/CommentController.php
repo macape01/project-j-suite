@@ -37,7 +37,7 @@ class CommentController extends Controller
             'ticket_id' => 'required',
         ]);
         $comment = Comment::create($request->all());
-        return \response($comment);
+        return \response($comment,201);
     }
 
     /**
@@ -74,10 +74,11 @@ class CommentController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  int  $tid
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $tid ,$id)
     {
         $comment=Comment::find($id);
         $comment->update($request->all());
