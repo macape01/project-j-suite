@@ -14,11 +14,10 @@ class MessageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($cid)
     {
-        $message = DB::table('messages')
-        ->select('id', 'author_id', 'message', 'publicgroup_id', 'privateuser_id')
-        ->get();
+        $messages = Message::where('chat_id','=',$cid)->get();
+
         return \response($message);
     }
 
@@ -33,8 +32,6 @@ class MessageController extends Controller
         $request->validate([
             'author_id' => 'required',
             'message' => 'required',
-            'publicgroup_id' => 'required',
-            'privateuser_id' => 'required',
         ]);
         $message = Message::create($request->all());
         return \response($message);
@@ -43,15 +40,14 @@ class MessageController extends Controller
     /**
      * Display the specified resource.
      *
+     * @param  int  $tid
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($cid,$id)
     {
-        $message = DB::table('messages')
-        ->select('id', 'author_id', 'message', 'created_at', 'updated_at', 'publicgroup_id', 'privateuser_id')
-        ->where('id','=',$id)
-        ->get();
+        $message = Comment::where('chat_id','=',$tid)->findOrFail($id);
+
         return \response($message);
     }
 
@@ -59,10 +55,11 @@ class MessageController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  int  $tid
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $tid, $id)
     {
         $message=Message::find($id);
         $message->update($request->all());

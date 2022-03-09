@@ -29,32 +29,26 @@ class MessageTest extends TestCase
         $chatid = self::CID;
 
         $message=[
-            'author_id' => 6,
+            'author_id' => 1,
             'message' => 'mufasa',
-            'publicgroup_id' => 5,
-            'privateuser_id' => 0,
             'chatid'=>$chatid
         ];
 
         $response = $this->postJson("/api/chats/{$chatid}/messages", $message);
 
-        $responseStatus->assertStatus(200);
+        $response->assertStatus(200);
         
         $json = json_decode($response->getContent());
         
-        return [
-            'chatid' => $chatid, 
-            'id'  => $json->id
-        ];
+        return $json->id;
     }
     /**
     * @depends test_message_of_a_chat_can_be_created
     */
-    public function test_message_of_a_chat_can_be_retrieved($params)
+    public function test_message_of_a_chat_can_be_retrieved($id)
     {
         //Variables
-        $chatid = $params[0];
-        $id = $params[1];
+        $chatid = self::CID;
 
         //Responses
         $response = $this->get("/api/chats/{$chatid}/messages/{$id}");
@@ -66,11 +60,10 @@ class MessageTest extends TestCase
     /**
     * @depends test_message_of_a_chat_can_be_created
     */
-    public function test_message_of_a_chat_can_be_updated($params)
+    public function test_message_of_a_chat_can_be_updated($id)
     {
         //Variables
-        $chatid = $params[0];
-        $id = $params[1];
+        $chatid = self::CID;
 
         //Mock data ticket
 
@@ -88,11 +81,10 @@ class MessageTest extends TestCase
     /**
     * @depends test_message_of_a_chat_can_be_created
     */
-    public function test_message_of_a_chat_can_be_deleted($params)
+    public function test_message_of_a_chat_can_be_deleted($id)
     {
         //Variables
-        $chatid = $params[0];
-        $id = $params[1];
+        $chatid = self::CID;
 
         //Responses
         $response = $this->delete("/api/chats/{$chatid}/messages/{$id}");

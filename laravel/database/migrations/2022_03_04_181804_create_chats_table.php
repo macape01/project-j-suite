@@ -16,7 +16,7 @@ class CreateChatsTable extends Migration
         Schema::create('chats', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->timestamp('created');
+            $table->timestamps();
         });
 
         Schema::table('chats', function (Blueprint $table) {
@@ -36,6 +36,6 @@ class CreateChatsTable extends Migration
             $table->dropForeign(['author_id']);
             $table->dropColumn('author_id');
         });
-        Schema::dropIfExists('name');
+        Schema::dropIfExists('chats');
     }
 }

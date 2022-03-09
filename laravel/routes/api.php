@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TicketController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\CommentController;
@@ -30,7 +31,9 @@ Route::apiResource('users', UserController::class);
 
 Route::apiResource('tickets', TicketController::class);
 
-Route::apiResource('messages', MessageController::class);
+Route::apiResource('chats', ChatController::class);
+
+Route::apiResource('chats/{cid}/messages', MessageController::class);
 
 Route::apiResource('tasks', TaskController::class);
 

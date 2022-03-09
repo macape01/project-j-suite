@@ -17,7 +17,7 @@ class ChatController extends Controller
     public function index()
     {
         $chat = DB::table('chats')
-        ->select('id', 'name', 'author_id', 'created')
+        ->select('id', 'name', 'author_id')
         ->get();
         return \response($chat);
     }
@@ -31,10 +31,8 @@ class ChatController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'id' => 'required',
             'name' => 'required',
             'author_id' => 'required',
-            'created' => 'required',
         ]);
         $chat = Chat::create($request->all());
         return \response($chat);
@@ -49,7 +47,7 @@ class ChatController extends Controller
     public function show($id)
     {
         $chat = DB::table('chats')
-        ->select('id', 'name', 'author_id','created')
+        ->select('id', 'name', 'author_id')
         ->where('id','=',$id)
         ->get();
         return \response($chat);
