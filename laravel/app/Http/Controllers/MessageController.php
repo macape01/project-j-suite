@@ -18,7 +18,7 @@ class MessageController extends Controller
     {
         $messages = Message::where('chat_id','=',$cid)->get();
 
-        return \response($message);
+        return \response($messages);
     }
 
     /**
@@ -32,6 +32,7 @@ class MessageController extends Controller
         $request->validate([
             'author_id' => 'required',
             'message' => 'required',
+            'chat_id' => 'required'
         ]);
         $message = Message::create($request->all());
         return \response($message);
@@ -40,13 +41,13 @@ class MessageController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $tid
+     * @param  int  $cid
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($cid,$id)
     {
-        $message = Comment::where('chat_id','=',$tid)->findOrFail($id);
+        $message = Message::where('chat_id','=',$cid)->findOrFail($id);
 
         return \response($message);
     }
@@ -55,11 +56,11 @@ class MessageController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $tid
+     * @param  int  $cid
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $tid, $id)
+    public function update(Request $request, $cid, $id)
     {
         $message=Message::find($id);
         $message->update($request->all());

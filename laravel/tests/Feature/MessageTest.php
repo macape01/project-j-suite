@@ -8,7 +8,7 @@ use Tests\TestCase;
 
 class MessageTest extends TestCase
 {
-    const CID = 1;
+    const CID = 3;
 
     /**
      * A basic feature test example.
@@ -28,10 +28,10 @@ class MessageTest extends TestCase
     {
         $chatid = self::CID;
 
-        $message=[
-            'author_id' => 1,
-            'message' => 'mufasa',
-            'chatid'=>$chatid
+        $message = [
+            'author_id'=>1,
+            'message'=>'mufasa',
+            'chat_id'=>$chatid,
         ];
 
         $response = $this->postJson("/api/chats/{$chatid}/messages", $message);
