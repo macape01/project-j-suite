@@ -8,6 +8,8 @@ use Tests\TestCase;
 
 class NoteTest extends TestCase
 {
+
+    const TAID = 1;
     /**
      * A basic feature test example.
      *
@@ -15,26 +17,31 @@ class NoteTest extends TestCase
      */
     public function test_note_listed()
     {
-            //Responses
-            $responseStatus = $this->get("/api/notes");
-            $response = $this->getJson("/api/notes");
-            
-            //Assertions
-            $responseStatus->assertStatus(200);
+        $taid = self::TAID;
+        $responseStatus = $this->get("/api/tasks/{$taid}/notes");
+
+        $responseStatus->assertStatus(200);
+
     }
 
     public function test_note_can_be_created()
     {
+        $taid = self::TAID;
 
         $note_data = [
             'body' => 'notebichota',
+            'task_id' => $taid,
         ];
 
         //Responses        $response = $this->postJson("/api/notes", $note_data);
 
         //Assertions
+        $response = $this->postJson("/api/tasks/{$taid}/notes", $note_data);
+
         $response->assertStatus(200);
+
         $json = json_decode($response->getContent());
+
         return $json->id;
 
 
@@ -42,14 +49,12 @@ class NoteTest extends TestCase
     /** 
     * @depends test_note_can_be_created 
     */
-
-    public function test_note_can_be_retrieved($params)
+    public function test_note_can_be_retrieved($id)
     {
-        $id = $params[0];
-        $taid = $params[1];
+        $taid = self::TAID;
 
         //Responses
-        $response = $this->get("/api/task/{$taid}/notes");
+        $response = $this->get("/api/tasks/{$taid}/notes/{$id}");
 
         //Assertions
         $response->assertStatus(200);
@@ -58,10 +63,10 @@ class NoteTest extends TestCase
     /** 
     * @depends test_note_can_be_created 
     */
-    public function test_note_can_be_updated($params)
+    public function test_note_can_be_updated($id)
     {
-        $id = $params[0];
-        $taid = $params[1];
+
+        $taid = self::TAID;
         //Mock data ticket
 
         $note_data = [
@@ -69,7 +74,7 @@ class NoteTest extends TestCase
         ];
 
         //Responses
-        $response = $this->put("/api/task/{$taid}/notes/{$id}", $note_data);
+        $response = $this->put("/api/tasks/{$taid}/notes/{$id}", $note_data);
 
         //Assertions
         $response->assertStatus(200);
@@ -78,13 +83,11 @@ class NoteTest extends TestCase
     /** 
     * @depends test_note_can_be_created 
     */
-    public function test_note_can_be_deleted($params)
+    public function test_note_can_be_deleted($id)
     {
-        $id = $params[0];
-        $taid = $params[1];
-
+        $taid = self::TAID;
         //Responses
-        $response = $this->delete("/api/task/{$taid}/notes{$id}");
+        $response = $this->delete("/api/tasks/{$taid}/notes/{$id}");
 
         //Assertions
         $response->assertStatus(200);

@@ -14,9 +14,9 @@ class NoteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($taid)
     {
-        $notes = DB::table('notes')->select('id', 'body', 'task_id')->get();
+        $notes = Note::where('task_id', '=' ,$taid)->get();
         return \response($notes);
     }
 
@@ -39,15 +39,13 @@ class NoteController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $id 
+     * @param  int  $taid
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($taid,$id)
     {
-        $notes = DB::table('notes')
-        ->select('id', 'body', 'task_id')
-        ->where('task_id','=',$id)
-        ->get();
+        $notes = Note::where('task_id','=',$taid)->findOrFail($id);
         return \response($notes);
     }
 
@@ -56,9 +54,10 @@ class NoteController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
+     * @param  int  $taid
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $taid, $id)
     {
         $note=Note::find($id);
         $note->update($request->all());

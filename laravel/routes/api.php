@@ -8,6 +8,7 @@ use App\Http\Controllers\MessageController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\StatusController;
+use App\Http\Controllers\NoteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,8 @@ Route::apiResource('tickets', TicketController::class);
 Route::apiResource('messages', MessageController::class);
 
 Route::apiResource('tasks', TaskController::class);
+
+Route::apiResource('tasks/{taid}/notes', NoteController::class);
 
 Route::apiResource('tickets/{tid}/comments', CommentController::class);
 
