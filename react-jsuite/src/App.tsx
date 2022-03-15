@@ -14,7 +14,7 @@ function App() {
   return (
     <div className="App">
       <Layout>
-        <Tickets assetArray={assetArray} userArray={userArray} ticketArray={ticketArray} />
+        <Tickets commentArray={commentArray} statusArray={statusesArray} assetArray={assetArray} userArray={userArray} ticketArray={ticketArray} />
         <Task />
         <Message />
       </Layout>

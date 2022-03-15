@@ -11,7 +11,7 @@ function LlistaProductes({ productes }) {
         {productes.map((prod, index) => {
           return (
             <tr key={`prod_${index}`}>
-              <td style={{ border: "1px solid black" }}>{prod.name}</td>
+              <td style={{ border: "1px solid black" }}>{prod.nom}</td>
               <td style={{ border: "1px solid black" }}>{prod.color}</td>
             </tr>
           );
