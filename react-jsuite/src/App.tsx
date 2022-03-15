@@ -3,11 +3,11 @@ import Task from "./components/boards/task";
 import Message from "./components/chatapp/message";
 import Layout from "./components/layout";
 import Tickets from "./components/tickets";
-const assetArray = require('./assets.json')
-const userArray = require('./users.json')
-const ticketArray = require('./tickets.json')
-const commentArray = require('./comments.json')
-const statusesArray = require('./statuses.json')
+const assetArray = require('./data/assets.json')
+const userArray = require('./data/users.json')
+const ticketArray = require('./data/tickets.json')
+const commentArray = require('./data/comments.json')
+const statusesArray = require('./data/statuses.json')
 
 
 function App() {

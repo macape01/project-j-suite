@@ -1,0 +1,56 @@
+
+{"tasks": [
+
+    {
+        "id": 0,
+        "title": "Comprar connector",
+        "data_from": "22/2/22",
+        "date_to": "22/5/22",
+        "ticket_id": 0,
+        "completion_id": 0,
+        "author_id": 0,
+        "created": "22/2/22"
+    },
+    {
+        "id": 1,
+        "title": "Canviar cable audio",
+        "data_from": "22/2/22",
+        "date_to": "22/5/22",
+        "ticket_id": 0,
+        "completion_id": 0,
+        "author_id": 0,
+        "created": "22/2/22"
+    },
+    {
+        "id": 2,
+        "title": "Verificar chromecast",
+        "data_from": "22/2/22",
+        "date_to": "22/5/22",
+        "ticket_id": 0,
+        "completion_id": 1,
+        "author_id": 0,
+        "created": "22/2/22"
+    },
+    {
+        "id": 3,
+        "title": "Comprar switch",
+        "data_from": "22/2/22",
+        "date_to": "22/5/22",
+        "ticket_id": 2,
+        "completion_id": 0,
+        "author_id": 0,
+        "created": "22/2/22"
+    },
+    {
+        "id": 4,
+        "title": "Revisar cablejat",
+        "data_from": "22/2/22",
+        "date_to": "22/5/22",
+        "ticket_id": 2,
+        "completion_id": 1,
+        "author_id": 0,
+        "created": "22/2/22"
+    }
+
+  ]
+}
