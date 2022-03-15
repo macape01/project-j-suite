@@ -1,0 +1,27 @@
+.App {
+    text-align: center;
+    width: 500px;
+    height: 80vh;
+    margin-left: 34%;
+    margin-top: 3%;
+}
+.App .Product label{
+    float: left;
+    width: 190px;
+}
+.App .Product input{
+    float: right;
+    width: 300px;
+}
+.App .Send{
+    width: 100px;
+    height: 60px;
+    padding: 50px;
+    margin: auto;
+}
+.App .ListProducts{
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+    width: 95px;
+}

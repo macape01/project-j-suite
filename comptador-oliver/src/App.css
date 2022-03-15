@@ -1,0 +1,14 @@
+.App {
+    text-align: center;
+    width: 500px;
+    height: 80vh;
+    margin-left: 34%;
+    margin-top: 2%;
+}
+.App .Reset{
+    margin-top: 2%;
+}
+.App .Incr button{
+    padding: 3px;
+    margin: 1.5%;
+}
