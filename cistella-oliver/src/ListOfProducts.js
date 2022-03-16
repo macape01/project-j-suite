@@ -10,7 +10,7 @@ function ListProducts({ prods }) {
         </tr>
         {prods.map((prod, index) => {
           return (
-            <tr key={`prod_${index}`}>
+            <tr key={`prods${index}`}>
               <td>{prod.prodname}</td>
               <td>{index+1}</td>
             </tr>
