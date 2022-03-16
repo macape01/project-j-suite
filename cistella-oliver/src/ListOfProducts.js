@@ -5,14 +5,14 @@ function ListProducts({ prods }) {
     <table style={{ border: "1px solid black" }}>
       <tbody>
         <tr>
-          <th>Name</th>
-          <th>Color</th>
+          <th>Producte</th>
+          <th>ID</th>
         </tr>
         {prods.map((prod, index) => {
           return (
             <tr key={`prod_${index}`}>
-              <td style={{ border: "1px solid black" }}>{prod.name}</td>
-              <td style={{ border: "1px solid black" }}>{prod.color}</td>
+              <td>{prod.prodname}</td>
+              <td>{index+1}</td>
             </tr>
           );
         })}

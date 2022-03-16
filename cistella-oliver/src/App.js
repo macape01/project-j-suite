@@ -5,24 +5,19 @@ import './App.css';
 function App() {
   const [prods, setProductes] = useState([]);
   const [state, setState] = useState({});
-  const handleSubmit = (x, fn) => {
+  const submit = (x, fn) => {
     x.preventDefault();
     setProductes([...prods, state]);
   };
-  const handleNameChange = (x) => {
-    setState({ ...state, name: x.target.value });
-  };
-  const handleColorChange = (y) => {
-    setState({ ...state, color: y.target.value });
+  const addProducts = (x) => {
+    setState({ ...state, prodname: x.target.value });
   };
   return (
     <div className="App">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={submit}>
         <div className="Product">
-          <label>Nom del producte</label>
-          <input onChange={handleNameChange} />
-          <label>Color del producte</label>
-          <input onChange={handleColorChange} />
+          <label>Producte nou</label>
+          <input onChange={addProducts} />
         </div>
         <div className="Send">
         <button type="submit">Afegir producte</button>
