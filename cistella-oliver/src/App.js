@@ -4,20 +4,19 @@ import './App.css';
 
 function App() {
   const [prods, setProductes] = useState([]);
-  const [state, setState] = useState({});
-  const submit = (x, fn) => {
+  const [prodname, setName] = useState("");
+  const submit = (x) => {
     x.preventDefault();
-    setProductes([...prods, state]);
-  };
-  const addProducts = (x) => {
-    setState({ ...state, prodname: x.target.value });
+    setProductes([...prods, {
+      prodname
+    }]);
   };
   return (
     <div className="App">
       <form onSubmit={submit}>
         <div className="Product">
           <label>Producte nou</label>
-          <input onChange={addProducts} />
+          <input onChange={e=>setName(e.target.value)} />
         </div>
         <div className="Send">
         <button type="submit">Afegir producte</button>
