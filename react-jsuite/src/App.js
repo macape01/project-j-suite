@@ -17,13 +17,11 @@ const chatsArray = require('./data/chats.json')
 
 function App() {
   return (
-    <div className="App">
-      <Layout>
+      <Layout className="App">
         <Tickets commentArray={commentArray} statusArray={statusesArray} assetArray={assetArray} userArray={userArray} ticketArray={ticketArray} />
         <Tasks noteArray={noteArray} completionArray={completionArray} userArray={userArray} taskArray={taskArray}/>
         <Messages messagesArray={messagesArray} userArray={userArray}/>
       </Layout>
-    </div>
   );
 }
 
