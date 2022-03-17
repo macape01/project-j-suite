@@ -1,0 +1,44 @@
+[    
+    {
+        "id":0,
+        "message": "Bon dia Company!!",
+        "chat_id": 0,
+        "author_id": 1,
+        "published": "22/2/22"
+    },
+    {
+        "id":1,
+        "message": "Avui fa un temps molt bo!!!",
+        "chat_id": 0,
+        "author_id": 2,
+        "published": "22/2/22"
+    },
+    {
+        "id":2,
+        "message": "Estan sonats aquets paios",
+        "chat_id": 0,
+        "author_id": 1,
+        "published": "22/2/22"
+    },
+    {
+        "id":3,
+        "message": "Bon dia Company!!",
+        "chat_id": 1,
+        "author_id": 1,
+        "published": "22/2/22"
+    },
+    {
+        "id":4,
+        "message": "Tinc cotxe nou. Un Jeep blanc i amb gasolina",
+        "chat_id": 1,
+        "author_id": 2,
+        "published": "22/2/22"
+    },
+    {
+        "id":5,
+        "message": "Doncs el meu és un híbrid taronja. No gasta res",
+        "chat_id": 1,
+        "author_id": 3,
+        "published": "22/2/22"
+    }
+]

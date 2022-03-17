@@ -1,0 +1,20 @@
+[
+    {
+        "id":0,
+        "name": "Tutors tècnics",
+        "author_id": 0,
+        "created": "22/2/22"
+    },
+    {
+        "id":1,
+        "name": "Profes col·laboradors",
+        "author_id": 0,
+        "created": "22/2/22"
+    },
+    {
+        "id":2,
+        "name": "Off-topics",
+        "author_id": 0,
+        "created": "22/2/22"
+    }
+]
