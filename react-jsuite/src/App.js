@@ -6,6 +6,7 @@ import Tickets from "./components/tickets";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import BoardPage from "./pages/boards";
 import Home from "./pages/home";
+import TicketForm from "./pages/tickets";
 const assetArray = require("./data/assets.json");
 const userArray = require("./data/users.json");
 const ticketArray = require("./data/tickets.json");
@@ -40,7 +41,7 @@ function App() {
             exact
             path="/tickets"
             element={
-              <Tickets
+              <TicketForm
                 commentArray={commentArray}
                 statusArray={statusesArray}
                 assetArray={assetArray}
