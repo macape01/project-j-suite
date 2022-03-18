@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\FileController;
+require __DIR__.'/auth.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -29,4 +31,4 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-require __DIR__.'/auth.php';
+Route::resource('files', FileController::class);
