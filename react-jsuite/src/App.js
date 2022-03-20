@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import BoardPage from "./pages/boards";
 import Home from "./pages/home";
 import TicketForm from "./pages/tickets";
+import TaskForm from "./pages/boards";
 const assetArray = require("./data/assets.json");
 const userArray = require("./data/users.json");
 const ticketArray = require("./data/tickets.json");
@@ -54,7 +55,7 @@ function App() {
             exact
             path="/boards"
             element={
-              <Tasks
+              <TaskForm
                 noteArray={noteArray}
                 completionArray={completionArray}
                 userArray={userArray}
