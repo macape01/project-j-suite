@@ -27,7 +27,7 @@ class FileController extends Controller
      */
     public function create()
     {
-        //
+        return view('files.create');
     }
 
     /**
@@ -38,7 +38,11 @@ class FileController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $storeData = $request->validate([
+            'file' => 'required',
+        ]);
+        $file = File::create($storeData);
+        return redirect('/')->with('completed', 'File has been created!');
     }
 
     /**
