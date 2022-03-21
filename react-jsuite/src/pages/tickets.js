@@ -17,8 +17,12 @@ const TicketForm = ({
   const [id, setId] = useState("");
   const [error, setError] = useState(null);
 
+
+  const getLastId = () =>{
+    return tickets.length > 0 ? tickets[tickets.length-1].id : 0;
+  }
+
   const editar = (item) => {
-    console.log(item);
     setModeEdicio(true);
     setTicket(item.nomTasca);
     setId(item.id);
@@ -56,22 +60,20 @@ const TicketForm = ({
   const afegirTasca = (e) => {
     e.preventDefault();
 
-    if (!ticket.trim()) {
+    /* if (!ticket.trim()) {
       console.log("Element buit");
       setError("Introdueix algun valor");
 
       return;
-    }
-    console.log(ticket);
-    setTicket("");
+    } */
     setError(null);
-
+    
     setTickets([
       ...tickets,
       {
-        id: nanoid(),
-        nomTasca: ticket,
-      },
+        ...ticket,
+        id:getLastId()+1
+      }
     ]);
   };
 
@@ -96,44 +98,20 @@ const TicketForm = ({
                 ({ id, asset_id, assigned_id, description, title }) => {
                   let asset = assetArray.find((asset) => asset.id === asset_id);
                   let user = userArray.find((user) => user.id === assigned_id);
+                  console.log("user",user)
                   return (
                     <Ticket
                       id={id}
                       title={title}
                       description={description}
                       asset={asset?.model}
-                      assigned={user?.username}
+                      assigned_id={user?.username}
                     />
                   );
                 }
               )}
             </tbody>
           </table>
-          {/* <ul className="list-group">
-            {tickets.length === 0 ? (
-              <li className="list-group-item">No hi ha tickets actives</li>
-            ) : (
-              tickets.map((v) => {
-                return (
-                  <li key={v.id} className="list-group-item">
-                    <span className="lead">{v.nomTasca}</span>
-                    <button
-                      className="btn btn-sm btn-danger float-right mx-2"
-                      onClick={() => esborrarTasca(v.id)}
-                    >
-                      Esborrar
-                    </button>
-                    <button
-                      className="btn btn-sm btn-warning float-right"
-                      onClick={() => editar(v)}
-                    >
-                      Editar
-                    </button>
-                  </li>
-                );
-              })
-            )}
-          </ul> */}
           <br></br>
         </div>
 
@@ -143,6 +121,38 @@ const TicketForm = ({
           </h4>
           <form onSubmit={modeEdicio ? editarTasca : afegirTasca}>
             <span className="text-danger">{error} </span>
+              <input
+                type="text"
+                className="form-control mb-2"
+                placeholder="Títol"
+                onChange={(e) =>
+                  setTicket({ ...ticket, title: e.target.value })
+                }
+                value={ticket.title}
+              />
+              <input
+                type="text"
+                className="form-control mb-2"
+                placeholder="Description"
+                onChange={(e) =>
+                  setTicket({ ...ticket, description: e.target.value })
+                }
+                value={ticket.description}
+              />
+              <select
+                type="text"
+                className="form-control mb-2"
+                placeholder="Afegeix Tasca"
+                onChange={(e) =>{
+                  setTicket({ ...ticket, assigned_id: e.target.value*1 })
+                }
+                }
+              >
+                <option selected hidden></option>
+                {userArray.map((user, idx) => {
+                  return <option value={user.id} key={idx}>{user.username}</option>;
+                })}
+              </select>
             {modeEdicio ? (
               <>
                 <input
@@ -158,38 +168,6 @@ const TicketForm = ({
               </>
             ) : (
               <>
-                <input
-                  type="text"
-                  className="form-control mb-2"
-                  placeholder="Títol"
-                  onChange={(e) =>
-                    setTicket({ ...ticket, title: e.target.value })
-                  }
-                  value={ticket.title}
-                />
-                <input
-                  type="text"
-                  className="form-control mb-2"
-                  placeholder="Description"
-                  onChange={(e) =>
-                    setTicket({ ...ticket, description: e.target.value })
-                  }
-                  value={ticket.description}
-                />
-                <select
-                  type="text"
-                  className="form-control mb-2"
-                  placeholder="Afegeix Tasca"
-                  onChange={(e) =>
-                    setTicket({ ...ticket, assigned: e.target.value })
-                  }
-                  value={ticket.assigned}
-                >
-                  {userArray.map((user, idx) => {
-                    console.log("tsa", user);
-                    return <option key={idx}>{user.username}</option>;
-                  })}
-                </select>
                 <button className="btn btn-dark btn-block" type="submit">
                   Afegir
                 </button>
