@@ -8,6 +8,8 @@ import BoardPage from "./pages/boards";
 import Home from "./pages/home";
 import TicketForm from "./pages/tickets";
 import TaskForm from "./pages/boards";
+import MessageForm from "./pages/messages";
+
 const assetArray = require("./data/assets.json");
 const userArray = require("./data/users.json");
 const ticketArray = require("./data/tickets.json");
@@ -67,7 +69,7 @@ function App() {
             exact
             path="/messages"
             element={
-              <Messages messagesArray={messagesArray} userArray={userArray} />
+              <MessageForm messagesArray={messagesArray} userArray={userArray} />
             }
           ></Route>
         </Routes>
