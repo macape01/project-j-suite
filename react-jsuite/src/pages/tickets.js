@@ -3,6 +3,7 @@ import { useState } from "react";
 import { nanoid } from "nanoid";
 import Tickets from "../components/tickets";
 import Ticket from "../components/tickets/ticket";
+import "./tickets.scss";
 
 const TicketForm = ({
   ticketArray,
@@ -31,7 +32,6 @@ const TicketForm = ({
   const editarTasca = (e) => {
     console.log("edito");
     e.preventDefault();
-    debugger;
     let arrayEditat = [...tickets];
     tickets.forEach((t, idx) => {
       if (t.id === ticket.id) {
@@ -81,7 +81,7 @@ const TicketForm = ({
         <div className="col-8">
           <h4 className="text-center">Llista de Tasques</h4>
           <br></br>
-          <table className={`table table-bordered table-striped `}>
+          <table className={`table table-bordered table-striped tickets `}>
             <tbody>
               <tr>
                 <th>Id</th>
@@ -128,7 +128,7 @@ const TicketForm = ({
               className="form-control mb-2"
               placeholder="Títol"
               onChange={(e) => setTicket({ ...ticket, title: e.target.value })}
-              value={ticket.title}
+              value={ticket.title ?? ""}
             />
             <input
               type="text"
@@ -137,7 +137,7 @@ const TicketForm = ({
               onChange={(e) =>
                 setTicket({ ...ticket, description: e.target.value })
               }
-              value={ticket.description}
+              value={ticket.description ?? ""}
             />
             <select
               type="text"
