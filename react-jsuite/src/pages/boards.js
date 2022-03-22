@@ -2,37 +2,35 @@ import React from "react";
 import { useState } from "react";
 import { nanoid } from "nanoid";
 import Boards from "../components/boards";
+import Task from "../components/boards/task";
 
-
-const TaskForm = ({
-  noteArray,
-  completionArray,
-  userArray,
-  taskArray,
-}) => {
+const TaskForm = ({ noteArray, completionArray, userArray, taskArray }) => {
   const [tasca, setTasca] = useState("");
-  const [tasques, setTasques] = useState([]);
+  const [tasques, setTasques] = useState([...taskArray]);
   const [modeEdicio, setModeEdicio] = useState(false);
   const [id, setId] = useState("");
   const [error, setError] = useState(null);
 
+  const getLastId = () => {
+    return tasques.length > 0 ? tasques[tasques.length - 1].id : 0;
+  };
   const editar = (item) => {
     console.log(item);
     setModeEdicio(true);
-    setTasca(item.nomTasca);
+    setTasca(item.title);
     setId(item.id);
   };
   const editarTasca = (e) => {
     console.log("edito");
     e.preventDefault();
 
-    if (!tasca.trim()) {
-      console.log("Element buit");
-      setError("Introdueix algun valor");
-      return;
-    }
+    // if (!tasca.trim()) {
+    //   console.log("Element buit");
+    //   setError("Introdueix algun valor");
+    //   return;
+    // }
     const arrayEditat = tasques.map((v) => {
-      return v.id === id ? { id: id, nomTasca: tasca } : v;
+      return v.id === id ? { id: id, title: tasca } : v;
     });
 
     console.log(arrayEditat);
@@ -53,14 +51,15 @@ const TaskForm = ({
   };
 
   const afegirTasca = (e) => {
+    debugger;
     e.preventDefault();
 
-    if (!tasca.trim()) {
-      console.log("Element buit");
-      setError("Introdueix algun valor");
+    // if (!tasca.trim()) {
+    //   console.log("Element buit");
+    //   setError("Introdueix algun valor");
 
-      return;
-    }
+    //   return;
+    // }
     console.log(tasca);
     setTasca("");
     setError(null);
@@ -68,8 +67,9 @@ const TaskForm = ({
     setTasques([
       ...tasques,
       {
-        id: nanoid(),
-        nomTasca: tasca,
+        ...tasca,
+        id: getLastId() + 1,
+        completion: "a",
       },
     ]);
   };
@@ -81,12 +81,32 @@ const TaskForm = ({
       <div className="row">
         <div className="col-8">
           <h4 className="text-center">Llista de Tasques</h4>
-          <Boards
-            noteArray={noteArray}
-            completionArray={completionArray}
-            userArray={userArray}
-            taskArray={taskArray}
-          />
+          <br></br>
+          <table>
+            <tbody>
+              <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Completion</th>
+                <th>Author</th>
+              </tr>
+              {tasques.map(({ id, author_id, completion_id, title }) => {
+                let user = userArray.find((user) => user.id === author_id);
+                let completion = completionArray.find(
+                  (completion) => completion.id === completion_id
+                );
+                console.log("user", user);
+                return (
+                  <Task
+                    id={id}
+                    title={title}
+                    author_id={author_id}
+                    completion_id={completion?.name}
+                  />
+                );
+              })}
+            </tbody>
+          </table>
           ;
           <ul className="list-group">
             {tasques.length === 0 ? (
@@ -95,7 +115,7 @@ const TaskForm = ({
               tasques.map((v) => {
                 return (
                   <li key={v.id} className="list-group-item">
-                    <span className="lead">{v.nomTasca}</span>
+                    <span className="lead">{v.title}</span>
                     <button
                       className="btn btn-sm btn-danger float-right mx-2"
                       onClick={() => esborrarTasca(v.id)}
@@ -125,10 +145,27 @@ const TaskForm = ({
             <input
               type="text"
               className="form-control mb-2"
-              placeholder="Afegeix Tasca"
-              onChange={(e) => setTasca(e.target.value)}
-              value={tasca}
+              placeholder="Description"
+              onChange={(e) => setTasca({ ...tasca, title: e.target.value })}
+              value={tasca.title}
             />
+            <select
+              type="text"
+              className="form-control mb-2"
+              placeholder="Afegeix Tasca"
+              onChange={(e) => {
+                setTasca({ ...tasca, assigned_id: e.target.value * 1 });
+              }}
+            >
+              <option selected hidden></option>
+              {userArray.map((user, idx) => {
+                return (
+                  <option value={user.id} key={idx}>
+                    {user.username}
+                  </option>
+                );
+              })}
+            </select>
 
             {modeEdicio ? (
               <button className="btn btn-warning btn-block" type="submit">
