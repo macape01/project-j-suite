@@ -1,4 +1,4 @@
-import { useState } from "react";
+/* import { useState } from "react";
 import { TicketsProps } from "../../interfaces/tickets";
 import styles from "./styles.module.scss";
 import Ticket from "./ticket";
@@ -26,7 +26,6 @@ const Tickets = ({ticketArray,assetArray,userArray,commentArray,statusArray}:Tic
           let user = userArray.find(user=>user.id === assigned_id);
           return (
             <Ticket
-              onClick={removeTicket}
               id={id}
               title={title}
               description={description}
@@ -41,3 +40,4 @@ const Tickets = ({ticketArray,assetArray,userArray,commentArray,statusArray}:Tic
   );
 };
 export default Tickets;
+ */
