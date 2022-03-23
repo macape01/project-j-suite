@@ -1,72 +1,78 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { nanoid } from "nanoid";
 import Messages from "../components/chatapp";
+import Message from "../components/chatapp/message";
+import Form from "../components/chatapp/form";
+
 
 const MessageForm = ({
   messagesArray,
   userArray,
+  chatArray,
 }) => {
-  const [tasca, setTasca] = useState("");
-  const [tasques, setTasques] = useState([]);
+  const [mens, setMessage] = useState({
+    author_id:"",
+    message:"",
+    chat_id:""
+  });
+  const [llistamissatges, setMessagesinArray] = useState([...messagesArray]);
   const [modeEdicio, setModeEdicio] = useState(false);
   const [id, setId] = useState("");
   const [error, setError] = useState(null);
 
-  const editar = (item) => {
-    console.log(item);
+  const forEdit = (item) => {
     setModeEdicio(true);
-    setTasca(item.nomTasca);
+    setMessage(item.message);
     setId(item.id);
   };
-  const editarTasca = (e) => {
-    console.log("edito");
+
+  const getLastId = () => {
+    return llistamissatges.length > 0
+      ? llistamissatges[llistamissatges.length - 1].id
+      : 0;
+  };
+
+  const editMessage = (e) => {
     e.preventDefault();
 
-    if (!tasca.trim()) {
-      console.log("Element buit");
-      setError("Introdueix algun valor");
-      return;
-    }
-    const arrayEditat = tasques.map((v) => {
-      return v.id === id ? { id: id, nomTasca: tasca } : v;
+    const arrayModified = llistamissatges.map((v) => {
+      return v.id === id ? { id: id, message: mens, chat_id: v.chat_id, author_id: v.author_id, published: v.published} : v;
     });
 
-    console.log(arrayEditat);
-    setTasques(arrayEditat);
+    console.log(arrayModified);
+    setMessagesinArray(arrayModified);
     setId("");
-    setTasca("");
+    setMessage("");
     setModeEdicio(false);
     setError(null);
   };
-  const esborrarTasca = (id) => {
-    console.log(id);
 
-    const arrayFiltrat = tasques.filter((v) => {
+  const delMessage = (id) => {
+
+    const arrayDeleted = llistamissatges.filter((v) => {
       return v.id !== id;
     });
-
-    setTasques(arrayFiltrat);
+    console.log(arrayDeleted);
+    setMessagesinArray(arrayDeleted);
   };
 
-  const afegirTasca = (e) => {
+  const putMessage = (e) => {
     e.preventDefault();
-
-    if (!tasca.trim()) {
-      console.log("Element buit");
-      setError("Introdueix algun valor");
-
+/* 
+    if (!mens.trim()) {
+      setError("Introdueix algun text");
       return;
-    }
-    console.log(tasca);
-    setTasca("");
+    } */
+    setMessage("");
     setError(null);
 
-    setTasques([
-      ...tasques,
+    setMessagesinArray([
+      ...llistamissatges,
       {
-        id: nanoid(),
-        nomTasca: tasca,
-      },
+        ...mens,
+        id: getLastId() + 1,
+        published:new Date().toLocaleDateString('es-EU')
+      }
     ]);
   };
 
@@ -77,63 +83,30 @@ const MessageForm = ({
       <div className="row">
         <div className="col-8">
           <h4 className="text-center">Llista de Missatges</h4>
+          <br></br>
           <Messages
-            messagesArray={messagesArray}
+            messagesArray={llistamissatges}
             userArray={userArray}
+            delMessage={delMessage}
+            forEdit={forEdit}
           />
-          ;
-          <ul className="list-group">
-            {tasques.length === 0 ? (
-              <li className="list-group-item">No hi ha missatges encara</li>
-            ) : (
-              tasques.map((v) => {
-                return (
-                  <li key={v.id} className="list-group-item">
-                    <span className="lead">{v.nomTasca}</span>
-                    <button
-                      className="btn btn-sm btn-danger float-right mx-2"
-                      onClick={() => esborrarTasca(v.id)}
-                    >
-                      Eliminar
-                    </button>
-                    <button
-                      className="btn btn-sm btn-warning float-right"
-                      onClick={() => editar(v)}
-                    >
-                      Editar
-                    </button>
-                  </li>
-                );
-              })
-            )}
-          </ul>
+          <br></br>
         </div>
 
         <div className="col-4">
           <h4 className="text-center">
-            {modeEdicio ? "Editar Tasca" : "Afegir Tasca"}
+            {modeEdicio ? "Editar Missatge" : "Afegir Missatge"}
           </h4>
-          <form onSubmit={modeEdicio ? editarTasca : afegirTasca}>
-            <span className="text-danger">{error} </span>
-
-            <input
-              type="text"
-              className="form-control mb-2"
-              placeholder="Afegeix Tasca"
-              onChange={(e) => setTasca(e.target.value)}
-              value={tasca}
-            />
-
-            {modeEdicio ? (
-              <button className="btn btn-warning btn-block" type="submit">
-                Editar
-              </button>
-            ) : (
-              <button className="btn btn-dark btn-block" type="submit">
-                Afegir
-              </button>
-            )}
-          </form>
+          <Form
+            modeEdicio={modeEdicio}
+            editMessage={editMessage}
+            putMessage={putMessage}
+            error={error}
+            setMessage={setMessage}
+            state={mens}
+            userArray={userArray}
+            chatArray={chatArray}
+          />
         </div>
       </div>
     </div>

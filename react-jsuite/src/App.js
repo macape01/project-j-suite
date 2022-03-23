@@ -20,7 +20,7 @@ const statusesArray = require("./data/statuses.json");
 const completionArray = require("./data/completion.json");
 const messagesArray = require("./data/messages.json");
 const userchatsArray = require("./data/user_chats.json");
-const chatsArray = require("./data/chats.json");
+const chatArray = require("./data/chats.json");
 
 function App() {
   return (
@@ -69,7 +69,7 @@ function App() {
             exact
             path="/messages"
             element={
-              <MessageForm messagesArray={messagesArray} userArray={userArray} />
+              <MessageForm messagesArray={messagesArray} userArray={userArray} chatArray={chatArray} />
             }
           ></Route>
         </Routes>
