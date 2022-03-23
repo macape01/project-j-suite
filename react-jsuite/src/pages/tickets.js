@@ -4,7 +4,7 @@ import { nanoid } from "nanoid";
 import Tickets from "../components/tickets";
 import Ticket from "../components/tickets/ticket";
 import "./tickets.scss";
-import Form from "../components/form";
+import Form from "../components/tickets/form";
 
 const TicketForm = ({
   ticketArray,
@@ -14,10 +14,10 @@ const TicketForm = ({
   statusArray,
 }) => {
   const [ticket, setTicket] = useState({
-    title:"",
-    description:"",
-    asset_id:"",
-    assigned_id:""
+    title: "",
+    description: "",
+    asset_id: "",
+    assigned_id: "",
   });
   const [tickets, setTickets] = useState([...ticketArray]);
   const [modeEdicio, setModeEdicio] = useState(false);
@@ -47,11 +47,11 @@ const TicketForm = ({
     setTickets(arrayEditat);
     setId(false);
     setTicket({
-      title:"",
-      description:"",
-      asset_id:"",
-      assigned_id:"",
-      status_id:""
+      title: "",
+      description: "",
+      asset_id: "",
+      assigned_id: "",
+      status_id: "",
     });
     setModeEdicio(false);
     setError(null);
@@ -66,13 +66,13 @@ const TicketForm = ({
 
   const afegirTasca = (e) => {
     e.preventDefault();
-    let value = Object.values(ticket).find(t=>{
-      if(t === "" || t === null )return true
-    })
+    let value = Object.values(ticket).find((t) => {
+      if (t === "" || t === null) return true;
+    });
 
     if (value !== undefined) {
-      setError("Cagaste")
-      return 
+      setError("Cagaste");
+      return;
     }
     setError(null);
 
@@ -85,13 +85,12 @@ const TicketForm = ({
     ]);
 
     setTicket({
-      title:"",
-      description:"",
-      asset_id:"",
-      assigned_id:"",
-      status_id:""
+      title: "",
+      description: "",
+      asset_id: "",
+      assigned_id: "",
+      status_id: "",
     });
-
   };
 
   useEffect(() => {
