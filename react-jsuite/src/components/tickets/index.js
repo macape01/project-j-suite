@@ -11,7 +11,6 @@ const Tickets = ({
   esborrarTasca,
   editar,
 }) => {
-  console.log(ticketArray);
 
   return (
     <table className={`table table-bordered table-striped ${styles.tickets} `}>
@@ -22,14 +21,17 @@ const Tickets = ({
           <th>Description</th>
           <th>Asset</th>
           <th>Assigned</th>
+          <th>Status</th>
           <th colSpan={2}>Options</th>
         </tr>
         {ticketArray.map((ticket) => {
           let asset = assetArray.find((asset) => asset.id === ticket.asset_id);
           let user = userArray.find((user) => user.id === ticket.assigned_id);
+          let status = statusArray.find((status) => status.id === ticket.status_id);
           console.log("user", user);
           return (
             <Ticket
+              key={ticket.id}
               id={ticket.id}
               title={ticket.title}
               description={ticket.description}
@@ -38,6 +40,7 @@ const Tickets = ({
               esborrarTasca={esborrarTasca}
               editar={editar}
               ticket={ticket}
+              status={status.name}
             />
           );
         })}

@@ -10,6 +10,7 @@ const Ticket = ({
   assigned,
   esborrarTasca,
   editar,
+  status,
 }) => {
   return (
     <tr className={styles.ticket}>
@@ -18,6 +19,7 @@ const Ticket = ({
       <td>{description}</td>
       <td>{asset}</td>
       <td>{assigned}</td>
+      <td>{status}</td>
       <td>
         <button
           className="btn btn-sm btn-danger float-right mx-2"

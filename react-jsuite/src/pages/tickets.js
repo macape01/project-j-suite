@@ -13,7 +13,12 @@ const TicketForm = ({
   commentArray,
   statusArray,
 }) => {
-  const [ticket, setTicket] = useState({});
+  const [ticket, setTicket] = useState({
+    title:"",
+    description:"",
+    asset_id:"",
+    assigned_id:""
+  });
   const [tickets, setTickets] = useState([...ticketArray]);
   const [modeEdicio, setModeEdicio] = useState(false);
   const [id, setId] = useState("");
@@ -24,7 +29,6 @@ const TicketForm = ({
   };
 
   const editar = (item) => {
-    console.log(item);
     setModeEdicio(true);
     setTicket(item);
     setId(item.id);
@@ -40,16 +44,19 @@ const TicketForm = ({
       }
     });
 
-    console.log(arrayEditat);
     setTickets(arrayEditat);
     setId(false);
-    setTicket("");
+    setTicket({
+      title:"",
+      description:"",
+      asset_id:"",
+      assigned_id:"",
+      status_id:""
+    });
     setModeEdicio(false);
     setError(null);
   };
   const esborrarTasca = (id) => {
-    console.log(id);
-
     const arrayFiltrat = tickets.filter((v) => {
       return v.id !== id;
     });
@@ -59,19 +66,32 @@ const TicketForm = ({
 
   const afegirTasca = (e) => {
     e.preventDefault();
-    if (Object.keys(ticket).length > 0) {
-      setError(null);
+    let value = Object.values(ticket).find(t=>{
+      if(t === "" || t === null )return true
+    })
 
-      setTickets([
-        ...tickets,
-        {
-          ...ticket,
-          id: getLastId() + 1,
-        },
-      ]);
-      return;
+    if (value !== undefined) {
+      setError("Cagaste")
+      return 
     }
-    setError("Cagaste");
+    setError(null);
+
+    setTickets([
+      ...tickets,
+      {
+        ...ticket,
+        id: getLastId() + 1,
+      },
+    ]);
+
+    setTicket({
+      title:"",
+      description:"",
+      asset_id:"",
+      assigned_id:"",
+      status_id:""
+    });
+
   };
 
   useEffect(() => {
@@ -90,6 +110,7 @@ const TicketForm = ({
             ticketArray={tickets}
             assetArray={assetArray}
             userArray={userArray}
+            statusArray={statusArray}
             esborrarTasca={esborrarTasca}
             editar={editar}
           />
@@ -102,13 +123,14 @@ const TicketForm = ({
           </h4>
           <Form
             modeEdicio={modeEdicio}
-            editarTasca={editarTasca}
-            afegirTasca={afegirTasca}
+            editar={editarTasca}
+            afegir={afegirTasca}
             error={error}
-            setTicket={setTicket}
-            ticket={ticket}
+            setState={setTicket}
+            state={ticket}
             userArray={userArray}
             assetArray={assetArray}
+            statusArray={statusArray}
           />
         </div>
       </div>

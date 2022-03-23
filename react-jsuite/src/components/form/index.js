@@ -2,37 +2,38 @@ import React from "react";
 
 const Form = ({
   modeEdicio,
-  editarTasca,
-  afegirTasca,
+  editar,
+  afegir,
   error,
-  setTicket,
-  ticket,
+  setState,
+  state,
   userArray,
   assetArray,
+  statusArray
 }) => {
   return (
-    <form onSubmit={modeEdicio ? editarTasca : afegirTasca}>
+    <form onSubmit={modeEdicio ? editar : afegir}>
       <span className="text-danger">{error} </span>
       <input
         type="text"
         className="form-control mb-2"
         placeholder="Títol"
-        onChange={(e) => setTicket({ ...ticket, title: e.target.value })}
-        value={ticket.title ?? ""}
+        onChange={(e) => setState({ ...state, title: e.target.value })}
+        value={state.title}
       />
       <input
         type="text"
         className="form-control mb-2"
         placeholder="Description"
-        onChange={(e) => setTicket({ ...ticket, description: e.target.value })}
-        value={ticket.description ?? ""}
+        onChange={(e) => setState({ ...state, description: e.target.value })}
+        value={state.description}
       />
       <select
         type="text"
         className="form-control mb-2"
-        value={ticket.assigned_id}
+        value={state.assigned_id}
         onChange={(e) => {
-          setTicket({ ...ticket, assigned_id: e.target.value * 1 });
+          setState({ ...state, assigned_id: e.target.value * 1 });
         }}
       >
         <option selected hidden>
@@ -49,9 +50,9 @@ const Form = ({
       <select
         type="text"
         className="form-control mb-2"
-        value={ticket.asset_id}
+        value={state.asset_id}
         onChange={(e) => {
-          setTicket({ ...ticket, asset_id: e.target.value * 1 });
+          setState({ ...state, asset_id: e.target.value * 1 });
         }}
       >
         <option selected hidden>
@@ -61,6 +62,25 @@ const Form = ({
           return (
             <option value={asset.id} key={idx}>
               {asset.model}
+            </option>
+          );
+        })}
+      </select>
+      <select
+        type="text"
+        className="form-control mb-2"
+        value={state.status_id}
+        onChange={(e) => {
+          setState({ ...state, status_id: e.target.value * 1 });
+        }}
+      >
+        <option selected hidden>
+          Escull un status 
+        </option>
+        {statusArray.map((status, idx) => {
+          return (
+            <option value={status.id} key={idx}>
+              {status.name}
             </option>
           );
         })}
