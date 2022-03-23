@@ -13,11 +13,14 @@ const TicketForm = ({
   commentArray,
   statusArray,
 }) => {
+  const [newCommentArray, setCommentArray] = useState([...commentArray]);
   const [ticket, setTicket] = useState({
     title: "",
     description: "",
     asset_id: "",
     assigned_id: "",
+    status_id: "",
+    comments: [],
   });
   const [tickets, setTickets] = useState([...ticketArray]);
   const [modeEdicio, setModeEdicio] = useState(false);
@@ -29,8 +32,9 @@ const TicketForm = ({
   };
 
   const editar = (item) => {
+    let comments = newCommentArray.filter((c) => c.ticket_id === item.id * 1);
     setModeEdicio(true);
-    setTicket(item);
+    setTicket({ ...item, comments });
     setId(item.id);
   };
 
@@ -106,6 +110,7 @@ const TicketForm = ({
           <h4 className="text-center">Llista de Tasques</h4>
           <br></br>
           <Tickets
+            commentArray={newCommentArray}
             ticketArray={tickets}
             assetArray={assetArray}
             userArray={userArray}
@@ -121,6 +126,7 @@ const TicketForm = ({
             {modeEdicio ? "Editar Tasca" : "Afegir Tasca"}
           </h4>
           <Form
+            setCommentArray={setCommentArray}
             modeEdicio={modeEdicio}
             editar={editarTasca}
             afegir={afegirTasca}
@@ -130,6 +136,7 @@ const TicketForm = ({
             userArray={userArray}
             assetArray={assetArray}
             statusArray={statusArray}
+            commentArray={newCommentArray}
           />
         </div>
       </div>
