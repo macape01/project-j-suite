@@ -9,7 +9,7 @@
     {
         "id": 1,
         "author_id": 2,
-        "ticket_id": 2,
+        "ticket_id": 0,
         "msg": "De vegades, de vgades no ... és confús",
         "created": "22/2/22"
     },

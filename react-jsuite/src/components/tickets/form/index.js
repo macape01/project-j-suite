@@ -6,10 +6,12 @@ const Form = ({
   afegir,
   error,
   setState,
+  setCommentArray,
   state,
   userArray,
   assetArray,
-  statusArray
+  statusArray,
+  commentArray,
 }) => {
   return (
     <form onSubmit={modeEdicio ? editar : afegir}>
@@ -75,7 +77,7 @@ const Form = ({
         }}
       >
         <option selected hidden>
-          Escull un status 
+          Escull un status
         </option>
         {statusArray.map((status, idx) => {
           return (
@@ -85,6 +87,39 @@ const Form = ({
           );
         })}
       </select>
+      {modeEdicio && (
+        <>
+          <label>Estos son los comments</label>
+          <select value={"a"} className="form-control mb-2">
+            {commentArray
+              .filter((c) => c.ticket_id === state.id)
+              .map((comment, idx) => {
+                return (
+                  <option selected disabled value={comment.id} key={idx}>
+                    {comment.msg}
+                  </option>
+                );
+              })}
+          </select>
+          <input
+            type="text"
+            className="form-control mb-2"
+            placeholder="Comment"
+            onBlur={(e) =>
+              setCommentArray([
+                ...commentArray,
+                {
+                  id: 3,
+                  author_id: 5,
+                  ticket_id: state.id,
+                  msg: e.target.value,
+                  created: "22/2/2",
+                },
+              ])
+            }
+          />
+        </>
+      )}
       {modeEdicio ? (
         <>
           <button className="btn btn-warning btn-block" type="submit">
