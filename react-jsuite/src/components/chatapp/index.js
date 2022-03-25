@@ -14,6 +14,8 @@ const Messages = ({messagesArray,userArray,esborrar,forEdit}) => {
           <th>Chat_id</th>
           <th>Author</th>
           <th>Published</th>
+          <th>Editar</th>
+          <th>Borrar</th>
         </tr>
       {
         messagesArray.map((mens)=>{

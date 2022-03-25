@@ -107,7 +107,7 @@ const TicketForm = ({
       <hr />
       <div className="row">
         <div className="col-8">
-          <h4 className="text-center">Llista de Tasques</h4>
+          <h4 className="text-center">Llista de Tickets</h4>
           <br></br>
           <Tickets
             commentArray={newCommentArray}
