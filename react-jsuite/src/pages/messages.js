@@ -46,7 +46,6 @@ const MessageForm = ({
     setModeEdicio(false);
     setError(null);
   };
-
   const delMessage = (id) => {
 
     const arrayDeleted = llistamissatges.filter((v) => {
@@ -87,7 +86,7 @@ const MessageForm = ({
           <Messages
             messagesArray={llistamissatges}
             userArray={userArray}
-            delMessage={delMessage}
+            esborrar={delMessage}
             forEdit={forEdit}
           />
           <br></br>

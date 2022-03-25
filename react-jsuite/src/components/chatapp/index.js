@@ -2,7 +2,7 @@ import { useState } from "react";
 import Message from "./message";
 import styles from "./styles.module.scss";
 
-const Messages = ({messagesArray,userArray}) => {
+const Messages = ({messagesArray,userArray,esborrar,editar}) => {
   console.log(messagesArray)
 
   return (
@@ -21,6 +21,8 @@ const Messages = ({messagesArray,userArray}) => {
           return (
             <Message
               id={id}
+              editar={editar}
+              delMessage={esborrar}
               message={message}
               chatId={chat_id}
               author={user.username}

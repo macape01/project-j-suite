@@ -84,9 +84,6 @@ const TaskForm = ({ noteArray, completionArray, userArray, taskArray }) => {
     });
   };
 
-  useEffect(() => {
-    console.log("TASKSSS", tasques);
-  }, [tasques]);
 
   return (
     <div className="container mt-5">
