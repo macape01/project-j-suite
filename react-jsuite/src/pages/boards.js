@@ -22,9 +22,10 @@ const TaskForm = ({ noteArray, completionArray, userArray, taskArray }) => {
   };
 
   const editar = (item) => {
+    console.log("cosas");
     console.log(item);
     setModeEdicio(true);
-    setTasca(item.title);
+    setTasca(item);
     setId(item.id);
   };
   const editarTasca = (e) => {

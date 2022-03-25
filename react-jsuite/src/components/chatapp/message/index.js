@@ -1,4 +1,4 @@
-const Message = ({id,message,chatId,author,published,delMessage,editar}) => {
+const Message = ({id,message,chatId,author,published,delMessage,forEdit,messageObject}) => {
   return (
     <tr>
       <td>{id}</td>
@@ -17,7 +17,7 @@ const Message = ({id,message,chatId,author,published,delMessage,editar}) => {
       <td>
         <button
           className="btn btn-sm btn-warning float-right"
-          onClick={() => editar(message)}
+          onClick={() => forEdit(messageObject)}
         >
           Editar
         </button>

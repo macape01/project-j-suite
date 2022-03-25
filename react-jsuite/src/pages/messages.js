@@ -10,19 +10,20 @@ const MessageForm = ({
   userArray,
   chatArray,
 }) => {
-  const [mens, setMessage] = useState({
+  const [message, setMessage] = useState({
     author_id:"",
     message:"",
     chat_id:""
   });
-  const [llistamissatges, setMessagesinArray] = useState([...messagesArray]);
+  const [llistamissatges, setLlistaMissatges] = useState([...messagesArray]);
   const [modeEdicio, setModeEdicio] = useState(false);
   const [id, setId] = useState("");
   const [error, setError] = useState(null);
 
   const forEdit = (item) => {
+    console.log("cosas de",item)
     setModeEdicio(true);
-    setMessage(item.message);
+    setMessage(item);
     setId(item.id);
   };
 
@@ -33,16 +34,22 @@ const MessageForm = ({
   };
 
   const editMessage = (e) => {
+    console.log("edito");
     e.preventDefault();
-
-    const arrayModified = llistamissatges.map((v) => {
-      return v.id === id ? { id: id, message: mens, chat_id: v.chat_id, author_id: v.author_id, published: v.published} : v;
+    let arrayEditat = [...llistamissatges];
+    llistamissatges.forEach((t, idx) => {
+      if (t.id === message.id) {
+        arrayEditat[idx] = message;
+      }
     });
 
-    console.log(arrayModified);
-    setMessagesinArray(arrayModified);
-    setId("");
-    setMessage("");
+    setLlistaMissatges(arrayEditat);
+    setId(false);
+    setMessage({
+      user_id: "",
+      message: "",
+      chat_id: ""
+    });
     setModeEdicio(false);
     setError(null);
   };
@@ -52,23 +59,25 @@ const MessageForm = ({
       return v.id !== id;
     });
     console.log(arrayDeleted);
-    setMessagesinArray(arrayDeleted);
+    setLlistaMissatges(arrayDeleted);
   };
 
   const putMessage = (e) => {
     e.preventDefault();
-/* 
-    if (!mens.trim()) {
-      setError("Introdueix algun text");
+    let value = Object.values(message).find((t) => {
+      if (t === "" || t === null) return true;
+    });
+
+    if (value !== undefined) {
+      setError("Cagaste");
       return;
-    } */
-    setMessage("");
+    }
     setError(null);
 
-    setMessagesinArray([
+    setLlistaMissatges([
       ...llistamissatges,
       {
-        ...mens,
+        ...message,
         id: getLastId() + 1,
         published:new Date().toLocaleDateString('es-EU')
       }
@@ -102,7 +111,7 @@ const MessageForm = ({
             putMessage={putMessage}
             error={error}
             setMessage={setMessage}
-            state={mens}
+            state={message}
             userArray={userArray}
             chatArray={chatArray}
           />

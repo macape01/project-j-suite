@@ -22,7 +22,6 @@ const Form = ({
         }}
       >
         <option selected hidden>
-          Identificat
         </option>
         {userArray.map((user, idx) => {
           return (
@@ -48,7 +47,6 @@ const Form = ({
         }}
       >
         <option selected hidden>
-          A qui li vols enviar el missatge?
         </option>
         {chatArray.map((chat, idx) => {
           return (
