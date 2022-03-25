@@ -1,11 +1,12 @@
 import { useState } from "react";
 import Message from "./message";
+import styles from "./styles.module.scss";
 
 const Messages = ({messagesArray,userArray}) => {
   console.log(messagesArray)
 
   return (
-    <table className={`table table-bordered table-striped`}>
+    <table className={`table table-bordered table-striped ${styles.messages}`}>
       <tbody>
         <tr>
           <th>Id</th>

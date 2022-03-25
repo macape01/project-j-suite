@@ -12,7 +12,7 @@ const Tasks = ({
 }) => {
   console.log("tasks", taskArray);
   return (
-    <table className={`table table-bordered table-striped ${styles.tickets}`}>
+    <table className={`table table-bordered table-striped ${styles.tasks}`}>
       <tbody>
         <tr>
           <th>Id</th>
