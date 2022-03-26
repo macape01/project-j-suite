@@ -11,7 +11,6 @@ const Tickets = ({
   esborrarTasca,
   editar,
 }) => {
-  console.log("commenta", commentArray);
 
   return (
     <table className={`table table-bordered table-striped ${styles.tickets} `}>

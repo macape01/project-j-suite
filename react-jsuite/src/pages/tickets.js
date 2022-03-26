@@ -5,6 +5,8 @@ import Tickets from "../components/tickets";
 import Ticket from "../components/tickets/ticket";
 import "./tickets.scss";
 import Form from "../components/tickets/form";
+import {db} from '../firebase'
+import { collection, doc, orderBy, query, where, getDocs, addDoc, serverTimestamp, deleteDoc, setDoc, onSnapshot} from "firebase/firestore"
 
 const TicketForm = ({
   ticketArray,
@@ -13,7 +15,22 @@ const TicketForm = ({
   commentArray,
   statusArray,
 }) => {
+  const ticketCollectionRef = collection(db,'Tickets')
+  
+  const q = query(ticketCollectionRef,orderBy('id','desc'));
+
+  useEffect(()=>{
+    onSnapshot(q,(snapshot)=>{
+      const newDades = snapshot.docs.map(doc => {
+        return {...doc.data(),id:doc.id}
+      })
+      setTickets(newDades)
+    })
+
+  },[])
+
   const [newCommentArray, setCommentArray] = useState([...commentArray]);
+
   const [ticket, setTicket] = useState({
     title: "",
     description: "",
@@ -48,6 +65,11 @@ const TicketForm = ({
       }
     });
 
+    setDoc(doc(db,'Tickets',ticket.id),{
+      ...ticket,
+      time: serverTimestamp()
+    })
+
     setTickets(arrayEditat);
     setId(false);
     setTicket({
@@ -66,6 +88,8 @@ const TicketForm = ({
     });
 
     setTickets(arrayFiltrat);
+
+    deleteDoc(doc(db,'Tickets',id))
   };
 
   const afegirTasca = (e) => {
@@ -88,6 +112,14 @@ const TicketForm = ({
       },
     ]);
 
+    addDoc(ticketCollectionRef,
+      {
+        ...ticket,
+        time:serverTimestamp(),
+        id:getLastId()+1
+      }
+    )
+
     setTicket({
       title: "",
       description: "",
@@ -97,9 +129,6 @@ const TicketForm = ({
     });
   };
 
-  useEffect(() => {
-    console.log("tickets", tickets);
-  }, [tickets]);
 
   return (
     <div className="container mt-5">
