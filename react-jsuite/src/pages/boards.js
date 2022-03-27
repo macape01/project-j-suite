@@ -5,12 +5,30 @@ import Boards from "../components/boards";
 import Task from "../components/boards/task";
 import Form from "../components/boards/form";
 import Tasks from "../components/boards";
+import {db} from '../firebase'
+import { collection, doc, orderBy, query, where, getDocs, addDoc, serverTimestamp, deleteDoc, setDoc, onSnapshot} from "firebase/firestore"
+
+
 
 const TaskForm = ({ noteArray, completionArray, userArray, taskArray }) => {
+  const taskCollectionRef = collection(db,'Tasks')
+  const q = query(taskCollectionRef,orderBy('id','title'));
+
+  useEffect(()=>{
+    onSnapshot(q,(snapshot)=>{
+      const newDades = snapshot.docs.map((v) => {
+        return {...v.data(),id:v.id}
+      })
+      setTasques(newDades)
+    })
+
+  },[])
+
+  
   const [tasca, setTasca] = useState({
     title: "",
-    author_id: "",
     completion_id: "",
+    author_id: "",
   });
   const [tasques, setTasques] = useState([...taskArray]);
   const [modeEdicio, setModeEdicio] = useState(false);
@@ -20,7 +38,6 @@ const TaskForm = ({ noteArray, completionArray, userArray, taskArray }) => {
   const getLastId = () => {
     return tasques.length > 0 ? tasques[tasques.length - 1].id : 0;
   };
-
   const editar = (item) => {
     console.log("cosas");
     console.log(item);
@@ -51,11 +68,7 @@ const TaskForm = ({ noteArray, completionArray, userArray, taskArray }) => {
   const esborrarTasca = (id) => {
     console.log(id);
 
-    const arrayFiltrat = tasques.filter((v) => {
-      return v.id !== id;
-    });
-
-    setTasques(arrayFiltrat);
+    deleteDoc(doc(db,'Tasks',id))
   };
 
   const afegirTasca = (e) => {
@@ -74,9 +87,14 @@ const TaskForm = ({ noteArray, completionArray, userArray, taskArray }) => {
       ...tasques,
       {
         ...tasca,
-        id: getLastId() + 1,
+
       },
     ]);
+    addDoc(taskCollectionRef,
+      {
+        ...tasca,
+      }
+    )
 
     setTasca({
       title: "",
