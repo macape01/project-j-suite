@@ -92,7 +92,7 @@ const Form = ({
           <label>Estos son los comments</label>
           <select value={"a"} className="form-control mb-2">
             {commentArray
-              .filter((c) => c.ticket_id === state.id)
+              .filter((c) => c.ticket_id === state.tid)
               .map((comment, idx) => {
                 return (
                   <option selected disabled value={comment.id} key={idx}>

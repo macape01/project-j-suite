@@ -17,19 +17,28 @@ const TicketForm = ({
 }) => {
   const ticketCollectionRef = collection(db,'Tickets')
   
-  const q = query(ticketCollectionRef,orderBy('id','desc'));
+  const q = query(ticketCollectionRef,orderBy('tid','asc'));
 
   useEffect(()=>{
     onSnapshot(q,(snapshot)=>{
       const newDades = snapshot.docs.map(doc => {
         return {...doc.data(),id:doc.id}
       })
+      console.log("dades",newDades)
       setTickets(newDades)
     })
 
   },[])
-
+  
+  const [tickets, setTickets] = useState([]);
+  const [modeEdicio, setModeEdicio] = useState(false);
+  const [error, setError] = useState(null);
   const [newCommentArray, setCommentArray] = useState([...commentArray]);
+
+  const getLastId = () => {
+    return tickets.length > 0 ? tickets[tickets.length - 1].tid*1 + 1 : 0;
+  };
+
 
   const [ticket, setTicket] = useState({
     title: "",
@@ -39,20 +48,12 @@ const TicketForm = ({
     status_id: "",
     comments: [],
   });
-  const [tickets, setTickets] = useState([...ticketArray]);
-  const [modeEdicio, setModeEdicio] = useState(false);
-  const [id, setId] = useState("");
-  const [error, setError] = useState(null);
 
-  const getLastId = () => {
-    return tickets.length > 0 ? tickets[tickets.length - 1].id : 0;
-  };
 
   const editar = (item) => {
     let comments = newCommentArray.filter((c) => c.ticket_id === item.id * 1);
     setModeEdicio(true);
     setTicket({ ...item, comments });
-    setId(item.id);
   };
 
   const editarTasca = (e) => {
@@ -71,7 +72,6 @@ const TicketForm = ({
     })
 
     setTickets(arrayEditat);
-    setId(false);
     setTicket({
       title: "",
       description: "",
@@ -108,15 +108,15 @@ const TicketForm = ({
       ...tickets,
       {
         ...ticket,
-        id: getLastId() + 1,
+        tid: getLastId(),
       },
     ]);
 
     addDoc(ticketCollectionRef,
       {
         ...ticket,
+        tid: getLastId(),
         time:serverTimestamp(),
-        id:getLastId()+1
       }
     )
 

@@ -26,19 +26,21 @@ const Tickets = ({
           <th colSpan={2}>Options</th>
         </tr>
         {ticketArray.map((ticket) => {
+          console.log("ticket",ticket)
           let asset = assetArray.find((asset) => asset.id === ticket.asset_id);
           let user = userArray.find((user) => user.id === ticket.assigned_id);
           let status = statusArray.find(
             (status) => status.id === ticket.status_id
           );
           let comments = commentArray.filter(
-            (comment) => comment.ticket_id === ticket.id
+            (comment) => comment.ticket_id === ticket.tid
           );
           console.log("user", user);
           return (
             <Ticket
               key={ticket.id}
               id={ticket.id}
+              tid={ticket.tid}
               title={ticket.title}
               description={ticket.description}
               asset={asset?.model}

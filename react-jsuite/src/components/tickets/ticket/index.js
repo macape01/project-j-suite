@@ -5,6 +5,7 @@ const Ticket = ({
   ticket,
   description,
   id,
+  tid,
   title,
   asset,
   assigned,
@@ -17,7 +18,8 @@ const Ticket = ({
   console.log("coommentsfasfass", comments);
   return (
     <tr className={styles.ticket}>
-      <td>{id}</td>
+      <input type={"hidden"} value={id}></input>
+      <td>{tid}</td>
       <td>{title}</td>
       <td>{description}</td>
       <td>{asset}</td>
