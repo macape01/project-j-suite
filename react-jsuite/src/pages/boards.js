@@ -12,51 +12,44 @@ import { collection, doc, orderBy, query, where, getDocs, addDoc, serverTimestam
 
 const TaskForm = ({ noteArray, completionArray, userArray, taskArray }) => {
   const taskCollectionRef = collection(db,'Tasks')
-  const q = query(taskCollectionRef,orderBy('id','title'));
+  const q = query(taskCollectionRef,orderBy('title','asc'));
 
   useEffect(()=>{
     onSnapshot(q,(snapshot)=>{
       const newDades = snapshot.docs.map((v) => {
         return {...v.data(),id:v.id}
       })
+      console.log("a",newDades)
       setTasques(newDades)
     })
 
   },[])
 
   
+  const [tasques, setTasques] = useState([]);
+  const [modeEdicio, setModeEdicio] = useState(false);
+  const [error, setError] = useState(null);
+
   const [tasca, setTasca] = useState({
     title: "",
     completion_id: "",
     author_id: "",
   });
-  const [tasques, setTasques] = useState([...taskArray]);
-  const [modeEdicio, setModeEdicio] = useState(false);
-  const [id, setId] = useState("");
-  const [error, setError] = useState(null);
 
-  const getLastId = () => {
-    return tasques.length > 0 ? tasques[tasques.length - 1].id : 0;
-  };
   const editar = (item) => {
-    console.log("cosas");
-    console.log(item);
     setModeEdicio(true);
     setTasca(item);
-    setId(item.id);
   };
   const editarTasca = (e) => {
     console.log("edito");
     e.preventDefault();
-    let arrayEditat = [...tasques];
-    tasques.forEach((t, idx) => {
-      if (t.id === tasca.id) {
-        arrayEditat[idx] = tasca;
-      }
-    });
 
-    setTasques(arrayEditat);
-    setId(false);
+    setDoc(doc(db,'Tasks',tasca.id),{
+      ...tasca,
+      time: serverTimestamp()
+    })
+
+
     setTasca({
       title: "",
       author_id: "",
@@ -83,16 +76,10 @@ const TaskForm = ({ noteArray, completionArray, userArray, taskArray }) => {
     }
     setError(null);
 
-    setTasques([
-      ...tasques,
-      {
-        ...tasca,
-
-      },
-    ]);
     addDoc(taskCollectionRef,
       {
         ...tasca,
+        time:serverTimestamp()
       }
     )
 
