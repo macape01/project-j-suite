@@ -3,6 +3,8 @@ import { nanoid } from "nanoid";
 import Messages from "../components/chatapp";
 import Message from "../components/chatapp/message";
 import Form from "../components/chatapp/form";
+import { collection, doc, orderBy, query, where, getDocs, addDoc, serverTimestamp, deleteDoc, setDoc, onSnapshot} from "firebase/firestore"
+import {db} from '../firebase'
 
 
 const MessageForm = ({
@@ -10,41 +12,51 @@ const MessageForm = ({
   userArray,
   chatArray,
 }) => {
+  const [llistamissatges, setLlistaMissatges] = useState([]);
+  const messageCollectionRef = collection(db,'Messages')
+  
+  const q = query(messageCollectionRef,orderBy("mid","asc"));
+
+  useEffect(()=>{
+    onSnapshot(q,(snapshot)=>{
+      const newDades = snapshot.docs.map(doc => {
+        return {...doc.data(),id:doc.id}
+      })
+      console.log("newinfo",newDades)
+      setLlistaMissatges(newDades)
+    })
+
+  },[])
+
   const [message, setMessage] = useState({
     author_id:"",
     message:"",
     chat_id:""
   });
-  const [llistamissatges, setLlistaMissatges] = useState([...messagesArray]);
   const [modeEdicio, setModeEdicio] = useState(false);
-  const [id, setId] = useState("");
   const [error, setError] = useState(null);
 
   const forEdit = (item) => {
     console.log("cosas de",item)
     setModeEdicio(true);
     setMessage(item);
-    setId(item.id);
   };
 
   const getLastId = () => {
     return llistamissatges.length > 0
-      ? llistamissatges[llistamissatges.length - 1].id
+      ? llistamissatges[llistamissatges.length - 1].mid*1 + 1
       : 0;
   };
 
   const editMessage = (e) => {
     console.log("edito");
     e.preventDefault();
-    let arrayEditat = [...llistamissatges];
-    llistamissatges.forEach((t, idx) => {
-      if (t.id === message.id) {
-        arrayEditat[idx] = message;
-      }
-    });
 
-    setLlistaMissatges(arrayEditat);
-    setId(false);
+    setDoc(doc(db,'Messages',message.id),{
+      ...message,
+      published: new Date().toLocaleDateString("es-EU")
+    })
+
     setMessage({
       user_id: "",
       message: "",
@@ -54,12 +66,9 @@ const MessageForm = ({
     setError(null);
   };
   const delMessage = (id) => {
+    console.log("id",id)
+    deleteDoc(doc(db,'Messages',id))
 
-    const arrayDeleted = llistamissatges.filter((v) => {
-      return v.id !== id;
-    });
-    console.log(arrayDeleted);
-    setLlistaMissatges(arrayDeleted);
   };
 
   const putMessage = (e) => {
@@ -74,14 +83,19 @@ const MessageForm = ({
     }
     setError(null);
 
-    setLlistaMissatges([
-      ...llistamissatges,
+    addDoc(messageCollectionRef,
       {
         ...message,
-        id: getLastId() + 1,
-        published:new Date().toLocaleDateString('es-EU')
+        mid: getLastId(),
+        published:  new Date().toLocaleDateString("es-EU")
       }
-    ]);
+    )
+
+    setMessage({
+      user_id: "",
+      message: "",
+      chat_id: ""
+    });
   };
 
   return (

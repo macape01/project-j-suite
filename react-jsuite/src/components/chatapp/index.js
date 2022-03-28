@@ -2,8 +2,8 @@ import { useState } from "react";
 import Message from "./message";
 import styles from "./styles.module.scss";
 
-const Messages = ({messagesArray,userArray,esborrar,forEdit}) => {
-  console.log(messagesArray)
+const Messages = ({ messagesArray, userArray, esborrar, forEdit }) => {
+  console.log(messagesArray);
 
   return (
     <table className={`table table-bordered table-striped ${styles.messages}`}>
@@ -17,11 +17,12 @@ const Messages = ({messagesArray,userArray,esborrar,forEdit}) => {
           <th>Editar</th>
           <th>Borrar</th>
         </tr>
-      {
-        messagesArray.map((mens)=>{
-          let user = userArray.find(user=>user.id === mens.author_id);
+        {messagesArray.map((mens) => {
+          console.log("mens", mens);
+          let user = userArray.find((user) => user.id === mens.author_id);
           return (
             <Message
+              mid={mens.mid}
               id={mens.id}
               forEdit={forEdit}
               delMessage={esborrar}

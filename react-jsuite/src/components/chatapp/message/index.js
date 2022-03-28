@@ -1,7 +1,7 @@
-const Message = ({id,message,chatId,author,published,delMessage,forEdit,messageObject}) => {
+const Message = ({mid,id,message,chatId,author,published,delMessage,forEdit,messageObject}) => {
   return (
     <tr>
-      <td>{id}</td>
+      <td>{mid}</td>
       <td>{message}</td>
       <td>{chatId}</td>
       <td>{author}</td>
