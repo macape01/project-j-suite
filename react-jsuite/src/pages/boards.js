@@ -95,9 +95,11 @@ const TaskForm = ({ noteArray, completionArray, userArray, taskArray }) => {
     )
 
     setTasca({
+      id:"",
       title: "",
       author_id: "",
       completion_id: "",
+    
     });
   };
 
