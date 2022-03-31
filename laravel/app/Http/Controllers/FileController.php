@@ -14,8 +14,11 @@ class FileController extends Controller
      */
     public function index()
     {
+        $files = File::all();
+        \Log::debug($files);
+
         return view("files.index", [
-            "files" => File::all()
+            "files" => $files
         ]);
     }
 

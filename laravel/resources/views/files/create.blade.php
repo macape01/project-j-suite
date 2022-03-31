@@ -7,12 +7,15 @@
  
    <div class="py-12">
        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-           <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-               <form enctype="multipart/form-data" method="POST" action="{{ url('files') }}" class="p-6 bg-white border-b border-gray-200" >
-                <label>Escull un fitxer: </label>
-                <input type="file" name="file"/>
-                </form>
-           </div>
+       <form method="post" action="{{ route('files.store') }}" enctype="multipart/form-data">
+            @csrf
+            <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="upload">File:</label>
+                <input type="file" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="upload"/>
+            </div>
+            <button type="submit" class="btn btn-primary">Create</button>
+            <button type="reset" class="btn btn-secondary">Reset</button>
+        </form>
        </div>
    </div>
 </x-app-layout>

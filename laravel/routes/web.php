@@ -31,5 +31,4 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::resource('files', FileController::class);
-Route::post('files', 'FileController@store()');
+Route::resource('files', FileController::class)->middleware("auth");
