@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\File;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class FileController extends Controller
 {
@@ -41,11 +42,44 @@ class FileController extends Controller
      */
     public function store(Request $request)
     {
-        $storeData = $request->validate([
-            'file' => 'required',
-        ]);
-        $file = File::create($storeData);
-        return redirect('/')->with('completed', 'File has been created!');
+       // Validar fitxer
+       $validatedData = $request->validate([
+           'upload' => 'required|mimes:gif,jpeg,jpg,png|max:1024'
+       ]);
+      
+       // Obtenir dades del fitxer
+       $upload = $request->file('upload');
+       $fileName = $upload->getClientOriginalName();
+       $fileSize = $upload->getSize();
+       \Log::debug("Storing file '{$fileName}' ($fileSize)...");
+ 
+       // Pujar fitxer al disc dur
+       $uploadName = time() . '_' . $fileName;
+       $filePath = $upload->storeAs(
+           'uploads',      // Path
+           $uploadName ,   // Filename
+           'public'        // Disk
+       );
+      
+       if (\Storage::disk('public')->missing($filePath)) {
+           \Log::debug("Local storage OK");
+           $fullPath = \Storage::disk('public')->path($filePath);
+           \Log::debug("File saved at {$fullPath}");
+           // Desar dades a BD
+           $file = File::create([
+               'filepath' => $filePath,
+               'filesize' => $fileSize,
+           ]);
+           \Log::debug("DB storage OK");
+           // Patró PRG amb missatge d'èxit
+           return redirect()->route('files.show', $file)
+               ->with('success', 'File successfully saved');
+       } else {
+           \Log::debug("Local storage FAILS");
+           // Patró PRG amb missatge d'error
+           return redirect()->route("files.create")
+               ->with('error', 'ERROR uploading file: file already exists');
+       }
     }
 
     /**
@@ -56,7 +90,18 @@ class FileController extends Controller
      */
     public function show(File $file)
     {
-        //
+        \Log::debug("Local storage FAILS");
+        \Log::debug($file);
+        //Revisar que ficheroe existe en DB
+        if (\Storage::disk('public')->exists($file->filepath)) {
+            return view("files.show", [
+                "file" => $file
+            ]);
+        } else {
+            // Patró PRG amb missatge d'error
+            return redirect()->route("files.index")
+                ->with('error', 'ERROR indexing file: file doesnt exists');
+        }
     }
 
     /**
@@ -67,7 +112,12 @@ class FileController extends Controller
      */
     public function edit(File $file)
     {
-        //
+        $file=File::create([
+            'filepath' => $filePath,
+            'filesize' => $fileSize,
+        ]);
+        
+
     }
 
     /**

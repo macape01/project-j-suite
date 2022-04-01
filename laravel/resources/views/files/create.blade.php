@@ -7,14 +7,19 @@
  
    <div class="py-12">
        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-       <form method="post" action="{{ route('files.store') }}" enctype="multipart/form-data">
-            @csrf
-            <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="upload">File:</label>
-                <input type="file" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="upload"/>
-            </div>
-            <button type="submit" class="btn btn-primary">Create</button>
-            <button type="reset" class="btn btn-secondary">Reset</button>
+        <form method="post" action="{{ route('files.store') }}" enctype="multipart/form-data" class="flex items-center space-x-6">
+           @csrf
+        <label class="block">
+            <span class="sr-only">Escull un arxiu</span>
+            <input type="file" name="upload" class="block w-full text-sm text-slate-500
+            file:mr-4 file:py-2 file:px-4
+            file:rounded-full file:border-0
+            file:text-sm file:font-semibold
+            file:bg-violet-50 file:text-violet-700
+            hover:file:bg-violet-100
+            "/>
+        </label>
+        <button type="submit">Envia</button>
         </form>
        </div>
    </div>
