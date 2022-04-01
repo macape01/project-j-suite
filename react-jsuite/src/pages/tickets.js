@@ -20,14 +20,14 @@ const TicketForm = ({
   const q = query(ticketCollectionRef,orderBy('tid','asc'));
 
   useEffect(()=>{
-    onSnapshot(q,(snapshot)=>{
+    const snapshotRef = onSnapshot(q,(snapshot)=>{
       const newDades = snapshot.docs.map(doc => {
         return {...doc.data(),id:doc.id}
       })
       console.log("dades",newDades)
       setTickets(newDades)
     })
-
+    return () => snapshotRef();
   },[])
   
   const [tickets, setTickets] = useState([]);

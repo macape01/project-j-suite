@@ -4,7 +4,7 @@ import Sidebar from "./sidebar";
 const Layout = ({ children }:any) => {
   return (
     <div className={styles.layout}>
-      <Header />
+        <Header />
         <Sidebar />
         <main>{children}</main>
     </div>
