@@ -9,6 +9,8 @@ import Home from "./pages/home";
 import TicketForm from "./pages/tickets";
 import TaskForm from "./pages/boards";
 import MessageForm from "./pages/messages";
+import Dashboard from "./pages/dashboard";
+import Login from "./pages/login";
 
 const assetArray = require("./data/assets.json");
 const userArray = require("./data/users.json");
@@ -37,6 +39,21 @@ function App() {
                 assetArray={assetArray}
                 userArray={userArray}
                 ticketArray={ticketArray}
+              />
+            }
+          ></Route>
+          <Route
+            exact
+            path="/login"
+            element={
+              <Login/>
+            }
+          ></Route>
+          <Route
+            exact
+            path="/dashboard"
+            element={
+              <Dashboard
               />
             }
           ></Route>
