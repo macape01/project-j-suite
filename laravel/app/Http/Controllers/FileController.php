@@ -61,7 +61,7 @@ class FileController extends Controller
            'public'        // Disk
        );
       
-       if (\Storage::disk('public')->missing($filePath)) {
+       if (\Storage::disk('public')->exists($filePath)) {
            \Log::debug("Local storage OK");
            $fullPath = \Storage::disk('public')->path($filePath);
            \Log::debug("File saved at {$fullPath}");
@@ -90,13 +90,17 @@ class FileController extends Controller
      */
     public function show(File $file)
     {
-        \Log::debug("Local storage FAILS");
-        \Log::debug($file);
+        \Log::debug("file".$file);
         //Revisar que ficheroe existe en DB
-        if (\Storage::disk('public')->exists($file->filepath)) {
-            return view("files.show", [
-                "file" => $file
-            ]);
+        $databaseFile = File::find($file->id);
+        \Log::debug("database".$databaseFile);
+
+        if ($databaseFile) {
+            if (\Storage::disk('public')->exists($file->filepath)) {
+                return view("files.show", [
+                    "file" => $file
+                ]);
+            }
         } else {
             // Patró PRG amb missatge d'error
             return redirect()->route("files.index")
@@ -112,9 +116,8 @@ class FileController extends Controller
      */
     public function edit(File $file)
     {
-        $file=File::create([
-            'filepath' => $filePath,
-            'filesize' => $fileSize,
+        return view("files.edit", [
+            "file" => $file
         ]);
         
 
@@ -129,7 +132,15 @@ class FileController extends Controller
      */
     public function update(Request $request, File $file)
     {
-        //
+        $validatedData = $request->validate([
+            'update' => 'required|mimes:gif,jpeg,jpg,png|max:1024'
+        ]);
+        $update = $request->file('update');
+        \Log::debug("update ".$update);
+        return view("files.edit", [
+            "file" => $file
+        ]);
+        
     }
 
     /**

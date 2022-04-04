@@ -7,8 +7,18 @@
  
    <div class="py-12">
        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <form method="post" action="{{ route('files.update') }}" enctype="multipart/form-data" class="flex items-center space-x-6">
+        <form method="post" action="{{ route('files.update',$file) }}" enctype="multipart/form-data" >
            @csrf
+           @method('PUT')
+        <label class="block">
+            <span class="sr-only">Filepath: {{$file->filepath}}</span>
+            <br>
+            <span class="sr-only">Filesize: {{$file->filesize}}</span>
+        </label>
+        <br>
+        <br>
+        <img  width="200px" height="200px" class="img-fluid" src="{{ asset("storage/{$file->filepath}") }}" />
+        <br>
         <label class="block">
             <span class="sr-only">Puja un nou arxiu</span>
             <input type="file" name="update" class="block w-full text-sm text-slate-500
@@ -19,6 +29,7 @@
             hover:file:bg-violet-100
             "/>
         </label>
+        <br>
         <button type="submit">Puja novament</button>
         </form>
        </div>
