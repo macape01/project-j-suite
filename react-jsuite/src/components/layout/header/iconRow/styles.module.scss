@@ -1,0 +1,13 @@
+.iconWrapper{
+    display: flex;
+}
+.icon{
+    &:hover{
+        cursor: pointer;
+        svg{
+            path{
+                stroke: blue;
+            }
+        }
+    }
+}

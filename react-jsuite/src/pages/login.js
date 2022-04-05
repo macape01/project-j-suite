@@ -1,11 +1,16 @@
 import React, { useContext, useEffect, useState } from "react";
+import { Navigate } from "react-router-dom";
 import { UserContext } from "../UserContext";
 import "./login.scss";
 
 const Login = () => {
-  const state = useContext(UserContext);
-  const { user, setUser } = state;
+  const { user, setUser, setMessage } = useContext(UserContext);
   const [username, setUsername] =  useState("");
+  const [password, setPassword] =  useState("");
+  if (user) {
+    setMessage(null)
+    return <Navigate to="/" replace />
+  }
   const HandleSubmit = (e) => {
     console.log(e);
     e.preventDefault();
@@ -44,6 +49,7 @@ const Login = () => {
                       name="password"
                       id="password"
                       class="form-control"
+                      onChange={(e) => setPassword(e.target.value)}
                     />
                   </div>
                   <div class="form-group">
@@ -52,7 +58,7 @@ const Login = () => {
                       name="submit"
                       class="btn center btn-info btn-md"
                     >
-                    Submit
+                    Login
                     </button>
                   </div>
               </div>

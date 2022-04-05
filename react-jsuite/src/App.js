@@ -12,6 +12,7 @@ import MessageForm from "./pages/messages";
 import Login from "./pages/login";
 import { UserContext } from "./UserContext";
 import { useState } from "react";
+import NotFound from "./pages/notfound";
 
 const assetArray = require("./data/assets.json");
 const userArray = require("./data/users.json");
@@ -26,10 +27,11 @@ const userchatsArray = require("./data/user_chats.json");
 const chatArray = require("./data/chats.json");
 
 function App() {
-  const [user, setUser] = useState("yo");
+  const [user, setUser] = useState(null);
+  const [message, setMessage] = useState(null);
   return (
     <Router>
-      <UserContext.Provider value={{ user, setUser }}>
+      <UserContext.Provider value={{ user, setUser, message, setMessage }}>
         <Layout className="App">
           <Routes>
             <Route exact path="/login" element={<Login />}></Route>
@@ -82,6 +84,7 @@ function App() {
                 />
               }
             ></Route>
+            <Route path="*" element={<NotFound />}></Route>
           </Routes>
         </Layout>
       </UserContext.Provider>
