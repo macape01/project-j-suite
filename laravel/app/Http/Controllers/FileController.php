@@ -141,7 +141,7 @@ class FileController extends Controller
                 "file" => $file
             ])->withErrors('error',"La imatge cagó");
         }
-        
+
         $update = $request->file('update');
 
         $fileName = $update->getClientOriginalName();
@@ -178,6 +178,19 @@ class FileController extends Controller
      */
     public function destroy(File $file)
     {
-        //
+        $file->delete();
+
+        Storage::disk('public')->delete($file->filepath); 
+
+        if (\Storage::disk('public')->missing($file->filepath)) {
+            return redirect()->route("files.index")
+            ->with('success', 'GUCCI');
+        }
+        else{
+            return redirect()->route("files.show")
+            ->with('error', 'ERROR La imatge no ha sigut esborrada');
+        }
+
     }
+
 }

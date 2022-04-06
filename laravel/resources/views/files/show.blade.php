@@ -10,7 +10,12 @@
     <img class="img-fluid" src="{{ asset("storage/{$file->filepath}") }}" />
     <div class="mt-6">
         <a class="py-2 px-4 bg-indigo-50 font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75" href="{{ route('files.edit',$file) }}" role="button">Edit file</a>
-        <a class="py-2 px-4 bg-indigo-50 font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75" href="{{ route('files.destroy',$file) }}" role="button">Delete file</a>
+        <form method="post" action="{{ route('files.destroy',$file) }}">
+            @csrf
+            @method('delete')
+            <button type="submit" >Delete file</a>
+        </form>
+
     </div>
 </body>
 </html>
