@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-
+use Illuminate\Support\MessageBag;
 class FileController extends Controller
 {
     /**
@@ -44,7 +44,7 @@ class FileController extends Controller
     {
        // Validar fitxer
        $validatedData = $request->validate([
-           'upload' => 'required|mimes:gif,jpeg,jpg,png|max:1024'
+           'upload' => 'required|mimes:gif,jpeg,jpg,png|max:2048'
        ]);
       
        // Obtenir dades del fitxer
@@ -133,14 +133,41 @@ class FileController extends Controller
     public function update(Request $request, File $file)
     {
         $validatedData = $request->validate([
-            'update' => 'required|mimes:gif,jpeg,jpg,png|max:1024'
-        ]);
-        $update = $request->file('update');
-        \Log::debug("update ".$update);
-        return view("files.edit", [
-            "file" => $file
+            'update' => 'required|mimes:gif,jpeg,jpg,png|max:2048'
         ]);
         
+        if ( !$validatedData ){
+            return redirect()->route("files.edit", [
+                "file" => $file
+            ])->withErrors('error',"La imatge cagó");
+        }
+        
+        $update = $request->file('update');
+
+        $fileName = $update->getClientOriginalName();
+        $fileSize = $update->getSize();
+
+        // Pujar fitxer al disc dur
+        $uploadName = time() . '_' . $fileName;
+        $filePath = $update->storeAs(
+            'uploads',      // Path
+            $uploadName ,   // Filename
+            'public'        // Disk
+        );
+        \Log::debug("Storing file '{$fileName}' ($fileSize)...");
+
+        \Log::debug("update ".$update);
+        
+        $newFile=File::find($file->id);
+        $newFile->update(['filepath'=>$filePath,'filesize'=>$fileSize]); 
+        
+        \Log::debug("newFile ".$newFile);
+
+        return view("files.show", [
+            "file" => $newFile
+        ]);
+        
+    
     }
 
     /**
