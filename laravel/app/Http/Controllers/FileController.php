@@ -136,11 +136,6 @@ class FileController extends Controller
             'update' => 'required|mimes:gif,jpeg,jpg,png|max:2048'
         ]);
         
-        if ( !$validatedData ){
-            return redirect()->route("files.edit", [
-                "file" => $file
-            ])->withErrors('error',"La imatge cagó");
-        }
 
         $update = $request->file('update');
 

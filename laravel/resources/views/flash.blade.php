@@ -4,7 +4,7 @@
 @endif
  
 @if ($message = Session::get('error'))
-   @include('flash-message', ['type' => "error", 'message' => $message])
+   @include('flash-message', ['type' => "danger", 'message' => $message])
 @endif
  
 @if ($message = Session::get('warning'))
@@ -16,6 +16,8 @@
 @endif
  
 @if ($errors->any())
-   @include('flash-message', ['type' => "error", 'message' => "Check errors!"])
+    @foreach ($errors->all() as $error)
+        @include('flash-message', ['type' => "danger", 'message' => $error])
+    @endforeach
 @endif
 </div>
