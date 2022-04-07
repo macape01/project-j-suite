@@ -7,10 +7,21 @@ import Form from "../components/boards/form";
 import Tasks from "../components/boards";
 import {db} from '../firebase'
 import { collection, doc, orderBy, query, where, getDocs, addDoc, serverTimestamp, deleteDoc, setDoc, onSnapshot} from "firebase/firestore"
+import { getAuth } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 
 
 const TaskForm = ({ noteArray, completionArray, userArray, taskArray }) => {
+  const auth = getAuth()
+
+  let navigate = useNavigate()
+  useEffect(()=>{
+    if ( auth.currentUser === null){
+      navigate("/login", { replace: true });
+    }
+  })
+
   const taskCollectionRef = collection(db,'Tasks')
   const q = query(taskCollectionRef,orderBy('title','asc'));
 

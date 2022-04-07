@@ -5,11 +5,12 @@ import { UserContext } from "../UserContext";
 import "./login.scss";
 
 const Login = () => {
+  const {setMessage} = useContext(UserContext);
   const auth = getAuth();
   const [password, setPassword] =  useState("");
   const [email, setEmail] =  useState("");
   let navigate = useNavigate()
-
+  
 
   const HandleSubmit = (e) => {
     console.log(e);
@@ -26,6 +27,7 @@ const Login = () => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log("error",errorMessage)
+        setMessage("La validació ha fallat")
 
       });
   };

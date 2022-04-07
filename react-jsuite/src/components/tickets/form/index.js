@@ -12,6 +12,10 @@ const Form = ({
   assetArray,
   statusArray,
   commentArray,
+<<<<<<< Updated upstream
+=======
+  uid
+>>>>>>> Stashed changes
 }) => {
   return (
     <form onSubmit={modeEdicio ? editar : afegir}>
@@ -35,7 +39,7 @@ const Form = ({
         className="form-control mb-2"
         value={state.assigned_id}
         onChange={(e) => {
-          setState({ ...state, assigned_id: e.target.value * 1 });
+          setState({ ...state, assigned_id: uid ? uid : e.target.value});
         }}
       >
         <option selected hidden>

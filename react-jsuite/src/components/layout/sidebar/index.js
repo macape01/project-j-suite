@@ -2,15 +2,17 @@ import styles from "./styles.module.scss";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../../../UserContext";
+import { getAuth } from "firebase/auth";
 const Sidebar = ({right}) => {
-  const { user, setUser, setMessage } = useContext(UserContext);
+  const auth = getAuth()
+  const {setMessage } = useContext(UserContext);
   return (
     <aside className={right ? styles.sidebarRight : styles.sidebar}>
       <ul>
         <li>
           <Link to="/">Home</Link>
         </li>
-        {!user && (
+        {!auth.currentUser && (
           <li>
             <Link to="/login">Login</Link>
           </li>

@@ -10,8 +10,9 @@ const Tickets = ({
   statusArray,
   esborrarTasca,
   editar,
+  uid
 }) => {
-
+console.log("UID",uid)
   return (
     <table className={`table table-bordered table-striped ${styles.tickets} `}>
       <tbody>
@@ -25,7 +26,9 @@ const Tickets = ({
           <th>Comments</th>
           <th colSpan={2}>Options</th>
         </tr>
-        {ticketArray.map((ticket) => {
+        {ticketArray
+          .filter(t=>t.assigned_id == uid)
+          .map((ticket) => {
           console.log("ticket",ticket)
           let asset = assetArray.find((asset) => asset.id === ticket.asset_id);
           let user = userArray.find((user) => user.id === ticket.assigned_id);

@@ -5,6 +5,8 @@ import Message from "../components/chatapp/message";
 import Form from "../components/chatapp/form";
 import { collection, doc, orderBy, query, where, getDocs, addDoc, serverTimestamp, deleteDoc, setDoc, onSnapshot} from "firebase/firestore"
 import {db} from '../firebase'
+import { getAuth } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 
 const MessageForm = ({
@@ -12,6 +14,16 @@ const MessageForm = ({
   userArray,
   chatArray,
 }) => {
+
+  const auth = getAuth()
+
+  let navigate = useNavigate()
+  useEffect(()=>{
+    if ( auth.currentUser === null){
+      navigate("/login", { replace: true });
+    }
+  })
+
   const [llistamissatges, setLlistaMissatges] = useState([]);
   const messageCollectionRef = collection(db,'Messages')
   

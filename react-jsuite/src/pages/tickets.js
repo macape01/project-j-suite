@@ -7,6 +7,8 @@ import "./tickets.scss";
 import Form from "../components/tickets/form";
 import {db} from '../firebase'
 import { collection, doc, orderBy, query, where, getDocs, addDoc, serverTimestamp, deleteDoc, setDoc, onSnapshot} from "firebase/firestore"
+import { useNavigate } from "react-router-dom";
+import { getAuth } from "firebase/auth";
 
 const TicketForm = ({
   ticketArray,
@@ -15,6 +17,18 @@ const TicketForm = ({
   commentArray,
   statusArray,
 }) => {
+  const auth = getAuth()
+  const [uid,setUid] =  useState(null)
+  let navigate = useNavigate()
+  useEffect(()=>{
+    if ( auth.currentUser === null){
+      navigate("/login", { replace: true });
+    }else{
+      setUid(auth.currentUser.uid)
+    }
+  })
+
+
   const ticketCollectionRef = collection(db,'Tickets')
   
   const q = query(ticketCollectionRef,orderBy('tid','asc'));
@@ -139,6 +153,7 @@ const TicketForm = ({
           <h4 className="text-center">Llista de Tickets</h4>
           <br></br>
           <Tickets
+            uid={uid}
             commentArray={newCommentArray}
             ticketArray={tickets}
             assetArray={assetArray}
@@ -155,6 +170,7 @@ const TicketForm = ({
             {modeEdicio ? "Editar Tasca" : "Afegir Tasca"}
           </h4>
           <Form
+            uid={uid}
             setCommentArray={setCommentArray}
             modeEdicio={modeEdicio}
             editar={editarTasca}
