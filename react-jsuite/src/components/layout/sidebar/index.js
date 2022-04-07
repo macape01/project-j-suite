@@ -2,10 +2,10 @@ import styles from "./styles.module.scss";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../../../UserContext";
-const Sidebar = () => {
+const Sidebar = ({right}) => {
   const { user, setUser, setMessage } = useContext(UserContext);
   return (
-    <aside className={styles.sidebar}>
+    <aside className={right ? styles.sidebarRight : styles.sidebar}>
       <ul>
         <li>
           <Link to="/">Home</Link>

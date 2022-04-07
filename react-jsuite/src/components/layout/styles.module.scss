@@ -1,15 +1,16 @@
 .layout {
   display: grid;
   grid-template-areas:
-    "header header "
-    "sidebar content ";
+    "header header header "
+    "sidebar content sidebar-right";
     /* grid-template-rows: 50px 1fr 30px;
   grid-template-columns: 150px 1fr; */
-  grid-template-columns: 10vw 1fr;
+  grid-template-columns: 10vw 1fr 10vw;
   grid-template-rows: 10vh 1fr;
   gap: 1rem;
   height: 100vh;
 }
 main {
   grid-area: content;
+  max-width: 80vw;
 }

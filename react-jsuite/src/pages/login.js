@@ -1,65 +1,88 @@
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import React, { useContext, useEffect, useState } from "react";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { UserContext } from "../UserContext";
 import "./login.scss";
 
 const Login = () => {
-  const { user, setUser, setMessage } = useContext(UserContext);
-  const [username, setUsername] =  useState("");
+  const auth = getAuth();
   const [password, setPassword] =  useState("");
-  if (user) {
-    setMessage(null)
-    return <Navigate to="/" replace />
-  }
+  const [email, setEmail] =  useState("");
+  let navigate = useNavigate()
+
+
   const HandleSubmit = (e) => {
     console.log(e);
     e.preventDefault();
-    setUser(username)
+    signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log("USER SIGNED IN",user)
+        // ...
+        navigate("/",{replace:true})
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log("error",errorMessage)
+
+      });
   };
   return (
     <div className="login-wrapper">
       <div id="login">
-        <h3 class="text-center text-black pt-5">Login form</h3>
-        <form onSubmit={HandleSubmit} class="container">
+        <h3 className="text-center text-black pt-5">Login form</h3>
+        <form onSubmit={HandleSubmit} className="container">
           <div
             id="login-row"
-            class="row justify-content-center align-items-center"
+            className="row justify-content-center align-items-center"
           >
-            <div id="login-column" class="col-md-6">
-              <div id="login-box" class="col-md-12">
-                  <h3 class="text-center text-info">Login</h3>
-                  <div class="form-group">
-                    <label for="username" class="text-info">
-                      Username:
+            <div id="login-column" className="col-md-6">
+              <div id="login-box" className="col-md-12">
+                  <h3 className="text-center text-info">Login</h3>
+                  <div className="form-group">
+                    <label for="email" className="text-info">
+                      Email:
                     </label>
                     <input
-                      type="text"
-                      name="username"
-                      id="username"
-                      class="form-control"
-                      onChange={(e) => setUsername(e.target.value)}
+                      required
+                      type="email"
+                      name="email"
+                      id="email"
+                      className="form-control"
+                      onChange={(e) => setEmail(e.target.value)}
                     />
                   </div>
-                  <div class="form-group">
-                    <label for="password" class="text-info">
+                  <div className="form-group">
+                    <label for="password" className="text-info">
                       Password:
                     </label>
                     <input
+                      required
                       type="text"
                       name="password"
                       id="password"
-                      class="form-control"
+                      className="form-control"
                       onChange={(e) => setPassword(e.target.value)}
                     />
                   </div>
-                  <div class="form-group">
+                  <div className="form-group">
                     <button
                       type="submit"
                       name="submit"
-                      class="btn center btn-info btn-md"
+                      className="btn center btn-info btn-md"
                     >
                     Login
                     </button>
+                  </div>
+                  <div className="form-group">
+                    <label>
+                      Doesn't have an account? 
+                    </label>
+                    <p>
+                      <Link to={"/register"}>Register here:</Link>
+                    </p>
                   </div>
               </div>
             </div>
