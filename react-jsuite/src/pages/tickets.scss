@@ -2,3 +2,20 @@
   height: fit-content;
   border: 8px solid rgb(255, 166, 166);
 }
+.row{
+  @media screen and (max-width:1500px) {
+    flex-direction: column-reverse;
+  }
+}
+
+@media screen and (max-width:1500px) {
+  .row{
+      flex-direction: column-reverse;
+  }
+  .form-tickets{
+      width: 100%;
+    }
+    .form-list{
+      width: 100%;
+    }
+}

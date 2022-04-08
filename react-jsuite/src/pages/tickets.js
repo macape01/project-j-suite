@@ -40,14 +40,22 @@ const TicketForm = ({
       })
       console.log("dades",newDades)
       setTickets(newDades)
+      setFilteredTickets(newDades)
     })
     return () => snapshotRef();
   },[])
+
+
   
   const [tickets, setTickets] = useState([]);
+  const [filteredTickets, setFilteredTickets] = useState([...tickets]);
   const [modeEdicio, setModeEdicio] = useState(false);
   const [error, setError] = useState(null);
   const [newCommentArray, setCommentArray] = useState([...commentArray]);
+  
+  useEffect(()=>{
+    console.log(tickets)
+  },[tickets])
 
   const getLastId = () => {
     return tickets.length > 0 ? tickets[tickets.length - 1].tid*1 + 1 : 0;
@@ -143,19 +151,29 @@ const TicketForm = ({
     });
   };
 
+  const changeFilter = (value) =>{
+    if ( value === "" ){
+      setFilteredTickets([...tickets])
+      return
+    }
+    let newTickets = tickets.filter(v=>v.title.includes(value))
+    console.log("newt",newTickets)
+    console.log("value",value)
+    setFilteredTickets([...newTickets])
+  }
 
   return (
     <div className="container mt-5">
       <h1 className="text-center">CRUD APP</h1>
       <hr />
       <div className="row">
-        <div className="col-8">
+        <div className="col-8 form-list">
           <h4 className="text-center">Llista de Tickets</h4>
           <br></br>
           <Tickets
             uid={uid}
             commentArray={newCommentArray}
-            ticketArray={tickets}
+            ticketArray={filteredTickets}
             assetArray={assetArray}
             userArray={userArray}
             statusArray={statusArray}
@@ -165,11 +183,12 @@ const TicketForm = ({
           <br></br>
         </div>
 
-        <div className="col-4">
+        <div className="col-4 form-tickets">
           <h4 className="text-center">
             {modeEdicio ? "Editar Tasca" : "Afegir Tasca"}
           </h4>
           <Form
+            changeFilter={changeFilter}
             uid={uid}
             setCommentArray={setCommentArray}
             modeEdicio={modeEdicio}

@@ -12,14 +12,21 @@ const Form = ({
   assetArray,
   statusArray,
   commentArray,
-<<<<<<< Updated upstream
-=======
-  uid
->>>>>>> Stashed changes
+  uid,
+  changeFilter
 }) => {
   return (
     <form onSubmit={modeEdicio ? editar : afegir}>
       <span className="text-danger">{error} </span>
+      <div className="form-group">
+        <label >Busca un ticket: </label>
+        <input 
+          className="form-control mb-2"
+          onChange={e=>changeFilter(e.target.value)} 
+          type={"text"} 
+          placeholder="Introdueix el nom d'un ticket"
+          />
+      </div>
       <input
         type="text"
         className="form-control mb-2"
