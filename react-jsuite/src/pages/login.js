@@ -10,7 +10,15 @@ const Login = () => {
   const [password, setPassword] =  useState("");
   const [email, setEmail] =  useState("");
   let navigate = useNavigate()
-  
+  useEffect(()=>{
+    console.log("AUTHHH",auth.currentUser)
+    if ( auth.currentUser !== null){
+      navigate("/",{replace:true})
+    }
+
+  },[])
+
+
 
   const HandleSubmit = (e) => {
     console.log(e);

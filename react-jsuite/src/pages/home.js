@@ -5,15 +5,15 @@ import { UserContext } from "../UserContext";
 
 const Home = () => {
   const auth = getAuth();
-  console.log("auuuth",auth.currentUser)
   const { setMessage } = useContext(UserContext);
   //Necesitamos un else porque por algun motivo,
   let navigate = useNavigate()
   useEffect(()=>{
+    console.log("auuuth",auth.currentUser)
     if ( auth.currentUser === null){
       navigate("/login", { replace: true });
     }
-  })
+  },[])
   return (
     <>
     <h1 style={{ textAlign: "center", padding: "20px 0px" }}>Home</h1>

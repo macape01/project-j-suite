@@ -30,11 +30,15 @@ const TicketForm = ({
 
 
   const ticketCollectionRef = collection(db,'Tickets')
+
+  const usersCollectionRef = collection(db,'Users')
   
   const q = query(ticketCollectionRef,orderBy('tid','asc'));
 
+  const q2 = query(usersCollectionRef,orderBy('uid','asc'));
+
   useEffect(()=>{
-    const snapshotRef = onSnapshot(q,(snapshot)=>{
+    const snapshotTicketRef = onSnapshot(q,(snapshot)=>{
       const newDades = snapshot.docs.map(doc => {
         return {...doc.data(),id:doc.id}
       })
@@ -42,11 +46,23 @@ const TicketForm = ({
       setTickets(newDades)
       setFilteredTickets(newDades)
     })
-    return () => snapshotRef();
+
+    const snapshotUserRef = onSnapshot(q2,(snapshot)=>{
+      const newDades = snapshot.docs.map(doc => {
+        return {...doc.data(),id:doc.id}
+      })
+      console.log("dades",newDades)
+      setUsers(newDades)
+    })
+    return () => {
+      snapshotUserRef();
+      snapshotTicketRef();
+    }
   },[])
 
 
   
+  const [users, setUsers] = useState([]);
   const [tickets, setTickets] = useState([]);
   const [filteredTickets, setFilteredTickets] = useState([...tickets]);
   const [modeEdicio, setModeEdicio] = useState(false);
@@ -175,7 +191,7 @@ const TicketForm = ({
             commentArray={newCommentArray}
             ticketArray={filteredTickets}
             assetArray={assetArray}
-            userArray={userArray}
+            userArray={users}
             statusArray={statusArray}
             esborrarTasca={esborrarTasca}
             editar={editar}
@@ -197,7 +213,7 @@ const TicketForm = ({
             error={error}
             setState={setTicket}
             state={ticket}
-            userArray={userArray}
+            userArray={users}
             assetArray={assetArray}
             statusArray={statusArray}
             commentArray={newCommentArray}

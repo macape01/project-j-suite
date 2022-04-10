@@ -1,8 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { UserContext } from "../UserContext";
-import {  getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {  getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import "./register.scss";
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "../firebase";
 
 const Register = () => {
   const auth = getAuth();
@@ -12,17 +14,35 @@ const Register = () => {
   const [email, setEmail] =  useState("");
   let navigate = useNavigate()
 
+  const usersCollectionRef = collection(db,'Users')
+
+
   const HandleSubmit = (e) => {
     console.log(e);
     e.preventDefault();
 
     createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // Signed in
-      const user = userCredential.user;
-      console.log("USER",user)
-      navigate("/",{replace:true})
-      // ...
+    .then((res) => {
+      const user = auth.currentUser;
+      console.log("profile Updated",user)
+      updateProfile(user,{
+        displayName: username
+      })
+      .then(()=>{
+        addDoc(usersCollectionRef,
+          {
+            name:username,
+            password: password,
+            email:email,
+            uid:user.uid
+          }
+        )
+        navigate("/",{replace:true})
+        console.log("profile Updated",auth.currentUser)
+      })
+      .catch(e=>{
+        console.log("Something went wrong",e)
+      })
     })
     .catch((error) => {
       const errorCode = error.code;

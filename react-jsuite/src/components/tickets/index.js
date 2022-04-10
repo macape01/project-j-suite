@@ -13,6 +13,7 @@ const Tickets = ({
   uid
 }) => {
 console.log("UID",uid)
+console.log("users",userArray)
   return (
     <table className={`table table-bordered table-striped ${styles.tickets} `}>
       <tbody>
@@ -31,7 +32,7 @@ console.log("UID",uid)
           .map((ticket) => {
           console.log("ticket",ticket)
           let asset = assetArray.find((asset) => asset.id === ticket.asset_id);
-          let user = userArray.find((user) => user.id === ticket.assigned_id);
+          let user = userArray.find((user) => uid === ticket.assigned_id);
           let status = statusArray.find(
             (status) => status.id === ticket.status_id
           );
@@ -47,7 +48,7 @@ console.log("UID",uid)
               title={ticket.title}
               description={ticket.description}
               asset={asset?.model}
-              assigned={user?.username}
+              assigned={user?.name}
               esborrarTasca={esborrarTasca}
               editar={editar}
               ticket={ticket}

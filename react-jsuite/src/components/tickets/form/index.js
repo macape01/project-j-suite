@@ -46,7 +46,7 @@ const Form = ({
         className="form-control mb-2"
         value={state.assigned_id}
         onChange={(e) => {
-          setState({ ...state, assigned_id: uid ? uid : e.target.value});
+          setState({ ...state, assigned_id: e.target.value});
         }}
       >
         <option selected hidden>
@@ -54,8 +54,8 @@ const Form = ({
         </option>
         {userArray.map((user, idx) => {
           return (
-            <option value={user.id} key={idx}>
-              {user.username}
+            <option value={user.uid} key={idx}>
+              {user.name}
             </option>
           );
         })}
