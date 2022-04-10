@@ -28,11 +28,11 @@ console.log("users",userArray)
           <th colSpan={2}>Options</th>
         </tr>
         {ticketArray
-          .filter(t=>t.assigned_id == uid)
+          .filter(t=>t.assigned_id === uid)
           .map((ticket) => {
           console.log("ticket",ticket)
           let asset = assetArray.find((asset) => asset.id === ticket.asset_id);
-          let user = userArray.find((user) => uid === ticket.assigned_id);
+          let user = userArray.find((user) => user.uid === ticket.assigned_id);
           let status = statusArray.find(
             (status) => status.id === ticket.status_id
           );
