@@ -14,32 +14,54 @@ import { useNavigate } from "react-router-dom";
 
 const TaskForm = ({ noteArray, completionArray, userArray, taskArray }) => {
   const auth = getAuth()
-
+  const [uid,setUid] =  useState(null)
   let navigate = useNavigate()
   useEffect(()=>{
     if ( auth.currentUser === null){
       navigate("/login", { replace: true });
+    }else{
+      setUid(auth.currentUser.uid)
     }
   })
 
   const taskCollectionRef = collection(db,'Tasks')
+
+  const usersCollectionRef = collection(db,'Users')
+
   const q = query(taskCollectionRef,orderBy('title','asc'));
 
+  const q2 = query(usersCollectionRef,orderBy('uid','asc'));
+
+
   useEffect(()=>{
-    onSnapshot(q,(snapshot)=>{
+    const snapshotTaskRef=onSnapshot(q,(snapshot)=>{
       const newDades = snapshot.docs.map((v) => {
         return {...v.data(),id:v.id}
       })
       console.log("a",newDades)
       setTasques(newDades)
-    })
+      setFilteredTasks(newDades)
 
+    })
+    const snapshotUserRef = onSnapshot(q2,(snapshot)=>{
+      const newDades = snapshot.docs.map(doc => {
+        return {...doc.data(),id:doc.id}
+      })
+      console.log("dades",newDades)
+      setUsers(newDades)
+    })
+    return () => {
+      snapshotUserRef();
+      snapshotTaskRef();
+    }
   },[])
 
   
   const [tasques, setTasques] = useState([]);
+  const [filteredTasks, setFilteredTasks] = useState([...tasques]);
   const [modeEdicio, setModeEdicio] = useState(false);
   const [error, setError] = useState(null);
+  const [users, setUsers] = useState([]);
 
   const [tasca, setTasca] = useState({
     title: "",
@@ -60,7 +82,6 @@ const TaskForm = ({ noteArray, completionArray, userArray, taskArray }) => {
       time: serverTimestamp()
     })
 
-
     setTasca({
       title: "",
       author_id: "",
@@ -70,8 +91,6 @@ const TaskForm = ({ noteArray, completionArray, userArray, taskArray }) => {
     setError(null);
   };
   const esborrarTasca = (id) => {
-    console.log(id);
-
     deleteDoc(doc(db,'Tasks',id))
   };
 
@@ -102,19 +121,30 @@ const TaskForm = ({ noteArray, completionArray, userArray, taskArray }) => {
     
     });
   };
+  const changeFilter = (value) =>{
+    debugger
+    if ( value === "" ){
+      setFilteredTasks([...tasques])
+      return
+    }
+    let newTickets = tasques.filter(v=>v.title.includes(value))
+    console.log("newt",newTickets)
+    console.log("value",value)
+    setFilteredTasks([...newTickets])
+  }
 
 
   return (
     <div className="container mt-5">
       <h1 className="text-center">CRUD APP</h1>
-      <hr />
       <div className="row">
         <div className="col-8">
           <h4 className="text-center">Llista de Tasques</h4>
           <br></br>
           <Tasks
-            taskArray={tasques}
-            userArray={userArray}
+            uid={uid}
+            taskArray={filteredTasks}
+            userArray={users}
             completionArray={completionArray}
             esborrar={esborrarTasca}
             editar={editar}
@@ -127,12 +157,13 @@ const TaskForm = ({ noteArray, completionArray, userArray, taskArray }) => {
           </h4>
           <Form
             modeEdicio={modeEdicio}
+            changeFilter={changeFilter}
             editar={editarTasca}
             afegir={afegirTasca}
             error={error}
             setState={setTasca}
             state={tasca}
-            userArray={userArray}
+            userArray={users}
             completionArray={completionArray}
           />
         </div>

@@ -8,11 +8,23 @@ const Form = ({
   setState,
   state,
   userArray,
-  completionArray
+  completionArray,
+  uid,
+  changeFilter
+
 }) => {
   return (
     <form onSubmit={modeEdicio ? editar : afegir}>
       <span className="text-danger">{error} </span>
+      <div className="form-group">
+        <label >Busca una taska: </label>
+        <input 
+          className="form-control mb-2"
+          onChange={e=>changeFilter(e.target.value)} 
+          type={"text"} 
+          placeholder="Introdueix el nom d'un ticket"
+          />
+      </div>
       <input
         type="text"
         className="form-control mb-2"
@@ -25,14 +37,14 @@ const Form = ({
         className="form-control mb-2"
         value={state.author_id}
         onChange={(e) => {
-          setState({ ...state, author_id: e.target.value * 1 });
+          setState({ ...state, author_id: e.target.value});
         }}
       >
         <option selected hidden></option>
         {userArray.map((user, idx) => {
           return (
-            <option value={user.id} key={idx}>
-              {user.username}
+            <option value={user.uid} key={idx}>
+              {user.name}
             </option>
           );
         })}
