@@ -6,6 +6,8 @@ use App\Http\Controllers\MailController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ModeloController;
+use App\Http\Controllers\UserController;
+
 
 require __DIR__.'/auth.php';
 
@@ -34,8 +36,10 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::resource('categories', CategoryController::class);
+Route::resource('categories', CategoryController::class)->middleware(['auth', 'role:3']);
 
 Route::resource('files', FileController::class)->middleware(['auth', 'role:3']);
 
-Route::resource('modelos', ModeloController::class);
+Route::resource('modelos', ModeloController::class)->middleware(['auth', 'role:3']);
+
+Route::resource('users', UserController::class)->middleware(['auth', 'role:3']);
