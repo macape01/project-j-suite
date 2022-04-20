@@ -9,6 +9,7 @@ use App\Http\Controllers\ModeloController;
 use App\Http\Controllers\UserController;
 
 
+use App\Http\Controllers\CompanyController;
 require __DIR__.'/auth.php';
 
 /*
@@ -38,8 +39,9 @@ Route::get('/dashboard', function () {
 
 Route::resource('categories', CategoryController::class)->middleware(['auth', 'role:3']);
 
-Route::resource('files', FileController::class);
 
 Route::resource('modelos', ModeloController::class)->middleware(['auth', 'role:3']);
 
 Route::resource('users', UserController::class)->middleware(['auth', 'role:3']);
+Route::resource('files', FileController::class)->middleware(['auth', 'role:3']);
+Route::resource('companies', CompanyController::class)->middleware(['auth', 'role:3']);
