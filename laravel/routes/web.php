@@ -38,7 +38,7 @@ Route::get('/dashboard', function () {
 
 Route::resource('categories', CategoryController::class)->middleware(['auth', 'role:3']);
 
-Route::resource('files', FileController::class)->middleware(['auth', 'role:3']);
+Route::resource('files', FileController::class);
 
 Route::resource('modelos', ModeloController::class)->middleware(['auth', 'role:3']);
 
