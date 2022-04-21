@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\File;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -23,8 +24,9 @@ class UserController extends Controller
     }
     public function create()
     {
-        return view('users.create');
-    }
+        return view('users.create',[
+            "roles" => Role::all()
+        ]);    }
     /**
      * Store a newly created resource in storage.
      *
@@ -38,18 +40,43 @@ class UserController extends Controller
             'email' => 'required|max:60',
             'password' => 'required|max:120',
             'role_id' => 'required',
-            'avatar_id' => 'required',
+            'avatar' => 'required',
         ]);
-        $avatar = File::find($avatar_id);
 
-        if ($avatar == null){
-            return redirect()->route('users.index')
-            ->with('error', 'Photo couldnt be found!');
+        //Get Data From Avatar
+        $photo = $request->file('avatar');
+        $fileName = $photo->getClientOriginalName();
+        $fileSize = $photo->getSize();
+        
+        // Pujar fitxer al disc dur
+        $photoName = time() . '_' . $fileName;
+        $filePath = $photo->storeAs(
+            'uploads',      // Path
+            $photoName ,   // Filename
+            'public'        // Disk
+        );
+
+        if (\Storage::disk('public')->exists($filePath)) {
+            $fullPath = \Storage::disk('public')->path($filePath);
+            // Desar dades a BD
+            $file = File::create([
+                'filepath' => $filePath,
+                'filesize' => $fileSize,
+            ]);
+            $id = $file->id;
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => $request->password,
+                'role_id' => $request->role_id,
+                'avatar_id' => $id,
+            ]);
+            return redirect()->route('users.show', $user)
+                ->with('success', 'User successfully saved');
+        } else {
+            return redirect()->route("users.create")
+                ->with('error', 'ERROR creating user: file already exists');
         }
-        $users = User::create($request->all());
-
-        return redirect()->route('users.show')
-            ->with('error', 'Model succesfully created');
     }
 
     /**
@@ -58,10 +85,33 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        $users = User::find($id);
-        return \response($users);    
+        if ( $user ){
+            return view("users.show", [
+                "user" => $user,
+                "file" => File::find($user->avatar_id),
+            ]);
+        }
+        else{
+            return redirect()->route("users.index")
+                ->with('error', 'ERROR the user doesnt exists');
+        } 
+    }
+
+    public function edit(User $user)
+    {
+        if ( $user ){
+            return view("users.edit", [
+                "user" => $user,
+                "file" => File::find($user->avatar_id),
+                "roles" => Role::all(),
+            ]);
+        }
+        else{
+            return redirect()->route("users.index")
+                ->with('error', 'ERROR the user doesnt exists');
+        }
     }
 
     /**
@@ -71,11 +121,49 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        $users=User::find($id);
-        $users->update($request->all());
-        return $users;    }
+        $request->validate([
+            'name' => 'required|max:30',
+            'password' => 'required|max:120',
+            'role_id' => 'required',
+            'avatar' => 'required',
+        ]);
+
+        //Get Data From Avatar
+        $photo = $request->file('avatar');
+        $fileName = $photo->getClientOriginalName();
+        $fileSize = $photo->getSize();
+        
+        // Pujar fitxer al disc dur
+        $photoName = time() . '_' . $fileName;
+        $filePath = $photo->storeAs(
+            'uploads',      // Path
+            $photoName ,   // Filename
+            'public'        // Disk
+        );
+
+        if (\Storage::disk('public')->exists($filePath)) {
+            $fullPath = \Storage::disk('public')->path($filePath);
+            // Desar dades a BD
+            $file = File::create([
+                'filepath' => $filePath,
+                'filesize' => $fileSize,
+            ]);
+            $id = $file->id;
+            $user->update([
+                'name' => $request->name,
+                'password' => $request->password,
+                'role_id' => $request->role_id,
+                'avatar_id' => $id,
+            ]);
+            return redirect()->route('users.show', $user)
+                ->with('success', 'User successfully updated');
+        } else {
+            return redirect()->route("users.edit")
+                ->with('error', 'ERROR updating user: file already exists');
+        }
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -83,8 +171,12 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        return User::destroy($id);
+        $user->delete();
+        
+        return redirect()->route("users.index")
+        ->with('success', 'GUCCI, modelo: '.$user->name.' destroyed');
+        
     }
 }
