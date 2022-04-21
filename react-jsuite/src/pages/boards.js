@@ -100,7 +100,7 @@ const TaskForm = ({ noteArray, completionArray, userArray, taskArray }) => {
       if (t === "" || t === null) return true;
     });
 
-    if (value !== undefined) {
+    if (value === "" || value === null) {
       setError("Cagaste");
       return;
     }
@@ -114,7 +114,6 @@ const TaskForm = ({ noteArray, completionArray, userArray, taskArray }) => {
     )
 
     setTasca({
-      id:"",
       title: "",
       author_id: "",
       completion_id: "",
@@ -133,7 +132,7 @@ const TaskForm = ({ noteArray, completionArray, userArray, taskArray }) => {
     setFilteredTasks([...newTickets])
   }
 
-
+  
   return (
     <div className="container mt-5">
       <h1 className="text-center">CRUD APP</h1>

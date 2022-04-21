@@ -128,9 +128,7 @@ const MessageForm = ({ messagesArray, userArray, chatArray }) => {
     });
   };
 
-  useEffect(() => {
-    console.log("MESSAGE", message);
-  }, [message]);
+
   return (
     <div className="container mt-5">
       <h1 className="text-center">CRUD APP</h1>
