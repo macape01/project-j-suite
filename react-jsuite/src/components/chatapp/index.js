@@ -2,7 +2,7 @@ import { useState } from "react";
 import Message from "./message";
 import styles from "./styles.module.scss";
 
-const Messages = ({ messagesArray, userArray, esborrar, forEdit }) => {
+const Messages = ({ uid, messagesArray, userArray, esborrar, forEdit }) => {
   console.log(messagesArray);
 
   return (
@@ -17,9 +17,11 @@ const Messages = ({ messagesArray, userArray, esborrar, forEdit }) => {
           <th>Editar</th>
           <th>Borrar</th>
         </tr>
-        {messagesArray.map((mens) => {
+        {messagesArray
+          .filter(m=>m.author_id === uid)
+          .map((mens) => {
           console.log("mens", mens);
-          let user = userArray.find((user) => user.id === mens.author_id);
+          let user = userArray.find((user) => user.uid === mens.author_id);
           return (
             <Message
               mid={mens.mid}
@@ -28,7 +30,7 @@ const Messages = ({ messagesArray, userArray, esborrar, forEdit }) => {
               delMessage={esborrar}
               message={mens.message}
               chatId={mens.chat_id}
-              author={user.username}
+              author={user.name}
               messageObject={mens}
               published={mens.published}
             />

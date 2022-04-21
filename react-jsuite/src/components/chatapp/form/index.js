@@ -8,7 +8,8 @@ const Form = ({
   setMessage,
   state,
   userArray,
-  chatArray
+  chatArray,
+  uid,
 }) => {
   return (
     <form onSubmit={modeEdicio ? editMessage : putMessage}>
@@ -18,15 +19,17 @@ const Form = ({
         className="form-control mb-2"
         value={state.author_id}
         onChange={(e) => {
-          setMessage({ ...state, author_id: e.target.value * 1 });
+          setMessage({ ...state, author_id: e.target.value });
         }}
       >
         <option selected hidden>
+          Escull un autor
         </option>
         {userArray.map((user, idx) => {
+          console.log("user", user);
           return (
-            <option value={user.id} key={idx}>
-              {user.username}
+            <option value={user.uid} key={idx}>
+              {user.name}
             </option>
           );
         })}
@@ -46,8 +49,7 @@ const Form = ({
           setMessage({ ...state, chat_id: e.target.value * 1 });
         }}
       >
-        <option selected hidden>
-        </option>
+        <option selected hidden></option>
         {chatArray.map((chat, idx) => {
           return (
             <option value={chat.id} key={idx}>
