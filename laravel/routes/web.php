@@ -40,7 +40,7 @@ Route::get('/dashboard', function () {
 Route::resource('categories', CategoryController::class)->middleware(['auth', 'role:3']);
 
 
-Route::resource('modelos', ModeloController::class)->middleware(['auth', 'role:3']);
+Route::resource('modelos', ModeloController::class)->middleware(['auth', 'role.any:1,2,3,4']);
 
 Route::resource('users', UserController::class)->middleware(['auth', 'role:3']);
 Route::resource('files', FileController::class)->middleware(['auth', 'role:3']);
