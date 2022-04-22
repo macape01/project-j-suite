@@ -13,7 +13,7 @@ const Tickets = ({
   uid
 }) => {
 console.log("UID",uid)
-console.log("users",userArray)
+console.log("TICKETS",ticketArray)
   return (
     <table className={`table table-bordered table-striped ${styles.tickets} `}>
       <tbody>

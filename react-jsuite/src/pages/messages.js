@@ -23,31 +23,28 @@ import { useNavigate } from "react-router-dom";
 const MessageForm = ({ messagesArray, userArray, chatArray }) => {
   const auth = getAuth();
   const [uid, setUid] = useState(null);
-
+  
   let navigate = useNavigate();
+  
+  const messageCollectionRef = collection(db, "Messages");
+  const usersCollectionRef = collection(db, "Users");
+  
+  const q = query(messageCollectionRef, orderBy("mid", "asc"));
+  const q2 = query(usersCollectionRef, orderBy("uid", "asc"));
+  
   useEffect(() => {
     if (auth.currentUser === null) {
       navigate("/login", { replace: true });
     } else {
       setUid(auth.currentUser.uid);
     }
-  });
-  const [users, setUsers] = useState([]);
-  const [llistamissatges, setLlistaMissatges] = useState([]);
-  const messageCollectionRef = collection(db, "Messages");
-
-  const usersCollectionRef = collection(db, "Users");
-
-  const q = query(messageCollectionRef, orderBy("mid", "asc"));
-  const q2 = query(usersCollectionRef, orderBy("uid", "asc"));
-
-  useEffect(() => {
     const snapshotMessageRef = onSnapshot(q, (snapshot) => {
       const newDades = snapshot.docs.map((doc) => {
         return { ...doc.data(), id: doc.id };
       });
       console.log("newinfo", newDades);
       setLlistaMissatges(newDades);
+      setFilteredMessages(newDades);
     });
     const snapshotUserRef = onSnapshot(q2, (snapshot) => {
       const newDades = snapshot.docs.map((doc) => {
@@ -61,6 +58,10 @@ const MessageForm = ({ messagesArray, userArray, chatArray }) => {
       snapshotMessageRef();
     };
   }, []);
+
+  const [users, setUsers] = useState([]);
+  const [llistamissatges, setLlistaMissatges] = useState([]);
+  const [filteredMessages, setFilteredMessages] = useState([...llistamissatges]);
 
   const [message, setMessage] = useState({
     author_id: "",
@@ -128,6 +129,16 @@ const MessageForm = ({ messagesArray, userArray, chatArray }) => {
     });
   };
 
+  const changeFilter = (value) =>{
+    if ( value === "" ){
+      setFilteredMessages([...llistamissatges])
+      return
+    }
+    let newLlistamissatges = llistamissatges.filter(v=>v.message.includes(value))
+    console.log("newt",newLlistamissatges)
+    console.log("value",value)
+    setFilteredMessages([...newLlistamissatges])
+  }
 
   return (
     <div className="container mt-5">
@@ -139,7 +150,7 @@ const MessageForm = ({ messagesArray, userArray, chatArray }) => {
           <br></br>
           <Messages
             uid={uid}
-            messagesArray={llistamissatges}
+            messagesArray={filteredMessages}
             userArray={users}
             esborrar={delMessage}
             forEdit={forEdit}
@@ -152,6 +163,7 @@ const MessageForm = ({ messagesArray, userArray, chatArray }) => {
             {modeEdicio ? "Editar Missatge" : "Afegir Missatge"}
           </h4>
           <Form
+            changeFilter={changeFilter}
             uid={uid}
             modeEdicio={modeEdicio}
             editMessage={editMessage}

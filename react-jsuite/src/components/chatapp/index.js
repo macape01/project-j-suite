@@ -3,7 +3,7 @@ import Message from "./message";
 import styles from "./styles.module.scss";
 
 const Messages = ({ uid, messagesArray, userArray, esborrar, forEdit }) => {
-  console.log(messagesArray);
+  console.log("MESSAGES",messagesArray);
 
   return (
     <table className={`table table-bordered table-striped ${styles.messages}`}>

@@ -9,11 +9,21 @@ const Form = ({
   state,
   userArray,
   chatArray,
+  changeFilter,
   uid,
 }) => {
   return (
     <form onSubmit={modeEdicio ? editMessage : putMessage}>
       <span className="text-danger">{error} </span>
+      <div className="form-group mb-4">
+        <label >Busca un message: </label>
+        <input 
+          className="form-control mb-2"
+          onChange={e=>changeFilter(e.target.value)} 
+          type={"text"} 
+          placeholder="Introdueix el nom d'un message"
+          />
+      </div>
       <select
         type="text"
         className="form-control mb-2"

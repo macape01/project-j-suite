@@ -18,7 +18,7 @@ const Form = ({
   return (
     <form onSubmit={modeEdicio ? editar : afegir}>
       <span className="text-danger">{error} </span>
-      <div className="form-group">
+      <div className="form-group mb-4">
         <label >Busca un ticket: </label>
         <input 
           className="form-control mb-2"
