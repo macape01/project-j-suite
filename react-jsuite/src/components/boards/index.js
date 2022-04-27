@@ -9,6 +9,7 @@ const Tasks = ({
   taskArray,
   esborrar,
   editar,
+  ticketArray,
   uid
 }) => {
   console.log("tasks", taskArray);
@@ -20,6 +21,7 @@ const Tasks = ({
           <th>Title</th>
           <th>Completion</th>
           <th>Author</th>
+          <th>Ticket</th>
           <th>Eliminacion</th>
           <th>Editacion</th>
         </tr>
@@ -27,6 +29,7 @@ const Tasks = ({
         .filter(t=>t.author_id === uid)
         .map((task) => {
           let user = userArray.find((user) => user.uid === task.author_id);
+          let ticket = ticketArray.find((ticket) => ticket.tid * 1 === task.tid * 1);
           let completion = completionArray.find((completion) => completion.id === task.completion_id
           );
 
@@ -40,6 +43,7 @@ const Tasks = ({
               title={task.title}
               completion={completion.name}
               author={user?.name}
+              ticket={ticket.title}
             />
           );
         })}

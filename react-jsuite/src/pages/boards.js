@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 
 
 
-const TaskForm = ({ noteArray, completionArray, userArray, taskArray }) => {
+const TaskForm = ({ noteArray, completionArray, userArray, taskArray, ticketArray }) => {
   const auth = getAuth()
   const [uid,setUid] =  useState(null)
   let navigate = useNavigate()
@@ -26,11 +26,17 @@ const TaskForm = ({ noteArray, completionArray, userArray, taskArray }) => {
 
   const taskCollectionRef = collection(db,'Tasks')
 
+  const ticketsCollectionRef = collection(db,'Tickets')
+
+
   const usersCollectionRef = collection(db,'Users')
 
   const q = query(taskCollectionRef,orderBy('title','asc'));
 
   const q2 = query(usersCollectionRef,orderBy('uid','asc'));
+
+  const q3 = query(ticketsCollectionRef,orderBy('tid','asc'));
+
 
 
   useEffect(()=>{
@@ -50,14 +56,28 @@ const TaskForm = ({ noteArray, completionArray, userArray, taskArray }) => {
       console.log("dades",newDades)
       setUsers(newDades)
     })
+
+    const snapshotTicketRef = onSnapshot(q3,(snapshot)=>{
+      const newDades = snapshot.docs.map(doc => {
+        return {...doc.data(),id:doc.id}
+      })
+
+      console.log("dades",newDades)
+      setTickets(newDades)
+    })
+
     return () => {
       snapshotUserRef();
       snapshotTaskRef();
+      snapshotTicketRef();
+
     }
   },[])
 
   
   const [tasques, setTasques] = useState([]);
+  const [tickets, setTickets] = useState([]);
+
   const [filteredTasks, setFilteredTasks] = useState([...tasques]);
   const [modeEdicio, setModeEdicio] = useState(false);
   const [error, setError] = useState(null);
@@ -147,6 +167,7 @@ const TaskForm = ({ noteArray, completionArray, userArray, taskArray }) => {
             completionArray={completionArray}
             esborrar={esborrarTasca}
             editar={editar}
+            ticketArray={tickets}
           />
         </div>
 
@@ -164,6 +185,7 @@ const TaskForm = ({ noteArray, completionArray, userArray, taskArray }) => {
             state={tasca}
             userArray={users}
             completionArray={completionArray}
+            ticketArray={tickets}
           />
         </div>
       </div>

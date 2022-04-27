@@ -10,7 +10,8 @@ const Form = ({
   userArray,
   completionArray,
   uid,
-  changeFilter
+  changeFilter,
+  ticketArray
 
 }) => {
   return (
@@ -25,6 +26,7 @@ const Form = ({
           placeholder="Introdueix el nom d'un ticket"
           />
       </div>
+      <br></br><br></br>
       <input
         type="text"
         className="form-control mb-2"
@@ -32,6 +34,7 @@ const Form = ({
         onChange={(e) => setState({ ...state, title: e.target.value })}
         value={state.title}
       />
+
       <select
         type="text"
         className="form-control mb-2"
@@ -40,7 +43,7 @@ const Form = ({
           setState({ ...state, author_id: e.target.value});
         }}
       >
-        <option selected hidden></option>
+        <option selected hidden>escull autor</option>
         {userArray.map((user, idx) => {
           return (
             <option value={user.uid} key={idx}>
@@ -49,6 +52,27 @@ const Form = ({
           );
         })}
       </select>
+
+
+      <select
+        type="text"
+        className="form-control mb-2"
+        value={state.tid}
+        onChange={(e) => {
+          setState({ ...state, tid: e.target.value});
+        }}
+      >
+        <option selected hidden>escull ticket</option>
+        {ticketArray.map((ticket, idx) => {
+          return (
+            <option value={ticket.tid} key={idx}>
+              {ticket.title}
+            </option>
+          );
+        })}
+      </select>
+
+
       <select
         type="text"
         className="form-control mb-2"
@@ -57,10 +81,7 @@ const Form = ({
           setState({ ...state, completion_id: e.target.value * 1 });
         }}
       >
-        <option selected hidden>
-          Escull estat
-        </option>
-        <option selected hidden></option>
+        <option selected hidden>escull estat</option>
         {completionArray.map((completion, idx) => {
           return (
             <option value={completion.id} key={idx}>
