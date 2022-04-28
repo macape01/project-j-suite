@@ -28,9 +28,12 @@ const MessageForm = ({ messagesArray, userArray, chatArray }) => {
   
   const messageCollectionRef = collection(db, "Messages");
   const usersCollectionRef = collection(db, "Users");
-  
+  const chatsCollectionRef = collection(db, "Chats");
+
   const q = query(messageCollectionRef, orderBy("mid", "asc"));
   const q2 = query(usersCollectionRef, orderBy("uid", "asc"));
+  const q3 = query(chatsCollectionRef, orderBy("cid", "asc"));
+
   
   useEffect(() => {
     if (auth.currentUser === null) {
@@ -54,12 +57,22 @@ const MessageForm = ({ messagesArray, userArray, chatArray }) => {
       console.log("dades", newDades);
       setUsers(newDades);
     });
+    const snapshotChatRef = onSnapshot(q3, (snapshot) => {
+      const newDades = snapshot.docs.map((doc) => {
+        return { ...doc.data(), id: doc.id };
+      });
+      console.log("chats", newDades);
+      setChats(newDades);
+    });
     return () => {
       snapshotUserRef();
       snapshotMessageRef();
+      snapshotChatRef();
     };
   }, []);
 
+
+  const [chats, setChats] = useState([]);
   const [users, setUsers] = useState([]);
   const [llistamissatges, setLlistaMissatges] = useState([]);
   const [filteredMessages, setFilteredMessages] = useState([...llistamissatges]);
@@ -156,6 +169,7 @@ const MessageForm = ({ messagesArray, userArray, chatArray }) => {
             userArray={users}
             esborrar={delMessage}
             forEdit={forEdit}
+            chats={chats}
           />
           <br></br>
         </div>
@@ -174,7 +188,7 @@ const MessageForm = ({ messagesArray, userArray, chatArray }) => {
             setMessage={setMessage}
             state={message}
             userArray={users}
-            chatArray={chatArray}
+            chatArray={chats}
           />
         </div>
       </div>

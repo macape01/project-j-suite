@@ -62,7 +62,7 @@ const Form = ({
         <option selected hidden>Escull un chat</option>
         {chatArray.map((chat, idx) => {
           return (
-            <option value={chat.id} key={idx}>
+            <option value={chat.cid} key={idx}>
               {chat.name}
             </option>
           );

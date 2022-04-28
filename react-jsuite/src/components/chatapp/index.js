@@ -2,7 +2,7 @@ import { useState } from "react";
 import Message from "./message";
 import styles from "./styles.module.scss";
 
-const Messages = ({ uid, messagesArray, userArray, esborrar, forEdit }) => {
+const Messages = ({ uid, messagesArray, userArray, esborrar, forEdit, chats }) => {
   console.log("MESSAGES",messagesArray);
 
   return (
