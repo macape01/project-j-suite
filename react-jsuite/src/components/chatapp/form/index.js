@@ -24,7 +24,7 @@ const Form = ({
           placeholder="Introdueix el nom d'un message"
           />
       </div>
-      <select
+      {/* <select
         type="text"
         className="form-control mb-2"
         value={state.author_id}
@@ -43,7 +43,7 @@ const Form = ({
             </option>
           );
         })}
-      </select>
+      </select> */}
       <input
         type="text"
         className="form-control mb-2"
@@ -59,7 +59,7 @@ const Form = ({
           setMessage({ ...state, chat_id: e.target.value * 1 });
         }}
       >
-        <option selected hidden></option>
+        <option selected hidden>Escull un chat</option>
         {chatArray.map((chat, idx) => {
           return (
             <option value={chat.id} key={idx}>

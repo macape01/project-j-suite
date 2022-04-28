@@ -37,6 +37,7 @@ const MessageForm = ({ messagesArray, userArray, chatArray }) => {
       navigate("/login", { replace: true });
     } else {
       setUid(auth.currentUser.uid);
+      setMessage({...message,author_id:auth.currentUser.uid})
     }
     const snapshotMessageRef = onSnapshot(q, (snapshot) => {
       const newDades = snapshot.docs.map((doc) => {
@@ -115,9 +116,10 @@ const MessageForm = ({ messagesArray, userArray, chatArray }) => {
       return;
     }
     setError(null);
-
+    
     addDoc(messageCollectionRef, {
       ...message,
+      author_id:uid,
       mid: getLastId(),
       published: new Date().toLocaleDateString("es-EU"),
     });
