@@ -54,8 +54,8 @@ const MessageForm = ({ messagesArray, userArray, chatArray }) => {
       const newDades = snapshot.docs.map((doc) => {
         return { ...doc.data(), id: doc.id };
       });
-      console.log("dades", newDades);
       let user = newDades.find((user) => user.uid === auth.currentUser.uid);
+      console.log("dades", user);
       setAuthUser(user)
       setUsers(newDades);
     });
@@ -109,7 +109,6 @@ const MessageForm = ({ messagesArray, userArray, chatArray }) => {
     });
 
     setMessage({
-      author_id: "",
       message: "",
       chat_id: "",
     });
@@ -182,7 +181,7 @@ const MessageForm = ({ messagesArray, userArray, chatArray }) => {
           </h4>
           <Form
             changeFilter={changeFilter}
-            uid={uid}
+            user={authUser}
             modeEdicio={modeEdicio}
             editMessage={editMessage}
             putMessage={putMessage}
@@ -190,7 +189,7 @@ const MessageForm = ({ messagesArray, userArray, chatArray }) => {
             setMessage={setMessage}
             state={message}
             userArray={users}
-            chatArray={chats}
+            chats={chats}
           />
         </div>
       </div>

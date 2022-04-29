@@ -19,10 +19,8 @@ const Messages = ({ uid, messagesArray, userArray, esborrar, forEdit, user }) =>
         </tr>
         {/* Como un usuario solo deberia poder enviar mensajes a los chats a los cuales pertenece, siempre se comprueba si el mensaje pertenece al array de chats*/}
         {messagesArray
-          .filter(m=> user.chats_array.includes(m.chat_id))
+          .filter(m=> user && user.chats_array && user.chats_array.includes(m.chat_id))
           .map((mens) => {
-          console.log("mens", mens.chat_id);
-          let user = userArray.find((user) => user.uid === mens.author_id);
           return (
             <Message
               mid={mens.mid}

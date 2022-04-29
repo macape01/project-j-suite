@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const Form = ({
   modeEdicio,
@@ -7,11 +7,27 @@ const Form = ({
   error,
   setMessage,
   state,
-  userArray,
-  chatArray,
   changeFilter,
-  uid,
+  user,
+  chats
 }) => {
+  const [filteredChats,setFilteredChats] = useState([])
+  
+  useEffect(()=>{
+    console.log("form user",user)
+    console.log("form chats",filteredChats)
+    console.log("true?",user && user.chats_array && user.chats_array.length>0)
+    if ( filteredChats.length>0 ) return
+    if ( user && user.chats_array && user.chats_array.length > 0){
+      let newChats = chats.filter(c=>user.chats_array.includes(c.cid))
+      setFilteredChats(newChats)
+    }
+    /* if ( filteredChats ) return
+    if( user && user.chats_array && user.chats_array.length > 0 && filteredChats.length>0){
+    }  
+    let newChats = filteredChats.filter(c=>user.chats_array.includes(c.cid)) */
+  })
+  
   return (
     <form onSubmit={modeEdicio ? editMessage : putMessage}>
       <span className="text-danger">{error} </span>
@@ -24,26 +40,6 @@ const Form = ({
           placeholder="Introdueix el nom d'un message"
           />
       </div>
-      {/* <select
-        type="text"
-        className="form-control mb-2"
-        value={state.author_id}
-        onChange={(e) => {
-          setMessage({ ...state, author_id: e.target.value });
-        }}
-      >
-        <option selected hidden>
-          Escull un autor
-        </option>
-        {userArray.map((user, idx) => {
-          console.log("user", user);
-          return (
-            <option value={user.uid} key={idx}>
-              {user.name}
-            </option>
-          );
-        })}
-      </select> */}
       <input
         type="text"
         className="form-control mb-2"
@@ -59,14 +55,21 @@ const Form = ({
           setMessage({ ...state, chat_id: e.target.value * 1 });
         }}
       >
-        <option selected hidden>Escull un chat</option>
-        {chatArray.map((chat, idx) => {
-          return (
-            <option value={chat.cid} key={idx}>
-              {chat.name}
-            </option>
-          );
-        })}
+        {filteredChats && filteredChats.length > 0 ?
+          <>
+          <option selected hidden>Selecciona un chat</option>
+          {filteredChats.map((chat, idx) => {
+            console.log("CHAT",chat)
+            return (
+              <option value={chat.cid} key={idx}>
+                {chat.name}
+              </option>
+            );
+          })}
+          </>
+          :
+          <option selected disabled>No perteneces a ningun chat, Cagaste</option> 
+        }
       </select>
       {modeEdicio ? (
         <>
@@ -76,7 +79,7 @@ const Form = ({
         </>
       ) : (
         <>
-          <button className="btn btn-dark btn-block" type="submit">
+          <button disabled={!filteredChats} className="btn btn-dark btn-block" type="submit">
             Enviar
           </button>
         </>
