@@ -2,9 +2,9 @@ import { useState } from "react";
 import Message from "./message";
 import styles from "./styles.module.scss";
 
-const Messages = ({ uid, messagesArray, userArray, esborrar, forEdit, chats }) => {
+const Messages = ({ uid, messagesArray, userArray, esborrar, forEdit, user }) => {
   console.log("MESSAGES",messagesArray);
-
+  console.log("USSER",user)
   return (
     <table className={`table table-bordered table-striped ${styles.messages}`}>
       <tbody>
@@ -17,10 +17,11 @@ const Messages = ({ uid, messagesArray, userArray, esborrar, forEdit, chats }) =
           <th>Editar</th>
           <th>Borrar</th>
         </tr>
+        {/* Como un usuario solo deberia poder enviar mensajes a los chats a los cuales pertenece, siempre se comprueba si el mensaje pertenece al array de chats*/}
         {messagesArray
-          .filter(m=>m.author_id === uid)
+          .filter(m=> user.chats_array.includes(m.chat_id))
           .map((mens) => {
-          console.log("mens", mens);
+          console.log("mens", mens.chat_id);
           let user = userArray.find((user) => user.uid === mens.author_id);
           return (
             <Message

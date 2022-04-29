@@ -55,6 +55,8 @@ const MessageForm = ({ messagesArray, userArray, chatArray }) => {
         return { ...doc.data(), id: doc.id };
       });
       console.log("dades", newDades);
+      let user = newDades.find((user) => user.uid === auth.currentUser.uid);
+      setAuthUser(user)
       setUsers(newDades);
     });
     const snapshotChatRef = onSnapshot(q3, (snapshot) => {
@@ -73,12 +75,12 @@ const MessageForm = ({ messagesArray, userArray, chatArray }) => {
 
 
   const [chats, setChats] = useState([]);
+  const [authUser,setAuthUser] = useState(null)
   const [users, setUsers] = useState([]);
   const [llistamissatges, setLlistaMissatges] = useState([]);
   const [filteredMessages, setFilteredMessages] = useState([...llistamissatges]);
 
   const [message, setMessage] = useState({
-    author_id: "",
     message: "",
     chat_id: "",
   });
@@ -124,12 +126,13 @@ const MessageForm = ({ messagesArray, userArray, chatArray }) => {
     let value = Object.values(message).find((t) => {
       if (t === "" || t === null) return true;
     });
+    console.log("MESSAGE",message)
     if (value === "" || value === null) {
       setError("Cagaste");
       return;
     }
     setError(null);
-    
+
     addDoc(messageCollectionRef, {
       ...message,
       author_id:uid,
@@ -138,7 +141,6 @@ const MessageForm = ({ messagesArray, userArray, chatArray }) => {
     });
 
     setMessage({
-      author_id: "",
       message: "",
       chat_id: "",
     });
@@ -154,7 +156,6 @@ const MessageForm = ({ messagesArray, userArray, chatArray }) => {
     console.log("value",value)
     setFilteredMessages([...newLlistamissatges])
   }
-
   return (
     <div className="container mt-5">
       <h1 className="text-center">CRUD APP</h1>
@@ -167,6 +168,7 @@ const MessageForm = ({ messagesArray, userArray, chatArray }) => {
             uid={uid}
             messagesArray={filteredMessages}
             userArray={users}
+            user={authUser}
             esborrar={delMessage}
             forEdit={forEdit}
             chats={chats}
